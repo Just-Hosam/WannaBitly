@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUrl = exports.getUrls = void 0;
+exports.addUrl = exports.getUrl = exports.getUrls = void 0;
 const db = require('../../lib/db.js');
 const getUrls = (userId) => {
     const query = `
@@ -27,3 +27,15 @@ const getUrl = (userId, urlId) => {
         .catch((err) => console.log(`Error at urls queries 'getUrl'`, err));
 };
 exports.getUrl = getUrl;
+const addUrl = (urlObj, userId) => {
+    const query = `
+	INSERT INTO urls (user_id, short_url, long_url)
+	VALUES ($1, $2, $3)
+	RETURNING *;`;
+    const values = [userId, urlObj.short_url, urlObj.long_url];
+    return db
+        .query(query, values)
+        .then(({ rows }) => rows[0])
+        .catch((err) => console.log(`Error at urls queries 'addUrl'`, err));
+};
+exports.addUrl = addUrl;

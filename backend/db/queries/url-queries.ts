@@ -7,7 +7,12 @@ interface Url {
 	long_url: string;
 }
 
-const getUrls = (userId: number) => {
+interface NewUrl {
+	short_url: string;
+	long_url: string;
+}
+
+const getUrls = (userId: number): Promise<Url[]> => {
 	const query = `
 	SELECT *
 	FROM urls
@@ -20,7 +25,7 @@ const getUrls = (userId: number) => {
 		.catch((err: Error) => console.log(`Error at urls queries 'getUrls'`, err));
 };
 
-const getUrl = (userId: number, urlId: number) => {
+const getUrl = (userId: number, urlId: number): Promise<Url> => {
 	const query = `
 	SELECT *
 	FROM urls
@@ -34,4 +39,17 @@ const getUrl = (userId: number, urlId: number) => {
 		.catch((err: Error) => console.log(`Error at urls queries 'getUrl'`, err));
 };
 
-export { getUrls, getUrl };
+const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
+	const query = `
+	INSERT INTO urls (user_id, short_url, long_url)
+	VALUES ($1, $2, $3)
+	RETURNING *;`;
+	const values = [userId, urlObj.short_url, urlObj.long_url];
+
+	return db
+		.query(query, values)
+		.then(({ rows }: { rows: Url[] }) => rows[0])
+		.catch((err: Error) => console.log(`Error at urls queries 'addUrl'`, err));
+};
+
+export { getUrls, getUrl, addUrl };
