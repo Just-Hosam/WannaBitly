@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router({ mergeParams: true });
-import { getUrls, getUrl, addUrl, updateUrl } from '../db/queries/url-queries';
+import { getUrls, getUrl, addUrl, updateUrl, deleteUrl } from '../db/queries/url-queries';
 
 interface Url {
 	id: number;
@@ -41,12 +41,20 @@ router.post('/', (req, res) => {
 });
 
 router.patch('/:urlId', (req, res) => {
-	const userId = Number(req.params.userId);
+	const urlId = Number(req.params.urlId);
 	const urlObj: NewUrl = req.body.urlObj;
 
-	updateUrl(urlObj, userId)
+	updateUrl(urlObj, urlId)
 		.then((data: Url) => res.json(data))
 		.catch((err: Error) => console.log('Error at urls PATCH route "/:urlId"', err));
+});
+
+router.delete('/:urlId', (req, res) => {
+	const urlId = Number(req.params.urlId);
+
+	deleteUrl(urlId)
+		.then(() => res.status(200))
+		.catch((err: Error) => console.log('Error at urls DELETE route "/:urlId"', err));
 });
 
 module.exports = router;

@@ -27,10 +27,16 @@ router.post('/', (req, res) => {
         .catch((err) => console.log('Error at urls POST route "/"', err));
 });
 router.patch('/:urlId', (req, res) => {
-    const userId = Number(req.params.userId);
+    const urlId = Number(req.params.urlId);
     const urlObj = req.body.urlObj;
-    url_queries_1.updateUrl(urlObj, userId)
+    url_queries_1.updateUrl(urlObj, urlId)
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at urls PATCH route "/:urlId"', err));
+});
+router.delete('/:urlId', (req, res) => {
+    const urlId = Number(req.params.urlId);
+    url_queries_1.deleteUrl(urlId)
+        .then(() => res.status(200))
+        .catch((err) => console.log('Error at urls DELETE route "/:urlId"', err));
 });
 module.exports = router;
