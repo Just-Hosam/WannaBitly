@@ -8,6 +8,13 @@ interface User {
 	password: 'string';
 }
 
+interface NewUser {
+	first_name: 'string';
+	last_name: 'string';
+	email: 'string';
+	password: 'string';
+}
+
 const getUsers = () => {
 	const query = `
 	SELECT *
@@ -30,6 +37,19 @@ const getUser = (userId: number) => {
 		.query(query, values)
 		.then(({ rows }: { rows: User[] }) => rows[0])
 		.catch((err: Error) => console.log(`Error at users queries 'getUser'`, err));
+};
+
+const addUser = (userObj: NewUser) => {
+	const query = `
+	INSERT INTO users (first_name, last_name, email, password)
+	VALUES ($1, $2, $3, $4)
+	RETURNING *;`;
+	const values = [userObj.first_name, userObj.last_name, userObj.email, userObj.password];
+
+	return db
+		.query(query, values)
+		.then(({ rows }: { rows: NewUser[] }) => rows[0])
+		.catch((err: Error) => console.log(`Error at users queries 'addUser'`, err));
 };
 
 // const getUserByEmail = (userEmail) => {
@@ -59,19 +79,6 @@ const getUser = (userId: number) => {
 // 		.catch((err) => console.log(`Error at users queries 'checkUserByEmail'`, err));
 // };
 
-// const addUser = (userObj) => {
-// 	const text = `
-// 	INSERT INTO users (first_name, last_name, email, password)
-// 	VALUES ($1, $2, $3, $4)
-// 	RETURNING *;`;
-// 	const values = [userObj.firstName, userObj.lastName, userObj.email, userObj.password];
-
-// 	return db
-// 		.query(text, values)
-// 		.then((res) => res.rows[0])
-// 		.catch((err) => console.log(`Error at users queries 'addUser'`, err));
-// };
-
 // const updateUser = (userObj) => {
 // 	const text = `
 // 	UPDATE users
@@ -86,4 +93,4 @@ const getUser = (userId: number) => {
 // 		.catch((err) => console.log(`Error at users queries 'updateUser'`, err));
 // };
 
-export { getUsers, getUser };
+export { getUsers, getUser, addUser };
