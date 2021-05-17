@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUrl = exports.addUrl = exports.getUrl = exports.getUrls = void 0;
+exports.deleteUrl = exports.updateUrl = exports.addUrl = exports.getUrl = exports.getUrls = void 0;
 const db = require('../../lib/db.js');
 const getUrls = (userId) => {
     const query = `
@@ -39,16 +39,24 @@ const addUrl = (urlObj, userId) => {
         .catch((err) => console.log(`Error at urls queries 'addUrl'`, err));
 };
 exports.addUrl = addUrl;
-const updateUrl = (urlObj, userId) => {
+const updateUrl = (urlObj, urlId) => {
     const query = `
 	UPDATE urls
 	SET short_url = $1, long_url = $2
 	WHERE id = $3
 	RETURNING *`;
-    const values = [urlObj.short_url, urlObj.long_url, userId];
+    const values = [urlObj.short_url, urlObj.long_url, urlId];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])
         .catch((err) => console.log(`Error at urls queries 'updateUrl'`, err));
 };
 exports.updateUrl = updateUrl;
+const deleteUrl = (urlId) => {
+    const query = `
+	DELETE FROM urls
+	WHERE id = $1`;
+    const values = [urlId];
+    return db.query(query, values).catch((err) => console.log(`Error at urls queries 'deleteUrl'`, err));
+};
+exports.deleteUrl = deleteUrl;

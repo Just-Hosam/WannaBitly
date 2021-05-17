@@ -52,13 +52,13 @@ const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 		.catch((err: Error) => console.log(`Error at urls queries 'addUrl'`, err));
 };
 
-const updateUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
+const updateUrl = (urlObj: NewUrl, urlId: number): Promise<Url> => {
 	const query = `
 	UPDATE urls
 	SET short_url = $1, long_url = $2
 	WHERE id = $3
 	RETURNING *`;
-	const values = [urlObj.short_url, urlObj.long_url, userId];
+	const values = [urlObj.short_url, urlObj.long_url, urlId];
 
 	return db
 		.query(query, values)
@@ -66,4 +66,13 @@ const updateUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 		.catch((err: Error) => console.log(`Error at urls queries 'updateUrl'`, err));
 };
 
-export { getUrls, getUrl, addUrl, updateUrl };
+const deleteUrl = (urlId: number) => {
+	const query = `
+	DELETE FROM urls
+	WHERE id = $1`;
+	const values = [urlId];
+
+	return db.query(query, values).catch((err: Error) => console.log(`Error at urls queries 'deleteUrl'`, err));
+};
+
+export { getUrls, getUrl, addUrl, updateUrl, deleteUrl };
