@@ -12,4 +12,11 @@ router.get('/', (req, res) => {
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at urls GET route "/"', err));
 });
+router.get('/:urlId', (req, res) => {
+    const userId = Number(req.params.userId);
+    const urlId = Number(req.params.urlId);
+    url_queries_1.getUrl(userId, urlId)
+        .then((data) => res.json(data))
+        .catch((err) => console.log('Error at urls GET route "/:urlId"', err));
+});
 module.exports = router;

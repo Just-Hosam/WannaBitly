@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router({ mergeParams: true });
-import { getUrls } from '../db/queries/url-queries';
+import { getUrls, getUrl } from '../db/queries/url-queries';
 
 interface Url {
 	id: number;
@@ -15,6 +15,15 @@ router.get('/', (req, res) => {
 	getUrls(userId)
 		.then((data: Url[]) => res.json(data))
 		.catch((err: Error) => console.log('Error at urls GET route "/"', err));
+});
+
+router.get('/:urlId', (req, res) => {
+	const userId: number = Number(req.params.userId);
+	const urlId: number = Number(req.params.urlId);
+
+	getUrl(userId, urlId)
+		.then((data: Url) => res.json(data))
+		.catch((err: Error) => console.log('Error at urls GET route "/:urlId"', err));
 });
 
 module.exports = router;
