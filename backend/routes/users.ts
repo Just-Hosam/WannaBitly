@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-const { getUsers } = require('../db/queries/user-queries');
+const { getUsers, getUser } = require('../db/queries/user-queries');
 
 interface User {
 	id: number;
@@ -16,13 +16,13 @@ router.get('/', (req, res) => {
 		.catch((err: Error) => console.log('Error at users GET route "/"', err));
 });
 
-// router.get('/:userId', (req, res) => {
-// 	const userId = req.params.userId;
+router.get('/:userId', (req, res) => {
+	const userId: string = req.params.userId;
 
-// 	getUser(userId)
-// 		.then((data) => res.json(data))
-// 		.catch((err: Error) => console.log('Error at users GET route "/:userId"', err));
-// });
+	getUser(userId)
+		.then((data: User) => res.json(data))
+		.catch((err: Error) => console.log('Error at users GET route "/:userId"', err));
+});
 
 // router.post('/', (req, res) => {
 // 	const inputUser = req.body.inputUser;

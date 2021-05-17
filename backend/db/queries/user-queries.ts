@@ -19,18 +19,18 @@ const getUsers = () => {
 		.catch((err: Error) => console.log(`Error at users queries 'getUsers'`, err));
 };
 
-// const getUser = (userId) => {
-// 	const text = `
-// 	SELECT *
-// 	FROM users
-// 	WHERE id = $1;`;
-// 	const values = [userId];
+const getUser = (userId: number) => {
+	const query = `
+	SELECT *
+	FROM users
+	WHERE id = $1;`;
+	const values = [userId];
 
-// 	return db
-// 		.query(text, values)
-// 		.then((res) => res.rows[0])
-// 		.catch((err) => console.log(`Error at users queries 'getUser'`, err));
-// };
+	return db
+		.query(query, values)
+		.then(({ rows }: { rows: User[] }) => rows[0])
+		.catch((err: Error) => console.log(`Error at users queries 'getUser'`, err));
+};
 
 // const getUserByEmail = (userEmail) => {
 // 	const text = `
@@ -86,4 +86,4 @@ const getUsers = () => {
 // 		.catch((err) => console.log(`Error at users queries 'updateUser'`, err));
 // };
 
-export { getUsers };
+export { getUsers, getUser };
