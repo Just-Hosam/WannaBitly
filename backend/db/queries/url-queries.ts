@@ -7,13 +7,15 @@ interface Url {
 	long_url: string;
 }
 
-const getUrls = () => {
+const getUrls = (userId: number) => {
 	const query = `
 	SELECT *
-	FROM urls;`;
+	FROM urls
+	WHERE user_id = $1;`;
+	const values = [userId];
 
 	return db
-		.query(query)
+		.query(query, values)
 		.then(({ rows }: { rows: Url[] }) => rows)
 		.catch((err: Error) => console.log(`Error at users queries 'getUsers'`, err));
 };
