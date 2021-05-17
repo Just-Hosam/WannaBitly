@@ -26,4 +26,11 @@ router.post('/', (req, res) => {
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at urls POST route "/"', err));
 });
+router.patch('/:urlId', (req, res) => {
+    const userId = Number(req.params.userId);
+    const urlObj = req.body.urlObj;
+    url_queries_1.updateUrl(urlObj, userId)
+        .then((data) => res.json(data))
+        .catch((err) => console.log('Error at urls PATCH route "/:urlId"', err));
+});
 module.exports = router;
