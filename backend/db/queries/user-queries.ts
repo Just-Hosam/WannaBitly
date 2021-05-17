@@ -2,17 +2,23 @@ const db = require('../../lib/db.js');
 
 interface User {
 	id: number;
-	first_name: 'string';
-	last_name: 'string';
-	email: 'string';
-	password: 'string';
+	first_name: string;
+	last_name: string;
+	email: string;
+	password: string;
 }
 
 interface NewUser {
-	first_name: 'string';
-	last_name: 'string';
-	email: 'string';
-	password: 'string';
+	first_name: string;
+	last_name: string;
+	email: string;
+	password: string;
+}
+
+interface UpdatedUser {
+	first_name: string;
+	last_name: string;
+	password: string;
 }
 
 const getUsers = () => {
@@ -26,7 +32,7 @@ const getUsers = () => {
 		.catch((err: Error) => console.log(`Error at users queries 'getUsers'`, err));
 };
 
-const getUser = (userId: number) => {
+const getUserById = (userId: number) => {
 	const query = `
 	SELECT *
 	FROM users
@@ -48,49 +54,22 @@ const addUser = (userObj: NewUser) => {
 
 	return db
 		.query(query, values)
-		.then(({ rows }: { rows: NewUser[] }) => rows[0])
+		.then(({ rows }: { rows: User[] }) => rows[0])
 		.catch((err: Error) => console.log(`Error at users queries 'addUser'`, err));
 };
 
-// const getUserByEmail = (userEmail) => {
-// 	const text = `
-// 	SELECT *
-// 	FROM users
-// 	WHERE email = $1;`;
-// 	const values = [userEmail];
+const updateUser = (userObj: UpdatedUser, userId: number) => {
+	const query = `
+	UPDATE users
+	SET first_name = $1, last_name = $2, password = $3
+	WHERE id = $4
+	RETURNING *`;
+	const values = [userObj.first_name, userObj.last_name, userObj.password, userId];
 
-// 	return db
-// 		.query(text, values)
-// 		.then((res) => res.rows[0])
-// 		.catch((err) => console.log(`Error at users queries 'getUser'`, err));
-// };
+	return db
+		.query(query, values)
+		.then(({ rows }: { rows: User[] }) => rows[0])
+		.catch((err: Error) => console.log(`Error at users queries 'updateUser'`, err));
+};
 
-// const checkUserByEmail = (userEmail, userPassword) => {
-// 	const text = `
-// 	SELECT *
-// 	FROM users
-// 	WHERE email = $1
-// 	AND password = $2;`;
-// 	const values = [userEmail, userPassword];
-
-// 	return db
-// 		.query(text, values)
-// 		.then((res) => res.rows[0])
-// 		.catch((err) => console.log(`Error at users queries 'checkUserByEmail'`, err));
-// };
-
-// const updateUser = (userObj) => {
-// 	const text = `
-// 	UPDATE users
-// 	SET first_name = $1, last_name = $2, email = $3, password = $4
-// 	WHERE id = $5
-// 	RETURNING *`;
-// 	const values = [userObj.first_name, userObj.last_name, userObj.email, userObj.password, userObj.id];
-
-// 	return db
-// 		.query(text, values)
-// 		.then((res) => res.rows[0])
-// 		.catch((err) => console.log(`Error at users queries 'updateUser'`, err));
-// };
-
-export { getUsers, getUser, addUser };
+export { getUsers, getUserById, addUser, updateUser };

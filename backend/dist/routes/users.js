@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 router.get('/:userId', (req, res) => {
     const userId = Number(req.params.userId);
-    user_queries_1.getUser(userId)
+    user_queries_1.getUserById(userId)
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at users GET route "/:userId"', err));
 });
@@ -23,10 +23,11 @@ router.post('/', (req, res) => {
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at users POST route "/"', err));
 });
-// router.patch('/:userId', (req, res) => {
-// 	const inputUser = req.body.inputUser;
-// 	updateUser(inputUser)
-// 		.then((data) => res.json(data))
-// 		.catch((err: Error) => console.log('Error at users PATCH route "/:userId"', err));
-// });
+router.patch('/:userId', (req, res) => {
+    const userId = Number(req.params.userId);
+    const updatedUser = req.body.updatedUser;
+    user_queries_1.updateUser(updatedUser, userId)
+        .then((data) => res.json(data))
+        .catch((err) => console.log('Error at users PATCH route "/:userId"', err));
+});
 module.exports = router;

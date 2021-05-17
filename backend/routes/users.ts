@@ -1,20 +1,26 @@
 import express from 'express';
 const router = express.Router();
-import { getUsers, getUser, addUser } from '../db/queries/user-queries';
+import { getUsers, getUserById, addUser, updateUser } from '../db/queries/user-queries';
 
 interface User {
 	id: number;
-	first_name: 'string';
-	last_name: 'string';
-	email: 'string';
-	password: 'string';
+	first_name: string;
+	last_name: string;
+	email: string;
+	password: string;
 }
 
 interface NewUser {
-	first_name: 'string';
-	last_name: 'string';
-	email: 'string';
-	password: 'string';
+	first_name: string;
+	last_name: string;
+	email: string;
+	password: string;
+}
+
+interface UpdatedUser {
+	first_name: string;
+	last_name: string;
+	password: string;
 }
 
 router.get('/', (req, res) => {
@@ -26,7 +32,7 @@ router.get('/', (req, res) => {
 router.get('/:userId', (req, res) => {
 	const userId: number = Number(req.params.userId);
 
-	getUser(userId)
+	getUserById(userId)
 		.then((data: User) => res.json(data))
 		.catch((err: Error) => console.log('Error at users GET route "/:userId"', err));
 });
@@ -35,16 +41,17 @@ router.post('/', (req, res) => {
 	const userObj: NewUser = req.body.userObj;
 
 	addUser(userObj)
-		.then((data: NewUser) => res.json(data))
+		.then((data: User) => res.json(data))
 		.catch((err: Error) => console.log('Error at users POST route "/"', err));
 });
 
-// router.patch('/:userId', (req, res) => {
-// 	const inputUser = req.body.inputUser;
+router.patch('/:userId', (req, res) => {
+	const userId: number = Number(req.params.userId);
+	const updatedUser: UpdatedUser = req.body.updatedUser;
 
-// 	updateUser(inputUser)
-// 		.then((data) => res.json(data))
-// 		.catch((err: Error) => console.log('Error at users PATCH route "/:userId"', err));
-// });
+	updateUser(updatedUser, userId)
+		.then((data: User) => res.json(data))
+		.catch((err: Error) => console.log('Error at users PATCH route "/:userId"', err));
+});
 
 module.exports = router;
