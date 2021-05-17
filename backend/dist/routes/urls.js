@@ -19,4 +19,11 @@ router.get('/:urlId', (req, res) => {
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at urls GET route "/:urlId"', err));
 });
+router.post('/', (req, res) => {
+    const userId = Number(req.params.userId);
+    const urlObj = req.body.urlObj;
+    url_queries_1.addUrl(urlObj, userId)
+        .then((data) => res.json(data))
+        .catch((err) => console.log('Error at urls POST route "/"', err));
+});
 module.exports = router;
