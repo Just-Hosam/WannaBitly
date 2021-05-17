@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addUrl = exports.getUrl = exports.getUrls = void 0;
+exports.updateUrl = exports.addUrl = exports.getUrl = exports.getUrls = void 0;
 const db = require('../../lib/db.js');
 const getUrls = (userId) => {
     const query = `
@@ -39,3 +39,16 @@ const addUrl = (urlObj, userId) => {
         .catch((err) => console.log(`Error at urls queries 'addUrl'`, err));
 };
 exports.addUrl = addUrl;
+const updateUrl = (urlObj, userId) => {
+    const query = `
+	UPDATE urls
+	SET short_url = $1, long_url = $2
+	WHERE id = $3
+	RETURNING *`;
+    const values = [urlObj.short_url, urlObj.long_url, userId];
+    return db
+        .query(query, values)
+        .then(({ rows }) => rows[0])
+        .catch((err) => console.log(`Error at urls queries 'updateUrl'`, err));
+};
+exports.updateUrl = updateUrl;

@@ -52,4 +52,18 @@ const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 		.catch((err: Error) => console.log(`Error at urls queries 'addUrl'`, err));
 };
 
-export { getUrls, getUrl, addUrl };
+const updateUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
+	const query = `
+	UPDATE urls
+	SET short_url = $1, long_url = $2
+	WHERE id = $3
+	RETURNING *`;
+	const values = [urlObj.short_url, urlObj.long_url, userId];
+
+	return db
+		.query(query, values)
+		.then(({ rows }: { rows: Url[] }) => rows[0])
+		.catch((err: Error) => console.log(`Error at urls queries 'updateUrl'`, err));
+};
+
+export { getUrls, getUrl, addUrl, updateUrl };
