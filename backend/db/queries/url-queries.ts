@@ -5,11 +5,13 @@ interface Url {
 	user_id: number;
 	short_url: string;
 	long_url: string;
+	description: string;
 }
 
 interface NewUrl {
 	short_url: string;
 	long_url: string;
+	description: string;
 }
 
 const getUrls = (userId: number): Promise<Url[]> => {
@@ -41,10 +43,10 @@ const getUrl = (userId: number, urlId: number): Promise<Url> => {
 
 const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 	const query = `
-	INSERT INTO urls (user_id, short_url, long_url)
-	VALUES ($1, $2, $3)
+	INSERT INTO urls (user_id, short_url, long_url, description)
+	VALUES ($1, $2, $3, $4)
 	RETURNING *;`;
-	const values = [userId, urlObj.short_url, urlObj.long_url];
+	const values = [userId, urlObj.short_url, urlObj.long_url, urlObj.description];
 
 	return db
 		.query(query, values)
@@ -53,12 +55,14 @@ const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 };
 
 const updateUrl = (urlObj: NewUrl, urlId: number): Promise<Url> => {
+	if (!urlObj.description) urlObj.description = null;
+
 	const query = `
 	UPDATE urls
-	SET short_url = $1, long_url = $2
-	WHERE id = $3
+	SET short_url = $1, long_url = $2, description = $3
+	WHERE id = $4
 	RETURNING *`;
-	const values = [urlObj.short_url, urlObj.long_url, urlId];
+	const values = [urlObj.short_url, urlObj.long_url, , urlObj.description, urlId];
 
 	return db
 		.query(query, values)

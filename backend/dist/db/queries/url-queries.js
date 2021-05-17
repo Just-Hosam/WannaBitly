@@ -29,10 +29,10 @@ const getUrl = (userId, urlId) => {
 exports.getUrl = getUrl;
 const addUrl = (urlObj, userId) => {
     const query = `
-	INSERT INTO urls (user_id, short_url, long_url)
-	VALUES ($1, $2, $3)
+	INSERT INTO urls (user_id, short_url, long_url, description)
+	VALUES ($1, $2, $3, $4)
 	RETURNING *;`;
-    const values = [userId, urlObj.short_url, urlObj.long_url];
+    const values = [userId, urlObj.short_url, urlObj.long_url, urlObj.description];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])
@@ -40,12 +40,14 @@ const addUrl = (urlObj, userId) => {
 };
 exports.addUrl = addUrl;
 const updateUrl = (urlObj, urlId) => {
+    if (!urlObj.description)
+        urlObj.description = null;
     const query = `
 	UPDATE urls
-	SET short_url = $1, long_url = $2
-	WHERE id = $3
+	SET short_url = $1, long_url = $2, description = $3
+	WHERE id = $4
 	RETURNING *`;
-    const values = [urlObj.short_url, urlObj.long_url, urlId];
+    const values = [urlObj.short_url, urlObj.long_url, , urlObj.description, urlId];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])

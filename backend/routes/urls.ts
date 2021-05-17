@@ -7,11 +7,13 @@ interface Url {
 	user_id: number;
 	short_url: string;
 	long_url: string;
+	description: string;
 }
 
 interface NewUrl {
 	short_url: string;
 	long_url: string;
+	description: string;
 }
 
 router.get('/', (req, res) => {
