@@ -73,7 +73,7 @@ const updateUrl = (urlObj: NewUrl, urlId: number): Promise<Url> => {
 const deleteUrl = (urlId: number) => {
 	const query = `
 	DELETE FROM urls
-	WHERE id = $1`;
+	WHERE id = $1;`;
 	const values = [urlId];
 
 	return db.query(query, values).catch((err: Error) => console.log(`Error at urls queries 'deleteUrl'`, err));

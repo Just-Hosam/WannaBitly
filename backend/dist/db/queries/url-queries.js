@@ -57,7 +57,7 @@ exports.updateUrl = updateUrl;
 const deleteUrl = (urlId) => {
     const query = `
 	DELETE FROM urls
-	WHERE id = $1`;
+	WHERE id = $1;`;
     const values = [urlId];
     return db.query(query, values).catch((err) => console.log(`Error at urls queries 'deleteUrl'`, err));
 };
