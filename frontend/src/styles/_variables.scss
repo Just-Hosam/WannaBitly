@@ -2,10 +2,10 @@ $background-color: #202b3a;
 $card-color: #fff;
 $text-color: rgb(59, 59, 59);
 $text-color-alt: rgba(65, 65, 65, 0.932);
-$text-color-button: #fff;
+$text-color-button: #202b3a;
 $text-color-icon: rgba(114, 114, 114, 0.932);
 $accent-color: #eec124;
-$accent-color-alt: black;
+$accent-color-alt: #d3a500;
 $error-color: rgb(253, 72, 72);
 
 @mixin centerFlex($direction: row) {
