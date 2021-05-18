@@ -1,7 +1,11 @@
+import MainCard from './MainCard';
+import NavBar from './NavBar/NavBar';
+
 function App() {
 	return (
 		<div className="App">
-			<h1>My name is App</h1>
+			<NavBar />
+			<MainCard />
 		</div>
 	);
 }
