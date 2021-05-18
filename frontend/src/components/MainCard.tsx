@@ -36,7 +36,7 @@ const MainCard = () => {
 						<i className="fas fa-plus-circle"></i>
 					</IconButton>
 				</header>
-				{isVisible && <AddUrlForm />}
+				{isVisible && <AddUrlForm setUrls={setUrls} setIsVisible={setIsVisible} />}
 			</header>
 			<ul>{urlsList}</ul>
 		</div>
