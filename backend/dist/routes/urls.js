@@ -36,7 +36,7 @@ router.patch('/:urlId', (req, res) => {
 router.delete('/:urlId', (req, res) => {
     const urlId = Number(req.params.urlId);
     url_queries_1.deleteUrl(urlId)
-        .then(() => res.status(200))
+        .then((data) => res.json(data))
         .catch((err) => console.log('Error at urls DELETE route "/:urlId"', err));
 });
 module.exports = router;

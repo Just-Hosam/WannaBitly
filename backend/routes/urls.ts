@@ -55,7 +55,7 @@ router.delete('/:urlId', (req, res) => {
 	const urlId = Number(req.params.urlId);
 
 	deleteUrl(urlId)
-		.then(() => res.status(200))
+		.then((data: Url) => res.json(data))
 		.catch((err: Error) => console.log('Error at urls DELETE route "/:urlId"', err));
 });
 
