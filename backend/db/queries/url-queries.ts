@@ -18,7 +18,8 @@ const getUrls = (userId: number): Promise<Url[]> => {
 	const query = `
 	SELECT *
 	FROM urls
-	WHERE user_id = $1;`;
+	WHERE user_id = $1
+	ORDER BY id DESC;`;
 	const values = [userId];
 
 	return db
@@ -38,6 +39,19 @@ const getUrl = (userId: number, urlId: number): Promise<Url> => {
 	return db
 		.query(query, values)
 		.then(({ rows }: { rows: Url[] }) => rows[0])
+		.catch((err: Error) => console.log(`Error at urls queries 'getUrl'`, err));
+};
+
+const getLongUrlByShortUrl = (shortUrl: string) => {
+	const query = `
+	SELECT long_url
+	FROM urls
+	WHERE short_url = $1;`;
+	const values = [shortUrl];
+
+	return db
+		.query(query, values)
+		.then(({ rows }: { rows: string[] }) => rows[0])
 		.catch((err: Error) => console.log(`Error at urls queries 'getUrl'`, err));
 };
 
@@ -79,4 +93,4 @@ const deleteUrl = (urlId: number) => {
 	return db.query(query, values).catch((err: Error) => console.log(`Error at urls queries 'deleteUrl'`, err));
 };
 
-export { getUrls, getUrl, addUrl, updateUrl, deleteUrl };
+export { getUrls, getUrl, addUrl, updateUrl, deleteUrl, getLongUrlByShortUrl };

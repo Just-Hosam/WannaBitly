@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUrl = exports.updateUrl = exports.addUrl = exports.getUrl = exports.getUrls = void 0;
+exports.getLongUrlByShortUrl = exports.deleteUrl = exports.updateUrl = exports.addUrl = exports.getUrl = exports.getUrls = void 0;
 const db = require('../../lib/db.js');
 const getUrls = (userId) => {
     const query = `
 	SELECT *
 	FROM urls
-	WHERE user_id = $1;`;
+	WHERE user_id = $1
+	ORDER BY id DESC;`;
     const values = [userId];
     return db
         .query(query, values)
@@ -27,6 +28,18 @@ const getUrl = (userId, urlId) => {
         .catch((err) => console.log(`Error at urls queries 'getUrl'`, err));
 };
 exports.getUrl = getUrl;
+const getLongUrlByShortUrl = (shortUrl) => {
+    const query = `
+	SELECT long_url
+	FROM urls
+	WHERE short_url = $1;`;
+    const values = [shortUrl];
+    return db
+        .query(query, values)
+        .then(({ rows }) => rows[0])
+        .catch((err) => console.log(`Error at urls queries 'getUrl'`, err));
+};
+exports.getLongUrlByShortUrl = getLongUrlByShortUrl;
 const addUrl = (urlObj, userId) => {
     const query = `
 	INSERT INTO urls (user_id, short_url, long_url, description)
