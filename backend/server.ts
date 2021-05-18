@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+import { getLongUrlByShortUrl } from './db/queries/url-queries';
 import express from 'express';
 import bodyParser from 'body-parser';
 const morgan = require('morgan');
@@ -31,6 +32,15 @@ const urlsRouter = require('./routes/urls.js');
 // Mount all resource routes
 app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
+
+app.get('/:shortUrl', (req, res) => {
+	const short_url = `http://localhost:8080/${req.params.shortUrl}`;
+	getLongUrlByShortUrl(short_url).then((data: { long_url: string }) => {
+		res.redirect(data.long_url);
+		return;
+	});
+	return;
+});
 
 app.get('/', (req, res) => {
 	res.status(200).send("HELLO IT'S ME DIO");
