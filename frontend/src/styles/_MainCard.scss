@@ -1,14 +1,16 @@
 @import './variables';
 
 #main-card {
-	min-width: 55vw;
-	min-height: 70vh;
+	width: 650px;
+	height: 500px;
 	background-color: $card-color;
 	border-radius: 0.8rem;
 	padding: 1rem;
+	display: flex;
+	flex-direction: column;
 
 	header {
-		margin-bottom: 1.5rem;
+		margin-bottom: 0.5rem;
 		header {
 			display: flex;
 			justify-content: space-between;
@@ -61,11 +63,37 @@
 			}
 		}
 	}
+
+	ul {
+		list-style: none;
+		justify-self: stretch;
+		overflow-y: auto;
+		overflow-x: hidden;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+
+		&::-webkit-scrollbar {
+			width: 4px;
+			height: 4px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: rgba(129, 129, 129, 0.562);
+			border-radius: 100px;
+		}
+	}
 }
 
 @media only screen and (max-width: 700px) {
 	#main-card {
 		width: 89%;
+		height: 100%;
 		border-radius: 0.5rem;
 	}
 }

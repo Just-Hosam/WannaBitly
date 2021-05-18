@@ -54,6 +54,10 @@ body {
   font-family: 'Rubik';
 }
 
+#navbar .nav-btn i {
+  display: none;
+}
+
 #navbar #nav-details {
   margin: 1rem;
 }
@@ -103,24 +107,35 @@ body {
 }
 
 @media only screen and (max-width: 700px) {
-  #navbar #nav-details {
+  #navbar .nav-btn {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+  }
+  #navbar .nav-btn #logout-text {
     display: none;
   }
-  #navbar #nav-details #user-info {
-    background-color: green;
+  #navbar .nav-btn i {
+    display: contents;
   }
 }
 
 #main-card {
-  min-width: 55vw;
-  min-height: 70vh;
+  width: 650px;
+  height: 500px;
   background-color: #fff;
   border-radius: 0.8rem;
   padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 #main-card header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 #main-card header header {
@@ -201,9 +216,97 @@ body {
   background-color: #202b3a;
 }
 
+#main-card ul {
+  list-style: none;
+  justify-self: stretch;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+#main-card ul::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+#main-card ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#main-card ul::-webkit-scrollbar-thumb {
+  background: rgba(129, 129, 129, 0.562);
+  border-radius: 100px;
+}
+
 @media only screen and (max-width: 700px) {
   #main-card {
     width: 89%;
+    height: 100%;
     border-radius: 0.5rem;
   }
+}
+
+.url-card {
+  border-bottom: 1px solid rgba(114, 114, 114, 0.932);
+  width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+}
+
+.url-card p {
+  color: #3b3b3b;
+  font-size: 1.1rem;
+}
+
+.url-card .urls-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.url-card .urls-cont p {
+  margin-bottom: 0.1rem;
+  font-size: 1rem;
+}
+
+.url-card .urls-cont span {
+  font-style: italic;
+  font-size: 0.8rem;
+  color: rgba(65, 65, 65, 0.932);
+}
+
+.url-card .urls-btns {
+  padding: 0.3rem;
+  margin-left: 0.5rem;
+}
+
+.url-card .urls-btns i {
+  font-size: 20px;
+}
+
+.url-card .analytics-btn {
+  color: #d3a500;
 }
