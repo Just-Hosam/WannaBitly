@@ -1,0 +1,47 @@
+@import './variables';
+
+.url-card {
+	// border: 1px solid $text-color-icon;
+	// border-radius: 0.5rem;
+	border-bottom: 1px solid $text-color-icon;
+	width: 95%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem 0.5rem 0.5rem 0.8rem;
+
+	p {
+		color: $text-color;
+		font-size: 1.1rem;
+	}
+
+	.urls-cont {
+		display: flex;
+		flex-direction: column;
+
+		p {
+			margin-bottom: 0.1rem;
+			font-size: 1rem;
+		}
+
+		span {
+			font-style: italic;
+			font-size: 0.8rem;
+			color: $text-color-alt;
+		}
+	}
+
+	.urls-btns {
+		padding: 0.3rem;
+		margin-left: 0.5rem;
+
+		i {
+			font-size: 20px;
+		}
+	}
+
+	.analytics-btn {
+		color: $accent-color-alt;
+	}
+}
