@@ -1,6 +1,7 @@
 import express from 'express';
 const router = express.Router({ mergeParams: true });
 import { getUrls, getUrl, addUrl, updateUrl, deleteUrl } from '../db/queries/url-queries';
+import shortLinkGenerator from '../helpers/shortLinkGenerator';
 
 interface Url {
 	id: number;
@@ -35,7 +36,10 @@ router.get('/:urlId', (req, res) => {
 
 router.post('/', (req, res) => {
 	const userId = Number(req.params.userId);
-	const urlObj: NewUrl = req.body.urlObj;
+	const urlObj: NewUrl = {
+		...req.body,
+		short_url: shortLinkGenerator(),
+	};
 
 	addUrl(urlObj, userId)
 		.then((data: Url) => res.json(data))

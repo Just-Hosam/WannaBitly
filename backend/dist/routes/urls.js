@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router({ mergeParams: true });
 const url_queries_1 = require("../db/queries/url-queries");
+const shortLinkGenerator_1 = __importDefault(require("../helpers/shortLinkGenerator"));
 router.get('/', (req, res) => {
     const userId = Number(req.params.userId);
     url_queries_1.getUrls(userId)
@@ -21,7 +22,7 @@ router.get('/:urlId', (req, res) => {
 });
 router.post('/', (req, res) => {
     const userId = Number(req.params.userId);
-    const urlObj = req.body.urlObj;
+    const urlObj = Object.assign(Object.assign({}, req.body), { short_url: shortLinkGenerator_1.default() });
     url_queries_1.addUrl(urlObj, userId)
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at urls POST route "/"', err));
