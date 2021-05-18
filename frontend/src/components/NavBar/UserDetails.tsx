@@ -21,7 +21,8 @@ const UserDetails = () => {
 				<span>Hosam_Dahrooge@test.com</span>
 			</div>
 			<Button variant="contained" className="nav-btn">
-				Logout
+				<span id="logout-text">Logout</span>
+				<i className="fas fa-sign-out-alt"></i>
 			</Button>
 		</div>
 	);

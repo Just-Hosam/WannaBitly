@@ -19,6 +19,10 @@
 		margin-left: 0.65rem;
 		font-size: 0.8rem;
 		font-family: 'Rubik';
+
+		i {
+			display: none;
+		}
 	}
 
 	#nav-details {
@@ -59,10 +63,15 @@
 // TODO: TEMPORARY FOR TESTING
 @media only screen and (max-width: 700px) {
 	#navbar {
-		#nav-details {
-			display: none;
-			#user-info {
-				background-color: green;
+		.nav-btn {
+			padding: 0.5rem 0;
+			font-size: 1rem;
+			#logout-text {
+				display: none;
+			}
+
+			i {
+				display: contents;
 			}
 		}
 	}
