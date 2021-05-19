@@ -33,13 +33,17 @@ const urlsRouter = require('./routes/urls.js');
 app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
 
-app.get('/:shortUrl', (req, res) => {
-	const short_url = `http://localhost:8080/${req.params.shortUrl}`;
-	getLongUrlByShortUrl(short_url).then((data: { long_url: string }) => {
-		res.redirect(data.long_url);
-		return;
-	});
-	return;
+app.get('/s/:shortUrl', (req, res) => {
+	const short_url = `localhost:8080/s/${req.params.shortUrl}`;
+	getLongUrlByShortUrl(short_url)
+		.then((data: { long_url: string }) => {
+			if (!data) {
+				res.status(404).send('This link is not connected to anything');
+				return;
+			}
+			res.redirect(data.long_url);
+		})
+		.catch((err: Error) => console.log('Error at server GET route "/:shortUrl"', err));
 });
 
 app.get('/', (req, res) => {

@@ -30,13 +30,17 @@ const urlsRouter = require('./routes/urls.js');
 // Mount all resource routes
 app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
-app.get('/:shortUrl', (req, res) => {
-    const short_url = `http://localhost:8080/${req.params.shortUrl}`;
-    url_queries_1.getLongUrlByShortUrl(short_url).then((data) => {
+app.get('/s/:shortUrl', (req, res) => {
+    const short_url = `localhost:8080/s/${req.params.shortUrl}`;
+    url_queries_1.getLongUrlByShortUrl(short_url)
+        .then((data) => {
+        if (!data) {
+            res.status(404).send('This link is not connected to anything');
+            return;
+        }
         res.redirect(data.long_url);
-        return;
-    });
-    return;
+    })
+        .catch((err) => console.log('Error at server GET route "/:shortUrl"', err));
 });
 app.get('/', (req, res) => {
     res.status(200).send("HELLO IT'S ME DIO");
