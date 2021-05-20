@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
 });
 router.patch('/:urlId', (req, res) => {
     const urlId = Number(req.params.urlId);
-    const urlObj = req.body.urlObj;
+    const urlObj = req.body;
     url_queries_1.updateUrl(urlObj, urlId)
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at urls PATCH route "/:urlId"', err));

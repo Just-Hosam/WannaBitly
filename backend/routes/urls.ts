@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
 
 router.patch('/:urlId', (req, res) => {
 	const urlId = Number(req.params.urlId);
-	const urlObj: NewUrl = req.body.urlObj;
+	const urlObj: Url = req.body;
 
 	updateUrl(urlObj, urlId)
 		.then((data: Url) => res.json(data))
