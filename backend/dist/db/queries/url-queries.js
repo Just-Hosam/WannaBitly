@@ -60,7 +60,7 @@ const updateUrl = (urlObj, urlId) => {
 	SET short_url = $1, long_url = $2, description = $3
 	WHERE id = $4
 	RETURNING *`;
-    const values = [urlObj.short_url, urlObj.long_url, , urlObj.description, urlId];
+    const values = [urlObj.short_url, urlObj.long_url, urlObj.description, urlId];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])

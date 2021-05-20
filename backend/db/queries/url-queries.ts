@@ -68,7 +68,7 @@ const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 		.catch((err: Error) => console.log(`Error at urls queries 'addUrl'`, err));
 };
 
-const updateUrl = (urlObj: NewUrl, urlId: number): Promise<Url> => {
+const updateUrl = (urlObj: Url, urlId: number): Promise<Url> => {
 	if (!urlObj.description) urlObj.description = null;
 
 	const query = `
@@ -76,7 +76,7 @@ const updateUrl = (urlObj: NewUrl, urlId: number): Promise<Url> => {
 	SET short_url = $1, long_url = $2, description = $3
 	WHERE id = $4
 	RETURNING *`;
-	const values = [urlObj.short_url, urlObj.long_url, , urlObj.description, urlId];
+	const values = [urlObj.short_url, urlObj.long_url, urlObj.description, urlId];
 
 	return db
 		.query(query, values)
