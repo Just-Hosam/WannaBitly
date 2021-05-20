@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import UrlCard from './UrlCard';
 import AddUrlForm from './AddUrlForm';
+import EditUrlForm from './EditUrlForm';
 import IconButton from '@material-ui/core/IconButton';
 
 interface Url {
@@ -15,8 +16,15 @@ interface Url {
 
 const MainCard = () => {
 	const userId = 1;
-	const [isVisible, setIsVisible] = useState(true);
+	const [formMode, setFormMode] = useState('');
 	const [urls, setUrls] = useState<Url[]>([]);
+	const [editableUrl, setEditableUrl] = useState<Url>({
+		id: 0,
+		user_id: 0,
+		short_url: '',
+		long_url: '',
+		description: '',
+	});
 
 	useEffect(() => {
 		axios
@@ -25,18 +33,41 @@ const MainCard = () => {
 			.catch((err) => console.log('Error at MainCard useEffect GET request', err));
 	}, []);
 
-	const urlsList = urls.map((elem) => <UrlCard setUrls={setUrls} key={elem.id} data={elem} />);
+	const handleAddButton = (currentMode: string) => {
+		if (currentMode === '' || currentMode === 'EDIT') setFormMode('ADD');
+		if (currentMode === 'ADD') setFormMode('');
+	};
+
+	const urlsList = urls.map((elem) => (
+		<UrlCard
+			setEditableUrl={setEditableUrl}
+			setFormMode={setFormMode}
+			setUrls={setUrls}
+			key={elem.id}
+			data={elem}
+		/>
+	));
 
 	return (
 		<div id="main-card">
 			<header>
 				<header>
-					<h2>Urls</h2>
-					<IconButton className="add-btn" onClick={() => setIsVisible(!isVisible)}>
+					{formMode === '' && <h2>Urls</h2>}
+					{formMode === 'ADD' && <h2>Add Url</h2>}
+					{formMode === 'EDIT' && <h2>Edit Url</h2>}
+					<IconButton className="add-btn" onClick={() => handleAddButton(formMode)}>
 						<i className="fas fa-plus-circle"></i>
 					</IconButton>
 				</header>
-				{isVisible && <AddUrlForm setUrls={setUrls} setIsVisible={setIsVisible} />}
+				{formMode === 'EDIT' && (
+					<EditUrlForm
+						editableUrl={editableUrl}
+						setEditableUrl={setEditableUrl}
+						setUrls={setUrls}
+						setFormMode={setFormMode}
+					/>
+				)}
+				{formMode === 'ADD' && <AddUrlForm setUrls={setUrls} setFormMode={setFormMode} />}
 			</header>
 			<ul>{urlsList}</ul>
 		</div>
