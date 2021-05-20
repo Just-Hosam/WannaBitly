@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 
 interface Props {
 	setUrls: React.Dispatch<React.SetStateAction<Url[]>>;
-	setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	setFormMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface Url {
@@ -35,10 +35,8 @@ const AddUrlForm = (props: Props) => {
 	};
 
 	const handleSubmit = () => {
-		console.log('testing hereee');
-		const urlObj = addForm;
 		axios
-			.post(`/users/${userId}/urls`, urlObj)
+			.post(`/users/${userId}/urls`, addForm)
 			.then((res) => props.setUrls((prev) => [res.data, ...prev]))
 			.catch((err) => console.log(`Error at HandleSubmit`, err));
 	};
@@ -66,11 +64,11 @@ const AddUrlForm = (props: Props) => {
 				onChange={(e) => handleChange(e.target.value, 'description')}
 			/>
 			<div id="add-url-btns">
-				<Button onClick={() => props.setIsVisible(false)} className="add-url-cancel" variant="contained">
+				<Button onClick={() => props.setFormMode('')} className="add-url-cancel" variant="contained">
 					Cancel
 				</Button>
 				<Button type="submit" className="add-url-submit" variant="contained">
-					Submit
+					Add
 				</Button>
 			</div>
 		</form>
