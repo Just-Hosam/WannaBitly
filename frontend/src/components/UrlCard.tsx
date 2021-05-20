@@ -5,6 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 interface Props {
 	data: Url;
 	setUrls: React.Dispatch<React.SetStateAction<Url[]>>;
+	setFormMode: React.Dispatch<React.SetStateAction<string>>;
+	setEditableUrl: React.Dispatch<React.SetStateAction<Url>>;
 }
 
 interface Url {
@@ -20,6 +22,11 @@ const UrlCard = (props: Props) => {
 
 	const handleCopy = () => {
 		navigator.clipboard.writeText(props.data.short_url);
+	};
+
+	const handleEdit = (updatedUrl: Url) => {
+		props.setFormMode('EDIT');
+		props.setEditableUrl(updatedUrl);
 	};
 
 	const handleDelete = () => {
@@ -46,7 +53,7 @@ const UrlCard = (props: Props) => {
 				<IconButton onClick={handleCopy} className="urls-btns" aria-label="copy">
 					<i className="fas fa-copy"></i>
 				</IconButton>
-				<IconButton className="urls-btns" aria-label="edit">
+				<IconButton onClick={() => handleEdit(props.data)} className="urls-btns" aria-label="edit">
 					<i className="fas fa-pen"></i>
 				</IconButton>
 				<IconButton onClick={handleDelete} className="urls-btns" aria-label="delete">
