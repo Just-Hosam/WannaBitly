@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useState } from 'react';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -21,8 +20,6 @@ interface Url {
 
 const EditUrlForm = (props: Props) => {
 	const userId = 1;
-
-	// const [editForm, setEditForm] = useState(props.editableUrl);
 
 	const handleChange = (value: string, textType: string) => {
 		props.setEditableUrl((prev) => {
