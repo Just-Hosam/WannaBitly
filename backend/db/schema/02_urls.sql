@@ -5,5 +5,5 @@ CREATE TABLE urls (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   short_url VARCHAR(255) NOT NULL,
   long_url VARCHAR(255) NOT NULL,
-  description VARCHAR(255) DEFAULT null
+  description VARCHAR(255) NOT NULL DEFAULT ''
 )
