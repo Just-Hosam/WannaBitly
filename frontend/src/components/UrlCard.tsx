@@ -49,7 +49,7 @@ const UrlCard = (props: Props) => {
 					<span>{props.data.long_url}</span>
 				</div>
 			)}
-			<div>
+			<div className="urls-card-icons">
 				<IconButton onClick={handleCopy} className="urls-btns" aria-label="copy">
 					<i className="fas fa-copy"></i>
 				</IconButton>

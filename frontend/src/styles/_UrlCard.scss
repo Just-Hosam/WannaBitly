@@ -1,8 +1,6 @@
 @import './variables';
 
 .url-card {
-	// border: 1px solid $text-color-icon;
-	// border-radius: 0.5rem;
 	border-bottom: 1px solid $text-color-icon;
 	width: 95%;
 	display: flex;
@@ -43,5 +41,35 @@
 
 	.analytics-btn {
 		color: $accent-color-alt;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.url-card {
+		flex-direction: column;
+		align-items: flex-start;
+
+		p {
+			font-size: 1.2rem;
+			width: 100%;
+		}
+
+		.urls-cont {
+			width: 100%;
+
+			p {
+				font-size: 1.2rem;
+			}
+			span {
+				font-size: 1.2rem;
+			}
+		}
+
+		.urls-card-icons {
+			display: flex;
+			margin-top: 1rem;
+			width: 100%;
+			justify-content: flex-end;
+		}
 	}
 }

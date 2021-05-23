@@ -107,6 +107,9 @@ body {
 }
 
 @media only screen and (max-width: 700px) {
+  #navbar {
+    margin-bottom: 0.2rem;
+  }
   #navbar .nav-btn {
     padding: 0.5rem 0;
     font-size: 1rem;
@@ -116,6 +119,9 @@ body {
   }
   #navbar .nav-btn i {
     display: contents;
+  }
+  #navbar #nav-details #user-details #user-info {
+    display: none;
   }
 }
 
@@ -309,4 +315,39 @@ body {
 
 .url-card .analytics-btn {
   color: #d3a500;
+}
+
+@media only screen and (max-width: 700px) {
+  .url-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .url-card p {
+    font-size: 1.2rem;
+    width: 100%;
+  }
+  .url-card .urls-cont {
+    width: 100%;
+  }
+  .url-card .urls-cont p {
+    font-size: 1.2rem;
+  }
+  .url-card .urls-cont span {
+    font-size: 1.2rem;
+  }
+  .url-card .urls-card-icons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 1rem;
+    width: 100%;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
 }

@@ -60,18 +60,24 @@
 	}
 }
 
-// TODO: TEMPORARY FOR TESTING
 @media only screen and (max-width: 700px) {
 	#navbar {
+		margin-bottom: 0.2rem;
 		.nav-btn {
 			padding: 0.5rem 0;
 			font-size: 1rem;
 			#logout-text {
 				display: none;
 			}
-
 			i {
 				display: contents;
+			}
+		}
+		#nav-details {
+			#user-details {
+				#user-info {
+					display: none;
+				}
 			}
 		}
 	}
