@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import IconButton from '@material-ui/core/IconButton';
 
@@ -48,19 +49,27 @@ const UrlCard = (props: Props) => {
 			)}
 			<div className="urls-card-icons">
 				<CopyToClipboard text={props.data.short_url}>
-					<IconButton className="urls-btns" aria-label="copy">
-						<i className="fas fa-copy"></i>
-					</IconButton>
+					<Tooltip title="Copy to Clipboard">
+						<IconButton className="urls-btns" aria-label="copy">
+							<i className="fas fa-copy"></i>
+						</IconButton>
+					</Tooltip>
 				</CopyToClipboard>
-				<IconButton onClick={() => handleEdit(props.data)} className="urls-btns" aria-label="edit">
-					<i className="fas fa-pen"></i>
-				</IconButton>
-				<IconButton onClick={handleDelete} className="urls-btns" aria-label="delete">
-					<i className="fas fa-trash"></i>
-				</IconButton>
-				<IconButton className="urls-btns analytics-btn" aria-label="analytics">
-					<i className="fas fa-chart-pie"></i>
-				</IconButton>
+				<Tooltip title="Edit">
+					<IconButton onClick={() => handleEdit(props.data)} className="urls-btns" aria-label="edit">
+						<i className="fas fa-pen"></i>
+					</IconButton>
+				</Tooltip>
+				<Tooltip title="Delete">
+					<IconButton onClick={handleDelete} className="urls-btns" aria-label="delete">
+						<i className="fas fa-trash"></i>
+					</IconButton>
+				</Tooltip>
+				<Tooltip title="Analytics">
+					<IconButton className="urls-btns analytics-btn" aria-label="analytics">
+						<i className="fas fa-chart-pie"></i>
+					</IconButton>
+				</Tooltip>
 			</div>
 		</li>
 	);
