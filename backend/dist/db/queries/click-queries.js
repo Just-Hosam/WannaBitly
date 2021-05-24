@@ -28,12 +28,12 @@ const getClick = (urlId, clickId) => {
         .catch((err) => console.log(`Error at clicks queries 'getClick'`, err));
 };
 exports.getClick = getClick;
-const addClick = (urlId, clickTimestamp) => {
+const addClick = (urlId, clickObj) => {
     const query = `
-	INSERT INTO clicks (url_id, click_timestamp)
-	VALUES ($1, $2)
+	INSERT INTO clicks (url_id, click_timestamp, city, country)
+	VALUES ($1, $2, $3, $4)
 	RETURNING *;`;
-    const values = [urlId, clickTimestamp];
+    const values = [urlId, clickObj.clickTimestamp, clickObj.clickCity, clickObj.clickCountry];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])
