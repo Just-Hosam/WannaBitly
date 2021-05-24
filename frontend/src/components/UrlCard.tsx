@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import IconButton from '@material-ui/core/IconButton';
 
@@ -19,10 +20,6 @@ interface Url {
 
 const UrlCard = (props: Props) => {
 	const userId = 1;
-
-	const handleCopy = () => {
-		navigator.clipboard.writeText(props.data.short_url);
-	};
 
 	const handleEdit = (updatedUrl: Url) => {
 		props.setFormMode('EDIT');
@@ -50,9 +47,11 @@ const UrlCard = (props: Props) => {
 				</div>
 			)}
 			<div className="urls-card-icons">
-				<IconButton onClick={handleCopy} className="urls-btns" aria-label="copy">
-					<i className="fas fa-copy"></i>
-				</IconButton>
+				<CopyToClipboard text={props.data.short_url}>
+					<IconButton className="urls-btns" aria-label="copy">
+						<i className="fas fa-copy"></i>
+					</IconButton>
+				</CopyToClipboard>
 				<IconButton onClick={() => handleEdit(props.data)} className="urls-btns" aria-label="edit">
 					<i className="fas fa-pen"></i>
 				</IconButton>
