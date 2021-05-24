@@ -30,7 +30,7 @@ const getUrl = (userId, urlId) => {
 exports.getUrl = getUrl;
 const getLongUrlByShortUrl = (shortUrl) => {
     const query = `
-	SELECT long_url
+	SELECT *
 	FROM urls
 	WHERE short_url = $1;`;
     const values = [shortUrl];

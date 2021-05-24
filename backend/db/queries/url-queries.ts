@@ -44,7 +44,7 @@ const getUrl = (userId: number, urlId: number): Promise<Url> => {
 
 const getLongUrlByShortUrl = (shortUrl: string) => {
 	const query = `
-	SELECT long_url
+	SELECT *
 	FROM urls
 	WHERE short_url = $1;`;
 	const values = [shortUrl];
