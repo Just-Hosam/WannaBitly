@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 const url_queries_1 = require("./db/queries/url-queries");
+const click_queries_1 = require("./db/queries/click-queries");
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const morgan = require('morgan');
@@ -27,9 +28,11 @@ app.use(methodOverride('_method'));
 // Separated Routes for each Resource
 const usersRouter = require('./routes/users.js');
 const urlsRouter = require('./routes/urls.js');
+const clicksRouter = require('./routes/clicks.js');
 // Mount all resource routes
 app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
+app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
 app.get('/s/:shortUrl', (req, res) => {
     const short_url = `localhost:8080/s/${req.params.shortUrl}`;
     url_queries_1.getLongUrlByShortUrl(short_url)
@@ -39,8 +42,11 @@ app.get('/s/:shortUrl', (req, res) => {
             return;
         }
         res.redirect(data.long_url);
+        const urlId = data.id;
+        const currentTimestamp = new Date();
+        click_queries_1.addClick(urlId, currentTimestamp).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
     })
-        .catch((err) => console.log('Error at server GET route "/:shortUrl"', err));
+        .catch((err) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });
 app.get('/', (req, res) => {
     res.status(200).send("HELLO IT'S ME DIO");

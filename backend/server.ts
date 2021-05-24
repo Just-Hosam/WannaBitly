@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 import { getLongUrlByShortUrl } from './db/queries/url-queries';
+import { addClick } from './db/queries/click-queries';
 import express from 'express';
 import bodyParser from 'body-parser';
 const morgan = require('morgan');
@@ -28,22 +29,40 @@ app.use(methodOverride('_method'));
 // Separated Routes for each Resource
 const usersRouter = require('./routes/users.js');
 const urlsRouter = require('./routes/urls.js');
+const clicksRouter = require('./routes/clicks.js');
 
 // Mount all resource routes
 app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
+app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
+
+interface Url {
+	id: number;
+	user_id: number;
+	short_url: string;
+	long_url: string;
+	description: string;
+}
 
 app.get('/s/:shortUrl', (req, res) => {
 	const short_url = `localhost:8080/s/${req.params.shortUrl}`;
+
 	getLongUrlByShortUrl(short_url)
-		.then((data: { long_url: string }) => {
+		.then((data: Url) => {
 			if (!data) {
 				res.status(404).send('This link is not connected to anything');
 				return;
 			}
 			res.redirect(data.long_url);
+
+			const urlId = data.id;
+			const currentTimestamp = new Date();
+
+			addClick(urlId, currentTimestamp).catch((err: Error) =>
+				console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
+			);
 		})
-		.catch((err: Error) => console.log('Error at server GET route "/:shortUrl"', err));
+		.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });
 
 app.get('/', (req, res) => {
