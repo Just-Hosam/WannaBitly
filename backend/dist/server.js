@@ -6,8 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 const url_queries_1 = require("./db/queries/url-queries");
 const click_queries_1 = require("./db/queries/click-queries");
+const clickDataFormatter_1 = __importDefault(require("./helpers/clickDataFormatter"));
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const axios_1 = __importDefault(require("axios"));
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const app = express_1.default();
@@ -36,15 +38,19 @@ app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
 app.get('/s/:shortUrl', (req, res) => {
     const short_url = `localhost:8080/s/${req.params.shortUrl}`;
     url_queries_1.getLongUrlByShortUrl(short_url)
-        .then((data) => {
-        if (!data) {
+        .then((urlData) => {
+        if (!urlData) {
             res.status(404).send('This link is not connected to anything');
             return;
         }
-        res.redirect(data.long_url);
-        const urlId = data.id;
-        const currentTimestamp = new Date();
-        click_queries_1.addClick(urlId, currentTimestamp).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
+        res.redirect(urlData.long_url);
+        axios_1.default
+            .get(`https://api.geoapify.com/v1/ipinfo?apiKey=${process.env.GEOAPIFY_API_KEY}`)
+            .then((response) => {
+            const urlId = urlData.id;
+            const clickObj = clickDataFormatter_1.default(response.data);
+            click_queries_1.addClick(urlId, clickObj).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
+        });
     })
         .catch((err) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });

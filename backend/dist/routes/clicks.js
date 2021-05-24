@@ -21,22 +21,16 @@ router.get('/:clickId', (req, res) => {
 });
 router.post('/', (req, res) => {
     const urlId = Number(req.params.userId);
-    const clickTimestamp = req.body;
-    click_queries_1.addClick(urlId, clickTimestamp)
+    const clickTimestamp = req.body.clickTimestamp;
+    const clickCity = req.body.clickCity;
+    const clickCountry = req.body.clickCoutry;
+    const clickObj = {
+        clickTimestamp,
+        clickCity,
+        clickCountry,
+    };
+    click_queries_1.addClick(urlId, clickObj)
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at clicks POST route "/"', err));
 });
-// router.patch('/:urlId', (req, res) => {
-// 	const urlId = Number(req.params.urlId);
-// 	const urlObj: Url = req.body;
-// 	updateUrl(urlObj, urlId)
-// 		.then((data: Url) => res.json(data))
-// 		.catch((err: Error) => console.log('Error at urls PATCH route "/:urlId"', err));
-// });
-// router.delete('/:urlId', (req, res) => {
-// 	const urlId = Number(req.params.urlId);
-// 	deleteUrl(urlId)
-// 		.then((data: Url) => res.json(data))
-// 		.catch((err: Error) => console.log('Error at urls DELETE route "/:urlId"', err));
-// });
 module.exports = router;

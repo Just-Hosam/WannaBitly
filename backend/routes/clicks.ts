@@ -6,6 +6,8 @@ interface Click {
 	id: number;
 	url_id: number;
 	click_timestamp: Date;
+	city: string;
+	country: string;
 }
 
 router.get('/', (req, res) => {
@@ -27,28 +29,19 @@ router.get('/:clickId', (req, res) => {
 
 router.post('/', (req, res) => {
 	const urlId = Number(req.params.userId);
-	const clickTimestamp: Date = req.body;
+	const clickTimestamp: Date = req.body.clickTimestamp;
+	const clickCity: string = req.body.clickCity;
+	const clickCountry: string = req.body.clickCoutry;
 
-	addClick(urlId, clickTimestamp)
+	const clickObj = {
+		clickTimestamp,
+		clickCity,
+		clickCountry,
+	};
+
+	addClick(urlId, clickObj)
 		.then((data: Click) => res.json(data))
 		.catch((err: Error) => console.log('Error at clicks POST route "/"', err));
 });
-
-// router.patch('/:urlId', (req, res) => {
-// 	const urlId = Number(req.params.urlId);
-// 	const urlObj: Url = req.body;
-
-// 	updateUrl(urlObj, urlId)
-// 		.then((data: Url) => res.json(data))
-// 		.catch((err: Error) => console.log('Error at urls PATCH route "/:urlId"', err));
-// });
-
-// router.delete('/:urlId', (req, res) => {
-// 	const urlId = Number(req.params.urlId);
-
-// 	deleteUrl(urlId)
-// 		.then((data: Url) => res.json(data))
-// 		.catch((err: Error) => console.log('Error at urls DELETE route "/:urlId"', err));
-// });
 
 module.exports = router;

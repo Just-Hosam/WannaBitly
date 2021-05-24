@@ -2,8 +2,10 @@ require('dotenv').config();
 
 import { getLongUrlByShortUrl } from './db/queries/url-queries';
 import { addClick } from './db/queries/click-queries';
+import clickDataFormatter from './helpers/clickDataFormatter';
 import express from 'express';
 import bodyParser from 'body-parser';
+import axios from 'axios';
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 
@@ -48,19 +50,23 @@ app.get('/s/:shortUrl', (req, res) => {
 	const short_url = `localhost:8080/s/${req.params.shortUrl}`;
 
 	getLongUrlByShortUrl(short_url)
-		.then((data: Url) => {
-			if (!data) {
+		.then((urlData: Url) => {
+			if (!urlData) {
 				res.status(404).send('This link is not connected to anything');
 				return;
 			}
-			res.redirect(data.long_url);
+			res.redirect(urlData.long_url);
 
-			const urlId = data.id;
-			const currentTimestamp = new Date();
+			axios
+				.get(`https://api.geoapify.com/v1/ipinfo?apiKey=${process.env.GEOAPIFY_API_KEY}`)
+				.then((response) => {
+					const urlId = urlData.id;
+					const clickObj = clickDataFormatter(response.data);
 
-			addClick(urlId, currentTimestamp).catch((err: Error) =>
-				console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
-			);
+					addClick(urlId, clickObj).catch((err: Error) =>
+						console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
+					);
+				});
 		})
 		.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });
