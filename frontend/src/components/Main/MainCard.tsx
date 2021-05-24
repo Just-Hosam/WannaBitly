@@ -4,7 +4,7 @@ import axios from 'axios';
 import UrlCard from './UrlCard';
 import AddUrlForm from './AddUrlForm';
 import EditUrlForm from './EditUrlForm';
-import IconButton from '@material-ui/core/IconButton';
+import MainHeader from './MainHeader';
 
 interface Url {
 	id: number;
@@ -33,11 +33,6 @@ const MainCard = () => {
 			.catch((err) => console.log('Error at MainCard useEffect GET request', err));
 	}, []);
 
-	const handleAddButton = (currentMode: string) => {
-		if (currentMode === '' || currentMode === 'EDIT') setFormMode('ADD');
-		if (currentMode === 'ADD') setFormMode('');
-	};
-
 	const urlsList = urls.map((elem) => (
 		<UrlCard
 			setEditableUrl={setEditableUrl}
@@ -51,14 +46,7 @@ const MainCard = () => {
 	return (
 		<div id="main-card">
 			<header>
-				<header>
-					{formMode === '' && <h2>Urls</h2>}
-					{formMode === 'ADD' && <h2>Add Url</h2>}
-					{formMode === 'EDIT' && <h2>Edit Url</h2>}
-					<IconButton className="add-btn" onClick={() => handleAddButton(formMode)}>
-						<i className="fas fa-plus-circle"></i>
-					</IconButton>
-				</header>
+				<MainHeader formMode={formMode} setFormMode={setFormMode} />
 				{formMode === 'EDIT' && (
 					<EditUrlForm
 						editableUrl={editableUrl}
