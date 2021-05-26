@@ -263,7 +263,7 @@ body {
 }
 
 .url-card {
-  border-bottom: 1px solid rgba(114, 114, 114, 0.932);
+  border-bottom: 1px solid #ccc;
   width: 95%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -350,4 +350,88 @@ body {
         -ms-flex-pack: end;
             justify-content: flex-end;
   }
+}
+
+#analytics-card {
+  width: 650px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media only screen and (max-width: 700px) {
+  #analytics-card {
+    width: 89%;
+    height: 100%;
+    border-radius: 0.5rem;
+  }
+}
+
+#analytics-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0 0.6rem 0 0;
+}
+
+#analytics-header h2 {
+  color: #202b3a;
+  font-size: 1.6rem;
+}
+
+#clicks-list-cont {
+  overflow: auto;
+  -ms-grid-column-align: stretch;
+      justify-self: stretch;
+  margin-top: 1.5rem;
+}
+
+#clicks-list-cont #clicks-list {
+  margin: auto;
+  width: 98%;
+  -ms-grid-column-align: stretch;
+      justify-self: stretch;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+#clicks-list-cont #clicks-list th {
+  padding: 5px;
+  color: #202b3a;
+  border-bottom: 1px solid #202b3a;
+}
+
+#clicks-list-cont::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+#clicks-list-cont::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#clicks-list-cont::-webkit-scrollbar-thumb {
+  background: rgba(129, 129, 129, 0.562);
+  border-radius: 100px;
+}
+
+.clicks-list-item td {
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0;
 }

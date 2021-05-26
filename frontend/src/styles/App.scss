@@ -1,5 +1,15 @@
 @import './variables';
 @import './layout';
+
+// Navbar
 @import './NavBar';
+
+// Main
 @import './MainCard';
 @import './UrlCard';
+
+// Analytics
+@import './AnalyticsCard';
+@import './AnalyticsHeader';
+@import './ClicksList';
+@import './ClicksListItem';
