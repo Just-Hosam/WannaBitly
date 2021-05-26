@@ -1,0 +1,14 @@
+@import './variables';
+
+#analytics-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	padding: 0 0.6rem 0 0;
+
+	h2 {
+		color: $background-color;
+		font-size: 1.6rem;
+	}
+}
