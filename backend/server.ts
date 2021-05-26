@@ -50,7 +50,7 @@ app.get('/s/:shortUrl', (req, res) => {
 	const short_url = `localhost:8080/s/${req.params.shortUrl}`;
 
 	getLongUrlByShortUrl(short_url)
-		.then((urlData: Url) => {
+		.then((urlData) => {
 			if (!urlData) {
 				res.status(404).send('This link is not connected to anything');
 				return;

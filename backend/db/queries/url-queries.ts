@@ -42,7 +42,7 @@ const getUrl = (userId: number, urlId: number): Promise<Url> => {
 		.catch((err: Error) => console.log(`Error at urls queries 'getUrl'`, err));
 };
 
-const getLongUrlByShortUrl = (shortUrl: string) => {
+const getLongUrlByShortUrl = (shortUrl: string): Promise<Url> => {
 	const query = `
 	SELECT *
 	FROM urls
