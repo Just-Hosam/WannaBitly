@@ -30,13 +30,16 @@ const getClick = (urlId, clickId) => {
 exports.getClick = getClick;
 const addClick = (urlId, clickObj) => {
     const query = `
-	INSERT INTO clicks (url_id, click_timestamp, city, country)
-	VALUES ($1, $2, $3, $4)
+	INSERT INTO clicks (url_id, time, date, city, country)
+	VALUES ($1, $2, $3, $4, $5)
 	RETURNING *;`;
-    const values = [urlId, clickObj.clickTimestamp, clickObj.clickCity, clickObj.clickCountry];
+    const values = [urlId, clickObj.clickTime, clickObj.clickDate, clickObj.clickCity, clickObj.clickCountry];
     return db
         .query(query, values)
-        .then(({ rows }) => rows[0])
+        .then(({ rows }) => {
+        console.log(rows[0]);
+        return rows[0];
+    })
         .catch((err) => console.log(`Error at clicks queries 'addClick'`, err));
 };
 exports.addClick = addClick;
