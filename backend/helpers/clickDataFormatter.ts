@@ -1,22 +1,33 @@
-interface clickData {
-	clickTimestamp: Date;
+interface NewClick {
+	clickTime: string;
+	clickDate: string;
 	clickCity: string;
 	clickCountry: string;
 }
 
 // Too lazy to type geoData
-const clickDataFormatter = (geoData: any): clickData => {
+const clickDataFormatter = (geoData: any): NewClick => {
 	const cityName = geoData.city.name;
 	const stateName = geoData.state.name;
-	const countryName = geoData.name;
+	const countryName = geoData.country.name;
 	const continentCode = geoData.continent.code;
-
-	const clickTimestamp = new Date();
 	const clickCity = `${cityName}, ${stateName}`;
 	const clickCountry = `${countryName}, ${continentCode}`;
 
+	const clickTimestamp = new Date();
+
+	const hours = clickTimestamp.getHours();
+	const minutes = clickTimestamp.getMinutes();
+	const clickTime = `${hours}:${minutes}`;
+
+	const days = clickTimestamp.getDate();
+	const months = 1 + clickTimestamp.getMonth();
+	const years = clickTimestamp.getFullYear();
+	const clickDate = `${days}/${months}/${years}`;
+
 	return {
-		clickTimestamp,
+		clickTime,
+		clickDate,
 		clickCity,
 		clickCountry,
 	};

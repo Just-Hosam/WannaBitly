@@ -5,9 +5,17 @@ import { getClicks, getClick, addClick } from '../db/queries/click-queries';
 interface Click {
 	id: number;
 	url_id: number;
-	click_timestamp: Date;
+	time: string;
+	date: string;
 	city: string;
 	country: string;
+}
+
+interface NewClick {
+	clickTime: string;
+	clickDate: string;
+	clickCity: string;
+	clickCountry: string;
 }
 
 router.get('/', (req, res) => {
@@ -29,15 +37,7 @@ router.get('/:clickId', (req, res) => {
 
 router.post('/', (req, res) => {
 	const urlId = Number(req.params.userId);
-	const clickTimestamp: Date = req.body.clickTimestamp;
-	const clickCity: string = req.body.clickCity;
-	const clickCountry: string = req.body.clickCoutry;
-
-	const clickObj = {
-		clickTimestamp,
-		clickCity,
-		clickCountry,
-	};
+	const clickObj: NewClick = req.body;
 
 	addClick(urlId, clickObj)
 		.then((data: Click) => res.json(data))
