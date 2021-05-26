@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import Tooltip from '@material-ui/core/Tooltip';
+import { useHistory } from 'react-router-dom';
 
+import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 
 interface Props {
@@ -21,6 +22,7 @@ interface Url {
 
 const UrlCard = (props: Props) => {
 	const userId = 1;
+	let history = useHistory();
 
 	const handleEdit = (updatedUrl: Url) => {
 		props.setFormMode('EDIT');
@@ -36,6 +38,10 @@ const UrlCard = (props: Props) => {
 				});
 			})
 			.catch((err) => console.log(`err`, err));
+	};
+
+	const handleAnalytics = () => {
+		history.push('/analytics');
 	};
 
 	return (
@@ -66,7 +72,7 @@ const UrlCard = (props: Props) => {
 					</IconButton>
 				</Tooltip>
 				<Tooltip title="Analytics">
-					<IconButton className="urls-btns analytics-btn" aria-label="analytics">
+					<IconButton onClick={handleAnalytics} className="urls-btns analytics-btn" aria-label="analytics">
 						<i className="fas fa-chart-pie"></i>
 					</IconButton>
 				</Tooltip>
