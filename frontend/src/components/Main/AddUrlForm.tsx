@@ -34,15 +34,22 @@ const AddUrlForm = (props: Props) => {
 		});
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
 		axios
 			.post(`/users/${userId}/urls`, addForm)
-			.then((res) => props.setUrls((prev) => [res.data, ...prev]))
+			.then((res) => {
+				props.setUrls((prev) => [res.data, ...prev]);
+				setAddForm({
+					long_url: '',
+					description: '',
+				});
+			})
 			.catch((err) => console.log(`Error at HandleSubmit`, err));
 	};
 
 	return (
-		<form id="add-url-form" onSubmit={() => handleSubmit()}>
+		<form id="add-url-form">
 			<TextField
 				label="Long Url"
 				variant="outlined"
@@ -67,7 +74,7 @@ const AddUrlForm = (props: Props) => {
 				<Button onClick={() => props.setFormMode('')} className="add-url-cancel" variant="contained">
 					Cancel
 				</Button>
-				<Button type="submit" className="add-url-submit" variant="contained">
+				<Button onClick={(e) => handleSubmit(e)} type="submit" className="add-url-submit" variant="contained">
 					Add
 				</Button>
 			</div>

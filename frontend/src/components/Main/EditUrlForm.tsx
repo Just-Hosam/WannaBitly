@@ -30,7 +30,9 @@ const EditUrlForm = (props: Props) => {
 		});
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+
 		axios
 			.patch(`/users/${userId}/urls/${props.editableUrl.id}`, props.editableUrl)
 			.then((res) => {
@@ -45,7 +47,7 @@ const EditUrlForm = (props: Props) => {
 	};
 
 	return (
-		<form id="add-url-form" onSubmit={() => handleSubmit()}>
+		<form id="add-url-form">
 			<TextField
 				label="Long Url"
 				variant="outlined"
@@ -70,7 +72,7 @@ const EditUrlForm = (props: Props) => {
 				<Button onClick={() => props.setFormMode('')} className="add-url-cancel" variant="contained">
 					Cancel
 				</Button>
-				<Button type="submit" className="add-url-submit" variant="contained">
+				<Button onClick={(e) => handleSubmit(e)} type="submit" className="add-url-submit" variant="contained">
 					Update
 				</Button>
 			</div>
