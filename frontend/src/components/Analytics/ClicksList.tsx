@@ -19,13 +19,15 @@ const ClicksList = (props: Props) => {
 	return (
 		<div id="clicks-list-cont">
 			<table id="clicks-list">
-				<tr>
-					<th>Time</th>
-					<th>Date</th>
-					<th>City</th>
-					<th>Country</th>
-				</tr>
-				{clicksComponents}
+				<thead>
+					<tr>
+						<th>Time</th>
+						<th>Date</th>
+						<th>City</th>
+						<th>Country</th>
+					</tr>
+				</thead>
+				<tbody>{clicksComponents}</tbody>
 			</table>
 		</div>
 	);
