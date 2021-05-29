@@ -10,6 +10,7 @@ interface Props {
 	setUrls: React.Dispatch<React.SetStateAction<Url[]>>;
 	setFormMode: React.Dispatch<React.SetStateAction<string>>;
 	setEditableUrl: React.Dispatch<React.SetStateAction<Url>>;
+	setAnalyticsId: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface Url {
@@ -41,6 +42,7 @@ const UrlCard = (props: Props) => {
 	};
 
 	const handleAnalytics = () => {
+		props.setAnalyticsId(props.data.id);
 		history.push('/analytics');
 	};
 

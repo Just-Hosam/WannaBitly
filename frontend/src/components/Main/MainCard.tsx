@@ -6,6 +6,10 @@ import AddUrlForm from './AddUrlForm';
 import EditUrlForm from './EditUrlForm';
 import MainHeader from './MainHeader';
 
+interface Props {
+	setAnalyticsId: React.Dispatch<React.SetStateAction<number>>;
+}
+
 interface Url {
 	id: number;
 	user_id: number;
@@ -14,7 +18,7 @@ interface Url {
 	description: string;
 }
 
-const MainCard = () => {
+const MainCard = (props: Props) => {
 	const userId = 1;
 	const [formMode, setFormMode] = useState('');
 	const [urls, setUrls] = useState<Url[]>([]);
@@ -36,6 +40,7 @@ const MainCard = () => {
 	const urlsList = urls.map((elem) => (
 		<UrlCard
 			setEditableUrl={setEditableUrl}
+			setAnalyticsId={props.setAnalyticsId}
 			setFormMode={setFormMode}
 			setUrls={setUrls}
 			key={elem.id}
