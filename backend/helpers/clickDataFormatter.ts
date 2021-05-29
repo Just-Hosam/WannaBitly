@@ -17,7 +17,8 @@ const clickDataFormatter = (geoData: any): NewClick => {
 	const clickTimestamp = new Date();
 
 	const hours = clickTimestamp.getHours();
-	const minutes = clickTimestamp.getMinutes();
+	const tempMin = clickTimestamp.getMinutes();
+	const minutes = tempMin < 10 ? `0${tempMin}` : tempMin;
 	const clickTime = `${hours}:${minutes}`;
 
 	const days = clickTimestamp.getDate();
