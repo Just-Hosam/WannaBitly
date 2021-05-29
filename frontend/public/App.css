@@ -155,6 +155,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 1rem;
+  padding-left: 0.6rem;
 }
 
 #main-card header header h2 {
@@ -386,7 +387,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 1.5rem;
-  padding: 0 0.6rem 0 0;
+  padding-right: 0.6rem;
 }
 
 #analytics-header h2 {
@@ -434,4 +435,34 @@ body {
   text-align: center;
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 0;
+}
+
+#no-clicks-data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+#no-clicks-data h3 {
+  font-size: 2rem;
+  color: #202b3a;
+  margin-top: 2rem;
+}
+
+#no-clicks-data p {
+  margin-top: 0.6rem;
+  font-size: 1.2rem;
 }
