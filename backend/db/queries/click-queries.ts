@@ -53,10 +53,7 @@ const addClick = (urlId: number, clickObj: NewClick): Promise<Click> => {
 
 	return db
 		.query(query, values)
-		.then(({ rows }: { rows: Click[] }) => {
-			console.log(rows[0]);
-			return rows[0];
-		})
+		.then(({ rows }: { rows: Click[] }) => rows[0])
 		.catch((err: Error) => console.log(`Error at clicks queries 'addClick'`, err));
 };
 

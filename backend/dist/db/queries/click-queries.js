@@ -36,10 +36,7 @@ const addClick = (urlId, clickObj) => {
     const values = [urlId, clickObj.clickTime, clickObj.clickDate, clickObj.clickCity, clickObj.clickCountry];
     return db
         .query(query, values)
-        .then(({ rows }) => {
-        console.log(rows[0]);
-        return rows[0];
-    })
+        .then(({ rows }) => rows[0])
         .catch((err) => console.log(`Error at clicks queries 'addClick'`, err));
 };
 exports.addClick = addClick;
