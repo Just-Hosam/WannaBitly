@@ -33,7 +33,6 @@ const AnalyticsCard = (props: Props) => {
 	}, [urlId]);
 
 	const isNotVisited = clicksData.length === 0 ? true : false;
-	console.log(`urlId`, urlId);
 
 	return (
 		<div id="analytics-card">
