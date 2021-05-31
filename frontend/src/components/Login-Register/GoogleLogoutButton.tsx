@@ -6,11 +6,25 @@ const clientId = '850469791131-sr92fi9mga2ejm2ebhttiidb1o0mrnsq.apps.googleuserc
 
 interface Props {
 	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+	setUserData: React.Dispatch<React.SetStateAction<User>>;
+}
+
+interface User {
+	id: number;
+	first_name: string;
+	last_name: string;
+	email: string;
 }
 
 const GoogleLogoutButton = (props: Props) => {
 	const onSuccess = () => {
 		alert('Logout made successfully!');
+		props.setUserData({
+			id: 0,
+			first_name: '',
+			last_name: '',
+			email: '',
+		});
 		props.setIsLoggedIn(false);
 	};
 
