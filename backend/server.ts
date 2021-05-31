@@ -41,15 +41,6 @@ app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
 
 interface User {
 	id: number;
-	first_name: string;
-	last_name: string;
-	email: string;
-	password: string;
-}
-
-interface NewUser {
-	first_name: string;
-	last_name: string;
 	email: string;
 }
 
@@ -87,13 +78,9 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-	const userObj: NewUser = {
-		email: req.body.userEmail,
-		first_name: req.body.userFirstName,
-		last_name: req.body.userLastName,
-	};
+	const userEmail = req.body.userEmail;
 
-	addUser(userObj)
+	addUser(userEmail)
 		.then((data: User) => res.json(data))
 		.catch((err: Error) => console.log('Error at server GET route "/login"', err));
 });

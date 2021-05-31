@@ -62,12 +62,8 @@ app.post('/login', (req, res) => {
         .catch((err) => console.log('Error at server GET route "/login"', err));
 });
 app.post('/register', (req, res) => {
-    const userObj = {
-        email: req.body.userEmail,
-        first_name: req.body.userFirstName,
-        last_name: req.body.userLastName,
-    };
-    user_queries_1.addUser(userObj)
+    const userEmail = req.body.userEmail;
+    user_queries_1.addUser(userEmail)
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at server GET route "/login"', err));
 });

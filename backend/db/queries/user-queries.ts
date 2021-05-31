@@ -2,20 +2,7 @@ const db = require('../../lib/db.js');
 
 interface User {
 	id: number;
-	first_name: string;
-	last_name: string;
 	email: string;
-}
-
-interface NewUser {
-	first_name: string;
-	last_name: string;
-	email: string;
-}
-
-interface UpdatedUser {
-	first_name: string;
-	last_name: string;
 }
 
 const getUsers = () => {
@@ -55,12 +42,12 @@ const getUserByEmail = (userEmail: string): Promise<User> => {
 		.catch((err: Error) => console.log(`Error at users queries 'getUserByEmail'`, err));
 };
 
-const addUser = (userObj: NewUser) => {
+const addUser = (userEmail: string) => {
 	const query = `
-	INSERT INTO users (first_name, last_name, email)
-	VALUES ($1, $2, $3)
+	INSERT INTO users (email)
+	VALUES ($1)
 	RETURNING *;`;
-	const values = [userObj.first_name, userObj.last_name, userObj.email];
+	const values = [userEmail];
 
 	return db
 		.query(query, values)
@@ -68,18 +55,19 @@ const addUser = (userObj: NewUser) => {
 		.catch((err: Error) => console.log(`Error at users queries 'addUser'`, err));
 };
 
-const updateUser = (userObj: UpdatedUser, userId: number) => {
-	const query = `
-	UPDATE users
-	SET first_name = $1, last_name = $2, password = $3
-	WHERE id = $4
-	RETURNING *`;
-	const values = [userObj.first_name, userObj.last_name, userId];
+// Removed update user feature
+// const updateUser = (userObj: UpdatedUser, userId: number) => {
+// 	const query = `
+// 	UPDATE users
+// 	SET first_name = $1, last_name = $2, password = $3
+// 	WHERE id = $4
+// 	RETURNING *`;
+// 	const values = [userObj.first_name, userObj.last_name, userId];
 
-	return db
-		.query(query, values)
-		.then(({ rows }: { rows: User[] }) => rows[0])
-		.catch((err: Error) => console.log(`Error at users queries 'updateUser'`, err));
-};
+// 	return db
+// 		.query(query, values)
+// 		.then(({ rows }: { rows: User[] }) => rows[0])
+// 		.catch((err: Error) => console.log(`Error at users queries 'updateUser'`, err));
+// };
 
-export { getUsers, getUserById, addUser, updateUser, getUserByEmail };
+export { getUsers, getUserById, addUser, getUserByEmail };

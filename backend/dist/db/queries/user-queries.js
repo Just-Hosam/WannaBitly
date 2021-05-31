@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserByEmail = exports.updateUser = exports.addUser = exports.getUserById = exports.getUsers = void 0;
+exports.getUserByEmail = exports.addUser = exports.getUserById = exports.getUsers = void 0;
 const db = require('../../lib/db.js');
 const getUsers = () => {
     const query = `
@@ -36,28 +36,15 @@ const getUserByEmail = (userEmail) => {
         .catch((err) => console.log(`Error at users queries 'getUserByEmail'`, err));
 };
 exports.getUserByEmail = getUserByEmail;
-const addUser = (userObj) => {
+const addUser = (userEmail) => {
     const query = `
-	INSERT INTO users (first_name, last_name, email)
-	VALUES ($1, $2, $3)
+	INSERT INTO users (email)
+	VALUES ($1)
 	RETURNING *;`;
-    const values = [userObj.first_name, userObj.last_name, userObj.email];
+    const values = [userEmail];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])
         .catch((err) => console.log(`Error at users queries 'addUser'`, err));
 };
 exports.addUser = addUser;
-const updateUser = (userObj, userId) => {
-    const query = `
-	UPDATE users
-	SET first_name = $1, last_name = $2, password = $3
-	WHERE id = $4
-	RETURNING *`;
-    const values = [userObj.first_name, userObj.last_name, userId];
-    return db
-        .query(query, values)
-        .then(({ rows }) => rows[0])
-        .catch((err) => console.log(`Error at users queries 'updateUser'`, err));
-};
-exports.updateUser = updateUser;

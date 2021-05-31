@@ -26,7 +26,7 @@ const GoogleLoginButton = () => {
 					return;
 				}
 				axios
-					.post('/register', { userEmail, userFirstName, userLastName })
+					.post('/register', { userEmail })
 					.then((resgisterResponse) => {
 						setCookie('userId', resgisterResponse.data.id, { path: '/' });
 						setCookie('userInfo', { userEmail, userFirstName, userLastName }, { path: '/' });
