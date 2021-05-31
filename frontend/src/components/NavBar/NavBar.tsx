@@ -11,22 +11,20 @@ interface User {
 }
 
 const NavBar = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userData, setUserData] = useState<User>({
 		id: 0,
 		first_name: '',
 		last_name: '',
 		email: '',
 	});
+	const isLog = userData.id ? true : false;
 
 	return (
 		<div id="navbar">
 			<h1>WannaBitly</h1>
 			<div id="nav-details">
-				{!isLoggedIn && <LogReg setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />}
-				{isLoggedIn && (
-					<UserDetails userData={userData} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />
-				)}
+				{!isLog && <LogReg setUserData={setUserData} />}
+				{isLog && <UserDetails userData={userData} setUserData={setUserData} />}
 			</div>
 		</div>
 	);

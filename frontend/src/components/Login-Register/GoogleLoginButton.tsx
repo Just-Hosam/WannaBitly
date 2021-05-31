@@ -14,14 +14,12 @@ interface User {
 }
 
 interface Props {
-	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 	setUserData: React.Dispatch<React.SetStateAction<User>>;
 }
 
 const GoogleLoginButton = (props: Props) => {
 	const onSuccess = (res: any) => {
 		refreshTokenSetup(res);
-		props.setIsLoggedIn(true);
 
 		const userEmail = res.profileObj.email;
 		const userFirstName = res.profileObj.givenName;

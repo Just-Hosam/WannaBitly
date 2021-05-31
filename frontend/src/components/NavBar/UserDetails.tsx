@@ -1,7 +1,6 @@
 import GoogleLogoutButton from '../Login-Register/GoogleLogoutButton';
 
 interface Props {
-	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 	setUserData: React.Dispatch<React.SetStateAction<User>>;
 	userData: User;
 }
@@ -25,7 +24,7 @@ const UserDetails = (props: Props) => {
 				</div>
 				<span>{props.userData.email}</span>
 			</div>
-			<GoogleLogoutButton setIsLoggedIn={props.setIsLoggedIn} setUserData={props.setUserData} />
+			<GoogleLogoutButton setUserData={props.setUserData} />
 		</div>
 	);
 };

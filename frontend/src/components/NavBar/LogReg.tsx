@@ -1,7 +1,6 @@
 import GoogleLoginButton from '../Login-Register/GoogleLoginButton';
 
 interface Props {
-	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 	setUserData: React.Dispatch<React.SetStateAction<User>>;
 }
 
@@ -15,7 +14,7 @@ interface User {
 const LogReg = (props: Props) => {
 	return (
 		<div id="log-reg">
-			<GoogleLoginButton setUserData={props.setUserData} setIsLoggedIn={props.setIsLoggedIn} />
+			<GoogleLoginButton setUserData={props.setUserData} />
 		</div>
 	);
 };
