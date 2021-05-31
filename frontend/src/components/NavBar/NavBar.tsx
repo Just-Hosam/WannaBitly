@@ -3,20 +3,30 @@ import { useState } from 'react';
 import LogReg from './LogReg';
 import UserDetails from './UserDetails';
 
+interface User {
+	id: number;
+	first_name: string;
+	last_name: string;
+	email: string;
+}
+
 const NavBar = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const data = {
-		first_name: 'Hosam',
-		last_name: 'Dahrooge',
-		email: 'Hosam_Dahrooge@test.com',
-	};
+	const [userData, setUserData] = useState<User>({
+		id: 0,
+		first_name: '',
+		last_name: '',
+		email: '',
+	});
 
 	return (
 		<div id="navbar">
 			<h1>WannaBitly</h1>
 			<div id="nav-details">
-				{!isLoggedIn && <LogReg setIsLoggedIn={setIsLoggedIn} />}
-				{isLoggedIn && <UserDetails data={data} setIsLoggedIn={setIsLoggedIn} />}
+				{!isLoggedIn && <LogReg setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />}
+				{isLoggedIn && (
+					<UserDetails userData={userData} setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />
+				)}
 			</div>
 		</div>
 	);

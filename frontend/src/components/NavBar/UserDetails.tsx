@@ -2,11 +2,15 @@ import GoogleLogoutButton from '../Login-Register/GoogleLogoutButton';
 
 interface Props {
 	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-	data: {
-		first_name: string;
-		last_name: string;
-		email: string;
-	};
+	setUserData: React.Dispatch<React.SetStateAction<User>>;
+	userData: User;
+}
+
+interface User {
+	id: number;
+	first_name: string;
+	last_name: string;
+	email: string;
 }
 
 const UserDetails = (props: Props) => {
@@ -16,12 +20,12 @@ const UserDetails = (props: Props) => {
 				<div>
 					<i className="far fa-edit"></i>
 					<h3>
-						{props.data.first_name} {props.data.last_name}
+						{props.userData.first_name} {props.userData.last_name}
 					</h3>
 				</div>
-				<span>Hosam_Dahrooge@test.com</span>
+				<span>{props.userData.email}</span>
 			</div>
-			<GoogleLogoutButton setIsLoggedIn={props.setIsLoggedIn} />
+			<GoogleLogoutButton setIsLoggedIn={props.setIsLoggedIn} setUserData={props.setUserData} />
 		</div>
 	);
 };
