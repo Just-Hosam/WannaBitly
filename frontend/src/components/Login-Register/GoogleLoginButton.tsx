@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 import { GoogleLogin } from 'react-google-login';
 import refreshTokenSetup from '../../helpers/refreshTokenSetup';
 
@@ -6,18 +7,9 @@ import Button from '@material-ui/core/Button';
 
 const clientId = '850469791131-sr92fi9mga2ejm2ebhttiidb1o0mrnsq.apps.googleusercontent.com';
 
-interface User {
-	id: number;
-	first_name: string;
-	last_name: string;
-	email: string;
-}
+const GoogleLoginButton = () => {
+	const [, setCookie] = useCookies(['userId', 'userInfo']);
 
-interface Props {
-	setUserData: React.Dispatch<React.SetStateAction<User>>;
-}
-
-const GoogleLoginButton = (props: Props) => {
 	const onSuccess = (res: any) => {
 		refreshTokenSetup(res);
 
@@ -27,11 +19,18 @@ const GoogleLoginButton = (props: Props) => {
 
 		axios
 			.post(`/login`, { userEmail })
-			.then((res) => {
-				if (res.data) return props.setUserData(res.data);
+			.then((loginRes) => {
+				if (loginRes.data) {
+					setCookie('userId', loginRes.data.id, { path: '/' });
+					setCookie('userInfo', { userEmail, userFirstName, userLastName }, { path: '/' });
+					return;
+				}
 				axios
 					.post('/register', { userEmail, userFirstName, userLastName })
-					.then((res) => props.setUserData(res.data))
+					.then((resgisterResponse) => {
+						setCookie('userId', resgisterResponse.data.id, { path: '/' });
+						setCookie('userInfo', { userEmail, userFirstName, userLastName }, { path: '/' });
+					})
 					.catch((err: Error) => console.log(err));
 			})
 			.catch((err: Error) => console.log(err));

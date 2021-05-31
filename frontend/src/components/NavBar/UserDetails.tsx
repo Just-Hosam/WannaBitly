@@ -1,28 +1,28 @@
+import { useCookies } from 'react-cookie';
+
 import GoogleLogoutButton from '../Login-Register/GoogleLogoutButton';
 
-interface Props {
-	setUserData: React.Dispatch<React.SetStateAction<User>>;
-	userData: User;
-}
+const UserDetails = () => {
+	const [cookies] = useCookies(['userInfo']);
+	let firstName = '';
+	let lastName = '';
+	let email = '';
 
-interface User {
-	id: number;
-	first_name: string;
-	last_name: string;
-	email: string;
-}
+	if (cookies.userInfo) {
+		firstName = cookies.userInfo.userFirstName;
+		lastName = cookies.userInfo.userLastName;
+		email = cookies.userInfo.userEmail;
+	}
 
-const UserDetails = (props: Props) => {
 	return (
 		<div id="user-details">
 			<div id="user-info">
 				<h3>
-					{props.userData.first_name} {props.userData.last_name}
+					{firstName || 'firstName'} {lastName || 'lastName'}
 				</h3>
-
-				<span>{props.userData.email}</span>
+				<span>{email || 'email'}</span>
 			</div>
-			<GoogleLogoutButton setUserData={props.setUserData} />
+			<GoogleLogoutButton />
 		</div>
 	);
 };

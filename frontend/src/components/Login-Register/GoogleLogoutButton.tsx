@@ -1,29 +1,16 @@
+import { useCookies } from 'react-cookie';
 import { GoogleLogout } from 'react-google-login';
 
 import Button from '@material-ui/core/Button';
 
 const clientId = '850469791131-sr92fi9mga2ejm2ebhttiidb1o0mrnsq.apps.googleusercontent.com';
 
-interface Props {
-	setUserData: React.Dispatch<React.SetStateAction<User>>;
-}
+const GoogleLogoutButton = () => {
+	const [, , removeCookie] = useCookies(['userId', 'userInfo']);
 
-interface User {
-	id: number;
-	first_name: string;
-	last_name: string;
-	email: string;
-}
-
-const GoogleLogoutButton = (props: Props) => {
 	const onSuccess = () => {
-		alert('Logout made successfully!');
-		props.setUserData({
-			id: 0,
-			first_name: '',
-			last_name: '',
-			email: '',
-		});
+		removeCookie('userId', { path: '/' });
+		removeCookie('userInfo', { path: '/' });
 	};
 
 	const onFailure = () => {
