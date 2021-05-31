@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 import { getLongUrlByShortUrl } from './db/queries/url-queries';
+import { getUserByEmail, addUser } from './db/queries/user-queries';
 import { addClick } from './db/queries/click-queries';
 import clickDataFormatter from './helpers/clickDataFormatter';
 import express from 'express';
@@ -38,12 +39,18 @@ app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
 app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
 
-interface Url {
+interface User {
 	id: number;
-	user_id: number;
-	short_url: string;
-	long_url: string;
-	description: string;
+	first_name: string;
+	last_name: string;
+	email: string;
+	password: string;
+}
+
+interface NewUser {
+	first_name: string;
+	last_name: string;
+	email: string;
 }
 
 app.get('/s/:shortUrl', (req, res) => {
@@ -69,6 +76,26 @@ app.get('/s/:shortUrl', (req, res) => {
 				});
 		})
 		.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
+});
+
+app.post('/login', (req, res) => {
+	const userEmail: string = req.body.userEmail;
+
+	getUserByEmail(userEmail)
+		.then((data: User) => res.json(data))
+		.catch((err: Error) => console.log('Error at server GET route "/login"', err));
+});
+
+app.post('/register', (req, res) => {
+	const userObj: NewUser = {
+		email: req.body.userEmail,
+		first_name: req.body.userFirstName,
+		last_name: req.body.userLastName,
+	};
+
+	addUser(userObj)
+		.then((data: User) => res.json(data))
+		.catch((err: Error) => console.log('Error at server GET route "/login"', err));
 });
 
 app.get('/', (req, res) => {

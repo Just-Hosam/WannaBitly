@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 const url_queries_1 = require("./db/queries/url-queries");
+const user_queries_1 = require("./db/queries/user-queries");
 const click_queries_1 = require("./db/queries/click-queries");
 const clickDataFormatter_1 = __importDefault(require("./helpers/clickDataFormatter"));
 const express_1 = __importDefault(require("express"));
@@ -53,6 +54,22 @@ app.get('/s/:shortUrl', (req, res) => {
         });
     })
         .catch((err) => console.log('Error at server GET route "/s/:shortUrl"', err));
+});
+app.post('/login', (req, res) => {
+    const userEmail = req.body.userEmail;
+    user_queries_1.getUserByEmail(userEmail)
+        .then((data) => res.json(data))
+        .catch((err) => console.log('Error at server GET route "/login"', err));
+});
+app.post('/register', (req, res) => {
+    const userObj = {
+        email: req.body.userEmail,
+        first_name: req.body.userFirstName,
+        last_name: req.body.userLastName,
+    };
+    user_queries_1.addUser(userObj)
+        .then((data) => res.json(data))
+        .catch((err) => console.log('Error at server GET route "/login"', err));
 });
 app.get('/', (req, res) => {
     res.status(200).send("HELLO IT'S ME DIO");
