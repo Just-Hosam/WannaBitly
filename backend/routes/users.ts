@@ -7,20 +7,17 @@ interface User {
 	first_name: string;
 	last_name: string;
 	email: string;
-	password: string;
 }
 
 interface NewUser {
 	first_name: string;
 	last_name: string;
 	email: string;
-	password: string;
 }
 
 interface UpdatedUser {
 	first_name: string;
 	last_name: string;
-	password: string;
 }
 
 router.get('/', (req, res) => {
