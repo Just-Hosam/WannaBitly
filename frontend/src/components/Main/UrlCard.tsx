@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useHistory } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,7 +23,8 @@ interface Url {
 }
 
 const UrlCard = (props: Props) => {
-	const userId = 1;
+	const [cookies] = useCookies(['userId']);
+	const userId = cookies.userId;
 	let history = useHistory();
 
 	const handleEdit = (updatedUrl: Url) => {

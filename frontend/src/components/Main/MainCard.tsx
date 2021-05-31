@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 import UrlCard from './UrlCard';
@@ -19,7 +20,7 @@ interface Url {
 }
 
 const MainCard = (props: Props) => {
-	const userId = 1;
+	const [cookies] = useCookies(['userId']);
 	const [formMode, setFormMode] = useState('');
 	const [urls, setUrls] = useState<Url[]>([]);
 	const [editableUrl, setEditableUrl] = useState<Url>({
@@ -29,13 +30,16 @@ const MainCard = (props: Props) => {
 		long_url: '',
 		description: '',
 	});
+	const userId = cookies.userId;
 
 	useEffect(() => {
-		axios
-			.get(`/users/${userId}/urls`)
-			.then((res) => setUrls(res.data))
-			.catch((err) => console.log('Error at MainCard useEffect GET request', err));
-	}, []);
+		if (userId) {
+			axios
+				.get(`/users/${userId}/urls`)
+				.then((res) => setUrls(res.data))
+				.catch((err) => console.log('Error at MainCard useEffect GET request', err));
+		}
+	}, [userId]);
 
 	const urlsList = urls.map((elem) => (
 		<UrlCard

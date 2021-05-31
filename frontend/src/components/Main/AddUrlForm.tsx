@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -18,8 +19,8 @@ interface Url {
 }
 
 const AddUrlForm = (props: Props) => {
-	const userId = 1;
-
+	const [cookies] = useCookies(['userId']);
+	const userId = cookies.userId;
 	const [addForm, setAddForm] = useState({
 		long_url: '',
 		description: '',

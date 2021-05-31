@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import chartDataFormatter from '../../helpers/chartDataFormatter';
 
@@ -21,7 +22,8 @@ interface Click {
 }
 
 const AnalyticsCard = (props: Props) => {
-	const userId = 1;
+	const [cookies] = useCookies(['userId']);
+	const userId = cookies.userId;
 	const urlId = props.analyticsId;
 	const [clicksData, setClicksData] = useState<Click[]>([]);
 
@@ -30,7 +32,7 @@ const AnalyticsCard = (props: Props) => {
 			.get(`/users/${userId}/urls/${urlId}/clicks`)
 			.then((res) => setClicksData(res.data))
 			.catch((err: Error) => console.log(err));
-	}, [urlId]);
+	}, [urlId, userId]);
 
 	const isNotVisited = clicksData.length === 0 ? true : false;
 

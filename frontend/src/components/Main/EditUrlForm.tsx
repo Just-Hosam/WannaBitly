@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -19,7 +20,8 @@ interface Url {
 }
 
 const EditUrlForm = (props: Props) => {
-	const userId = 1;
+	const [cookies] = useCookies(['userId']);
+	const userId = cookies.userId;
 
 	const handleChange = (value: string, textType: string) => {
 		props.setEditableUrl((prev) => {
