@@ -1,14 +1,13 @@
-import Button from '@material-ui/core/Button';
+import GoogleLoginButton from '../Login-Register/GoogleLoginButton';
 
-const LogReg = () => {
+interface Props {
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LogReg = (props: Props) => {
 	return (
 		<div id="log-reg">
-			<Button variant="contained" className="nav-btn">
-				Login
-			</Button>
-			<Button variant="contained" className="nav-btn">
-				Register
-			</Button>
+			<GoogleLoginButton setIsLoggedIn={props.setIsLoggedIn} />
 		</div>
 	);
 };

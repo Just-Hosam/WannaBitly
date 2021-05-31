@@ -5,10 +5,15 @@ import Button from '@material-ui/core/Button';
 
 const clientId = '850469791131-sr92fi9mga2ejm2ebhttiidb1o0mrnsq.apps.googleusercontent.com';
 
-const GoogleLoginButton = () => {
+interface Props {
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const GoogleLoginButton = (props: Props) => {
 	const onSuccess = (res: any) => {
 		console.log('[Login Success] currentUser:', res.profileObj);
 		refreshTokenSetup(res);
+		props.setIsLoggedIn(true);
 	};
 
 	const onFailure = (res: any) => {

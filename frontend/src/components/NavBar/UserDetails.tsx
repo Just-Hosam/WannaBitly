@@ -1,14 +1,15 @@
-import Button from '@material-ui/core/Button';
+import GoogleLogoutButton from '../Login-Register/GoogleLogoutButton';
 
-const UserDetails = () => {
-	const props = {
-		data: {
-			first_name: 'Hosam',
-			last_name: 'Dahrooge',
-			email: 'Hosam_Dahrooge@test.com',
-		},
+interface Props {
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+	data: {
+		first_name: string;
+		last_name: string;
+		email: string;
 	};
+}
 
+const UserDetails = (props: Props) => {
 	return (
 		<div id="user-details">
 			<div id="user-info">
@@ -20,10 +21,7 @@ const UserDetails = () => {
 				</div>
 				<span>Hosam_Dahrooge@test.com</span>
 			</div>
-			<Button variant="contained" className="nav-btn">
-				<span id="logout-text">Logout</span>
-				<i className="fas fa-sign-out-alt"></i>
-			</Button>
+			<GoogleLogoutButton setIsLoggedIn={props.setIsLoggedIn} />
 		</div>
 	);
 };

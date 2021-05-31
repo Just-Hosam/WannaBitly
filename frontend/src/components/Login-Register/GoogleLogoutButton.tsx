@@ -4,9 +4,14 @@ import Button from '@material-ui/core/Button';
 
 const clientId = '850469791131-sr92fi9mga2ejm2ebhttiidb1o0mrnsq.apps.googleusercontent.com';
 
-const GoogleLogoutButton = () => {
+interface Props {
+	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const GoogleLogoutButton = (props: Props) => {
 	const onSuccess = () => {
 		alert('Logout made successfully!');
+		props.setIsLoggedIn(false);
 	};
 
 	const onFailure = () => {
