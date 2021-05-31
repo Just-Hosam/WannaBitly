@@ -37,17 +37,10 @@
 				display: flex;
 				flex-direction: column;
 
-				div {
-					font-size: 0.85rem;
-					display: flex;
-					align-items: center;
-					align-self: flex-end;
+				h3 {
+					font-size: 0.9rem;
 					margin-bottom: 0.15rem;
-
-					i {
-						font-size: 0.75rem;
-						margin-right: 0.3rem;
-					}
+					text-align: end;
 				}
 
 				span {

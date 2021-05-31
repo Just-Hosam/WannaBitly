@@ -16,12 +16,10 @@ const UserDetails = (props: Props) => {
 	return (
 		<div id="user-details">
 			<div id="user-info">
-				<div>
-					<i className="far fa-edit"></i>
-					<h3>
-						{props.userData.first_name} {props.userData.last_name}
-					</h3>
-				</div>
+				<h3>
+					{props.userData.first_name} {props.userData.last_name}
+				</h3>
+
 				<span>{props.userData.email}</span>
 			</div>
 			<GoogleLogoutButton setUserData={props.setUserData} />
