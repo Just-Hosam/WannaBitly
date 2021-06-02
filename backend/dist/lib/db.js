@@ -1,13 +1,5 @@
 const { Pool, Client } = require('pg');
 let dbParams = {};
-// if (process.env.NODE_ENV === 'production')
-// dbParams =
-// const client = new Client({
-//   connectionString: process.env.DATABASE_URL || "",
-//   ssl: {
-//     rejectUnauthorized: false
-//   }
-// });
 if (process.env.NODE_ENV === 'production') {
     dbParams = {
         connectionString: process.env.DATABASE_URL || '',
