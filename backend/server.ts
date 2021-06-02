@@ -5,6 +5,7 @@ import { getUserByEmail, addUser } from './db/queries/user-queries';
 import { addClick } from './db/queries/click-queries';
 import clickDataFormatter from './helpers/clickDataFormatter';
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import axios from 'axios';
 const morgan = require('morgan');
@@ -25,6 +26,7 @@ app.enable('trust proxy');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+app.use(cors());
 
 // override for put, patch and delete methods
 app.use(methodOverride('_method'));
