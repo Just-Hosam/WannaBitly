@@ -1,13 +1,21 @@
-const { Pool } = require('pg');
+const { Pool, Client } = require('pg');
 let dbParams = {};
+
+// if (process.env.NODE_ENV === 'production')
+// dbParams =
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL || "",
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
 
 if (process.env.NODE_ENV === 'production') {
 	dbParams = {
-		host: process.env.DB_HOST_LIVE,
-		port: process.env.DB_PORT_LIVE,
-		user: process.env.DB_USER_LIVE,
-		password: process.env.DB_PASS_LIVE,
-		database: process.env.DB_NAME_LIVE,
+		connectionString: process.env.DATABASE_URL || '',
+		ssl: {
+			rejectUnauthorized: false,
+		},
 	};
 } else {
 	dbParams = {
