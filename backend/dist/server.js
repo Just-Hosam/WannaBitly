@@ -9,6 +9,7 @@ const user_queries_1 = require("./db/queries/user-queries");
 const click_queries_1 = require("./db/queries/click-queries");
 const clickDataFormatter_1 = __importDefault(require("./helpers/clickDataFormatter"));
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const axios_1 = __importDefault(require("axios"));
 const morgan = require('morgan');
@@ -26,6 +27,7 @@ app.enable('trust proxy');
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use(express_1.default.static('public'));
+app.use(cors_1.default());
 // override for put, patch and delete methods
 app.use(methodOverride('_method'));
 // Separated Routes for each Resource
