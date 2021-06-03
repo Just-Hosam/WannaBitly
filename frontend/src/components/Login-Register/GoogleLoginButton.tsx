@@ -18,7 +18,7 @@ const GoogleLoginButton = () => {
 		const userLastName = res.profileObj.familyName;
 
 		axios
-			.post(`/login`, { userEmail })
+			.post(`/login`, { userEmail }, { headers: { 'Access-Control-Allow-Origin': '*' } })
 			.then((loginRes) => {
 				if (loginRes.data) {
 					setCookie('userId', loginRes.data.id, { path: '/' });

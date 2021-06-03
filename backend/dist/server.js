@@ -10,7 +10,6 @@ const click_queries_1 = require("./db/queries/click-queries");
 const clickDataFormatter_1 = __importDefault(require("./helpers/clickDataFormatter"));
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const http_proxy_middleware_1 = require("http-proxy-middleware");
 const body_parser_1 = __importDefault(require("body-parser"));
 const axios_1 = __importDefault(require("axios"));
 const morgan = require('morgan');
@@ -23,7 +22,10 @@ db.connect();
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-app.use('/', http_proxy_middleware_1.createProxyMiddleware({ target: 'https://gifted-kilby-b1db3b.netlify.app', changeOrigin: true }));
+// app.use(
+// 	'/',
+// 	createProxyMiddleware({ target: 'https://gifted-kilby-b1db3b.netlify.app', changeOrigin: true })
+// );
 app.use(cors_1.default());
 app.use(morgan('dev'));
 // app.enable('trust proxy');
