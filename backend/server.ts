@@ -47,7 +47,7 @@ interface User {
 }
 
 app.get('/s/:shortUrl', (req, res) => {
-	const short_url = `wbtly.ca/s/${req.params.shortUrl}`;
+	const short_url = `www.wbtly.ca/s/${req.params.shortUrl}`;
 
 	getLongUrlByShortUrl(short_url)
 		.then((urlData) => {

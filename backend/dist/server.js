@@ -39,7 +39,7 @@ app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
 app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
 app.get('/s/:shortUrl', (req, res) => {
-    const short_url = `wbtly.ca/s/${req.params.shortUrl}`;
+    const short_url = `www.wbtly.ca/s/${req.params.shortUrl}`;
     url_queries_1.getLongUrlByShortUrl(short_url)
         .then((urlData) => {
         if (!urlData) {
