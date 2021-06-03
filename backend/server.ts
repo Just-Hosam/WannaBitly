@@ -22,7 +22,7 @@ db.connect();
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-app.use('/', createProxyMiddleware({ target: 'https://wannabitly.herokuapp.com', changeOrigin: true }));
+app.use('/login', createProxyMiddleware({ target: 'https://wannabitly.herokuapp.com', changeOrigin: true }));
 app.use(morgan('dev'));
 app.enable('trust proxy');
 app.use(bodyParser.urlencoded({ extended: true }));
