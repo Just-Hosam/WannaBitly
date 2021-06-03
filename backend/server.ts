@@ -22,13 +22,29 @@ db.connect();
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-app.use('/login', createProxyMiddleware({ target: 'https://wannabitly.herokuapp.com', changeOrigin: true }));
+// app.use('/login', createProxyMiddleware({ target: 'https://wannabitly.herokuapp.com', changeOrigin: true }));
+app.use(cors());
 app.use(morgan('dev'));
-app.enable('trust proxy');
+// app.enable('trust proxy');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
-app.use(cors());
+
+// var allowedOrigins = ['https://wannabitly.herokuapp.com/'];
+
+// app.use(cors({
+//   origin: function(origin, callback){
+//     // allow requests with no origin
+//     // (like mobile apps or curl requests)
+//     if(!origin) return callback(null, true);
+//     if(allowedOrigins.indexOf(origin) === -1){
+//       var msg = 'The CORS policy for this site does not ' +
+//                 'allow access from the specified Origin.';
+//       return callback(new Error(msg), false);
+//     }
+//     return callback(null, true);
+//   }
+// }));
 
 // override for put, patch and delete methods
 app.use(methodOverride('_method'));
