@@ -18,7 +18,7 @@ const GoogleLoginButton = () => {
 		const userLastName = res.profileObj.familyName;
 
 		axios
-			.post(`https://wannabitly.herokuapp.com/login`, { userEmail })
+			.post(`/login`, { userEmail }, { headers: { 'Access-Control-Allow-Origin': '*' } })
 			.then((loginRes) => {
 				if (loginRes.data) {
 					setCookie('userId', loginRes.data.id, { path: '/' });
@@ -26,7 +26,7 @@ const GoogleLoginButton = () => {
 					return;
 				}
 				axios
-					.post('https://wannabitly.herokuapp.com/register', { userEmail })
+					.post('/register', { userEmail })
 					.then((resgisterResponse) => {
 						setCookie('userId', resgisterResponse.data.id, { path: '/' });
 						setCookie('userInfo', { userEmail, userFirstName, userLastName }, { path: '/' });
