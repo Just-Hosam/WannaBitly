@@ -1,5 +1,5 @@
 const shortLinkGenerator = (): string => {
-	let randomStr = 'localhost:8080/s/';
+	let randomStr = 'wbtly.ca/s/';
 	const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
 	for (let i = 0; i < 6; i++) {

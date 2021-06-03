@@ -22,30 +22,12 @@ db.connect();
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-// app.use(
-// 	'/',
-// 	createProxyMiddleware({ target: 'https://gifted-kilby-b1db3b.netlify.app', changeOrigin: true })
-// );
 app.use(cors_1.default());
 app.use(morgan('dev'));
-// app.enable('trust proxy');
+app.enable('trust proxy');
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use(express_1.default.static('public'));
-// var allowedOrigins = ['https://wannabitly.herokuapp.com/'];
-// app.use(cors({
-//   origin: function(origin, callback){
-//     // allow requests with no origin
-//     // (like mobile apps or curl requests)
-//     if(!origin) return callback(null, true);
-//     if(allowedOrigins.indexOf(origin) === -1){
-//       var msg = 'The CORS policy for this site does not ' +
-//                 'allow access from the specified Origin.';
-//       return callback(new Error(msg), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
 // override for put, patch and delete methods
 app.use(methodOverride('_method'));
 // Separated Routes for each Resource
@@ -57,7 +39,7 @@ app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
 app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
 app.get('/s/:shortUrl', (req, res) => {
-    const short_url = `localhost:8080/s/${req.params.shortUrl}`;
+    const short_url = `wbtly.ca/s/${req.params.shortUrl}`;
     url_queries_1.getLongUrlByShortUrl(short_url)
         .then((urlData) => {
         if (!urlData) {
