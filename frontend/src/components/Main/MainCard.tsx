@@ -36,7 +36,11 @@ const MainCard = (props: Props) => {
 		if (userId) {
 			axios
 				.get(`/users/${userId}/urls`)
-				.then((res) => setUrls(res.data))
+				.then((res) => {
+					const isNewUser = res.data.length < 5 ? true : false;
+					if (isNewUser) setFormMode('ADD');
+					setUrls(res.data);
+				})
 				.catch((err) => console.log('Error at MainCard useEffect GET request', err));
 		}
 	}, [userId]);
