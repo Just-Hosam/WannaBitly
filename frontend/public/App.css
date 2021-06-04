@@ -161,6 +161,9 @@ body {
     width: 89%;
     border-radius: 0.5rem;
   }
+  #not-loggedin-card header {
+    font-size: 1.1rem;
+  }
 }
 
 #main-card {

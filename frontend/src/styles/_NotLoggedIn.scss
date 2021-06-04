@@ -37,7 +37,10 @@
 	#not-loggedin-card {
 		min-width: 89%;
 		width: 89%;
-		// min-height: 100%;
 		border-radius: 0.5rem;
+
+		header {
+			font-size: 1.1rem;
+		}
 	}
 }
