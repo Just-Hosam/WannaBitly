@@ -80,12 +80,12 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  text-align: end;
 }
 
 #navbar #nav-details #user-details #user-info h3 {
   font-size: 0.9rem;
   margin-bottom: 0.15rem;
-  text-align: end;
 }
 
 #navbar #nav-details #user-details #user-info span {
@@ -203,16 +203,6 @@ body {
 
 #main-card header header .add-btn {
   padding: 0.5rem;
-}
-
-#main-card header header .add-btn i {
-  font-size: 2rem;
-  color: #d3a500;
-  border-radius: 50%;
-}
-
-#main-card header header .add-btn i:hover {
-  color: #202b3a;
 }
 
 #main-card header #add-url-form {
