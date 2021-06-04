@@ -6,6 +6,7 @@ import UrlCard from './UrlCard';
 import AddUrlForm from './AddUrlForm';
 import EditUrlForm from './EditUrlForm';
 import MainHeader from './MainHeader';
+import NewUserInstructions from './NewUserInstructions';
 
 interface Props {
 	setAnalyticsId: React.Dispatch<React.SetStateAction<number>>;
@@ -37,8 +38,7 @@ const MainCard = (props: Props) => {
 			axios
 				.get(`/users/${userId}/urls`)
 				.then((res) => {
-					const isNewUser = res.data.length < 5 ? true : false;
-					if (isNewUser) setFormMode('ADD');
+					if (res.data.length < 5) setFormMode('ADD');
 					setUrls(res.data);
 				})
 				.catch((err) => console.log('Error at MainCard useEffect GET request', err));
@@ -56,6 +56,9 @@ const MainCard = (props: Props) => {
 		/>
 	));
 
+	let isNewUser = false;
+	if (urls.length === 0) isNewUser = true;
+
 	return (
 		<div id="main-card">
 			<header>
@@ -71,6 +74,7 @@ const MainCard = (props: Props) => {
 				{formMode === 'ADD' && <AddUrlForm setUrls={setUrls} setFormMode={setFormMode} />}
 			</header>
 			<ul>{urlsList}</ul>
+			{isNewUser && <NewUserInstructions />}
 		</div>
 	);
 };
