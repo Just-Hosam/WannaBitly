@@ -5,13 +5,7 @@ import { getClicks, getClick, addClick } from '../db/queries/click-queries';
 interface Click {
 	id: number;
 	url_id: number;
-	time: string;
-	date: string;
-}
-
-interface NewClick {
-	clickTime: string;
-	clickDate: string;
+	timestamp: number;
 }
 
 router.get('/', (req, res) => {
@@ -33,9 +27,9 @@ router.get('/:clickId', (req, res) => {
 
 router.post('/', (req, res) => {
 	const urlId = Number(req.params.userId);
-	const clickObj: NewClick = req.body;
+	const clickTimestamp: number = req.body.clickTimestamp;
 
-	addClick(urlId, clickObj)
+	addClick(urlId, clickTimestamp)
 		.then((data: Click) => res.json(data))
 		.catch((err: Error) => console.log('Error at clicks POST route "/"', err));
 });

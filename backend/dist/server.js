@@ -7,7 +7,6 @@ require('dotenv').config();
 const url_queries_1 = require("./db/queries/url-queries");
 const user_queries_1 = require("./db/queries/user-queries");
 const click_queries_1 = require("./db/queries/click-queries");
-const clickDataFormatter_1 = __importDefault(require("./helpers/clickDataFormatter"));
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
@@ -47,8 +46,8 @@ app.get('/s/:shortUrl', (req, res) => {
         }
         res.redirect(urlData.long_url);
         const urlId = urlData.id;
-        const clickObj = clickDataFormatter_1.default();
-        click_queries_1.addClick(urlId, clickObj).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
+        const clickTimestamp = new Date().getTime();
+        click_queries_1.addClick(urlId, clickTimestamp).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
     })
         .catch((err) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });

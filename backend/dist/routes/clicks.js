@@ -21,8 +21,8 @@ router.get('/:clickId', (req, res) => {
 });
 router.post('/', (req, res) => {
     const urlId = Number(req.params.userId);
-    const clickObj = req.body;
-    click_queries_1.addClick(urlId, clickObj)
+    const clickTimestamp = req.body.clickTimestamp;
+    click_queries_1.addClick(urlId, clickTimestamp)
         .then((data) => res.json(data))
         .catch((err) => console.log('Error at clicks POST route "/"', err));
 });

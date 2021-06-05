@@ -57,9 +57,9 @@ app.get('/s/:shortUrl', (req, res) => {
 			res.redirect(urlData.long_url);
 
 			const urlId = urlData.id;
-			const clickObj = clickTimeDate();
+			const clickTimestamp = new Date().getTime();
 
-			addClick(urlId, clickObj).catch((err: Error) =>
+			addClick(urlId, clickTimestamp).catch((err: Error) =>
 				console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
 			);
 		})

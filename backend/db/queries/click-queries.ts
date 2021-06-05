@@ -3,13 +3,7 @@ const db = require('../../lib/db.js');
 interface Click {
 	id: number;
 	url_id: number;
-	time: string;
-	date: string;
-}
-
-interface NewClick {
-	clickTime: string;
-	clickDate: string;
+	timestamp: number;
 }
 
 const getClicks = (urlId: number): Promise<Click[]> => {
@@ -40,12 +34,12 @@ const getClick = (urlId: number, clickId: number): Promise<Click> => {
 		.catch((err: Error) => console.log(`Error at clicks queries 'getClick'`, err));
 };
 
-const addClick = (urlId: number, clickObj: NewClick): Promise<Click> => {
+const addClick = (urlId: number, clickTimestamp: number): Promise<Click> => {
 	const query = `
-	INSERT INTO clicks (url_id, time, date)
+	INSERT INTO clicks (url_id, timestamp)
 	VALUES ($1, $2, $3)
 	RETURNING *;`;
-	const values = [urlId, clickObj.clickTime, clickObj.clickDate];
+	const values = [urlId, clickTimestamp];
 
 	return db
 		.query(query, values)
