@@ -69,7 +69,7 @@ const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 };
 
 const updateUrl = (urlObj: Url, urlId: number): Promise<Url> => {
-	if (!urlObj.description) urlObj.description = null;
+	if (!urlObj.description) urlObj.description = '';
 
 	const query = `
 	UPDATE urls
