@@ -8,6 +8,13 @@
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
+
+	#click-data-cont {
+		margin-top: 1.5rem;
+		overflow: auto;
+		display: flex;
+		flex: 1;
+	}
 }
 
 @media only screen and (max-width: 700px) {
@@ -15,5 +22,9 @@
 		width: 89%;
 		height: 100%;
 		border-radius: 0.5rem;
+
+		#click-data-cont {
+			flex-direction: column;
+		}
 	}
 }

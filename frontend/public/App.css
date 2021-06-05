@@ -443,11 +443,28 @@ body {
           flex-direction: column;
 }
 
+#analytics-card #click-data-cont {
+  margin-top: 1.5rem;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 @media only screen and (max-width: 700px) {
   #analytics-card {
     width: 89%;
     height: 100%;
     border-radius: 0.5rem;
+  }
+  #analytics-card #click-data-cont {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 
@@ -472,9 +489,7 @@ body {
 
 #clicks-list-cont {
   overflow: auto;
-  -ms-grid-column-align: stretch;
-      justify-self: stretch;
-  margin-top: 1.5rem;
+  width: 60%;
 }
 
 #clicks-list-cont #clicks-list {
@@ -504,6 +519,12 @@ body {
 #clicks-list-cont::-webkit-scrollbar-thumb {
   background: rgba(129, 129, 129, 0.562);
   border-radius: 100px;
+}
+
+@media only screen and (max-width: 700px) {
+  #clicks-list-cont {
+    width: 100%;
+  }
 }
 
 .clicks-list-item td {
@@ -540,4 +561,43 @@ body {
 #no-clicks-data p {
   margin-top: 0.6rem;
   font-size: 1.2rem;
+}
+
+#total-clicks {
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3.5rem 0;
+}
+
+#total-clicks h3 {
+  font-size: 1.8rem;
+  color: #202b3a;
+}
+
+#total-clicks p {
+  font-size: 2.5rem;
+  color: #202b3a;
+}
+
+@media only screen and (max-width: 700px) {
+  #total-clicks {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.5rem;
+  }
+  #total-clicks h3 {
+    margin-bottom: 1rem;
+  }
 }

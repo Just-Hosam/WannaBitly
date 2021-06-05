@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
