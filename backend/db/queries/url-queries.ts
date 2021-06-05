@@ -69,8 +69,6 @@ const addUrl = (urlObj: NewUrl, userId: number): Promise<Url> => {
 };
 
 const updateUrl = (urlObj: Url, urlId: number): Promise<Url> => {
-	if (!urlObj.description) urlObj.description = '';
-
 	const query = `
 	UPDATE urls
 	SET short_url = $1, long_url = $2, description = $3

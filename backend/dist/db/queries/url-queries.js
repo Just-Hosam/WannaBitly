@@ -53,8 +53,6 @@ const addUrl = (urlObj, userId) => {
 };
 exports.addUrl = addUrl;
 const updateUrl = (urlObj, urlId) => {
-    if (!urlObj.description)
-        urlObj.description = '';
     const query = `
 	UPDATE urls
 	SET short_url = $1, long_url = $2, description = $3
