@@ -16,7 +16,7 @@ const tableDataFormatter = (click: Click): DataPoint => {
 
 	const date = convertedDateObj.toLocaleDateString();
 	let time = `${timeArr[0]}:${timeArr[1]}`;
-	time += Number(timeArr[0]) > 12 ? null : ` ${timeArr[2][3]}${timeArr[2][4]}`;
+	time += Number(timeArr[0]) > 12 ? '' : ` ${timeArr[2][3]}${timeArr[2][4]}`;
 
 	return {
 		time,
