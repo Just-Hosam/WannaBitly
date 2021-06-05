@@ -9,10 +9,6 @@ import MainHeader from './MainHeader';
 import NewUserInstructions from './NewUserInstructions';
 import NotificationSnack from './NotificationSnack';
 
-interface Props {
-	setAnalyticsId: React.Dispatch<React.SetStateAction<number>>;
-}
-
 interface Url {
 	id: number;
 	user_id: number;
@@ -21,7 +17,7 @@ interface Url {
 	description: string;
 }
 
-const MainCard = (props: Props) => {
+const MainCard = () => {
 	const [cookies] = useCookies(['userId']);
 	const [formMode, setFormMode] = useState('');
 	const [urls, setUrls] = useState<Url[]>([]);
@@ -51,7 +47,6 @@ const MainCard = (props: Props) => {
 	const urlsList = urls.map((elem) => (
 		<UrlCard
 			setEditableUrl={setEditableUrl}
-			setAnalyticsId={props.setAnalyticsId}
 			setFormMode={setFormMode}
 			setUrls={setUrls}
 			key={elem.id}

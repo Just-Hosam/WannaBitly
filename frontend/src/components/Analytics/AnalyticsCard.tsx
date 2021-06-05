@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import chartDataFormatter from '../../helpers/chartDataFormatter';
 
@@ -7,9 +8,10 @@ import AnalyticsHeader from './AnalyticsHeader';
 import AnalyticsLineChart from './AnalyticsLineChart';
 import ClicksList from './ClicksList';
 import NoClicksData from './NoClicksData';
+import TotalClicks from './TotalClicks';
 
-interface Props {
-	analyticsId: number;
+interface Params {
+	urlId: string;
 }
 
 interface Click {
@@ -19,11 +21,11 @@ interface Click {
 	date: string;
 }
 
-const AnalyticsCard = (props: Props) => {
+const AnalyticsCard = () => {
 	const [cookies] = useCookies(['userId']);
-	const userId = cookies.userId;
-	const urlId = props.analyticsId;
 	const [clicksData, setClicksData] = useState<Click[]>([]);
+	const { urlId } = useParams<Params>();
+	const userId = cookies.userId;
 
 	useEffect(() => {
 		axios
@@ -39,7 +41,12 @@ const AnalyticsCard = (props: Props) => {
 			<AnalyticsHeader />
 			{isNotVisited && <NoClicksData />}
 			{!isNotVisited && <AnalyticsLineChart clicksChartData={chartDataFormatter(clicksData)} />}
-			{!isNotVisited && <ClicksList clicksData={clicksData} />}
+			{!isNotVisited && (
+				<div id="click-data-cont">
+					<TotalClicks clicksNum={clicksData.length} />
+					<ClicksList clicksData={clicksData} />
+				</div>
+			)}
 		</div>
 	);
 };

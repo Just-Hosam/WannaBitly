@@ -9,7 +9,6 @@ import NotLoggedIn from './Main/NotLoggedIn';
 
 function App() {
 	const [cookies] = useCookies(['userId']);
-	const [analyticsId, setAnalyticsId] = useState(0);
 	const isLoggedIn = cookies.userId ? true : false;
 
 	return (
@@ -18,8 +17,8 @@ function App() {
 			{!isLoggedIn && <NotLoggedIn />}
 			<Router>
 				<Switch>
-					<Route path="/analytics">{isLoggedIn && <AnalyticsCard analyticsId={analyticsId} />}</Route>
-					<Route path="/">{isLoggedIn && <MainCard setAnalyticsId={setAnalyticsId} />}</Route>
+					<Route path="/analytics/:urlId">{isLoggedIn && <AnalyticsCard />}</Route>
+					<Route path="/">{isLoggedIn && <MainCard />}</Route>
 				</Switch>
 			</Router>
 		</div>
