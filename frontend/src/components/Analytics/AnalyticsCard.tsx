@@ -17,8 +17,6 @@ interface Click {
 	url_id: number;
 	time: string;
 	date: string;
-	city: string;
-	country: string;
 }
 
 const AnalyticsCard = (props: Props) => {

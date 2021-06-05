@@ -7,8 +7,6 @@ interface Click {
 	url_id: number;
 	time: string;
 	date: string;
-	city: string;
-	country: string;
 }
 
 const ClicksListItem = (props: Props) => {
@@ -16,8 +14,6 @@ const ClicksListItem = (props: Props) => {
 		<tr className="clicks-list-item">
 			<td>{props.data.time}</td>
 			<td>{props.data.date}</td>
-			<td>{props.data.city}</td>
-			<td>{props.data.country}</td>
 		</tr>
 	);
 };

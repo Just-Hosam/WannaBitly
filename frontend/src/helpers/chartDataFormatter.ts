@@ -3,8 +3,6 @@ interface Click {
 	url_id: number;
 	time: string;
 	date: string;
-	city: string;
-	country: string;
 }
 
 interface DataPoint {
@@ -55,8 +53,7 @@ const monthNameGen = (monthNum: number): string => {
 	if (monthNum === 9) return 'Sep';
 	if (monthNum === 10) return 'Oct';
 	if (monthNum === 11) return 'Nov';
-	if (monthNum === 12) return 'Dec';
-	return 'error';
+	return 'Dec';
 };
 
 export default chartDataFormatter;
