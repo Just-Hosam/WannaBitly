@@ -50,7 +50,7 @@ const AddUrlForm = (props: Props) => {
 	};
 
 	return (
-		<form id="add-url-form">
+		<form id="add-url-form" onSubmit={(e) => handleSubmit(e)}>
 			<TextField
 				label="Long Url"
 				variant="outlined"
@@ -75,7 +75,7 @@ const AddUrlForm = (props: Props) => {
 				<Button onClick={() => props.setFormMode('')} className="add-url-cancel" variant="contained">
 					Cancel
 				</Button>
-				<Button onClick={(e) => handleSubmit(e)} type="submit" className="add-url-submit" variant="contained">
+				<Button type="submit" className="add-url-submit" variant="contained">
 					Add
 				</Button>
 			</div>

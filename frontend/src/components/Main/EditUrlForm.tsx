@@ -44,12 +44,19 @@ const EditUrlForm = (props: Props) => {
 						return elem;
 					});
 				});
+				props.setEditableUrl((prev) => {
+					return {
+						...prev,
+						long_url: '',
+						description: '',
+					};
+				});
 			})
 			.catch((err) => console.log(`Error at HandleSubmit`, err));
 	};
 
 	return (
-		<form id="add-url-form">
+		<form id="add-url-form" onSubmit={(e) => handleSubmit(e)}>
 			<TextField
 				label="Long Url"
 				variant="outlined"
@@ -74,7 +81,7 @@ const EditUrlForm = (props: Props) => {
 				<Button onClick={() => props.setFormMode('')} className="add-url-cancel" variant="contained">
 					Cancel
 				</Button>
-				<Button onClick={(e) => handleSubmit(e)} type="submit" className="add-url-submit" variant="contained">
+				<Button type="submit" className="add-url-submit" variant="contained">
 					Update
 				</Button>
 			</div>
