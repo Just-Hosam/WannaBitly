@@ -41,11 +41,13 @@ const getLongUrlByShortUrl = (shortUrl) => {
 };
 exports.getLongUrlByShortUrl = getLongUrlByShortUrl;
 const addUrl = (urlObj, userId) => {
+    const trimmedLongUrl = urlObj.long_url.trim();
+    const trimmedDesc = urlObj.description.trim();
     const query = `
 	INSERT INTO urls (user_id, short_url, long_url, description)
 	VALUES ($1, $2, $3, $4)
 	RETURNING *;`;
-    const values = [userId, urlObj.short_url, urlObj.long_url, urlObj.description];
+    const values = [userId, urlObj.short_url, trimmedLongUrl, trimmedDesc];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])
