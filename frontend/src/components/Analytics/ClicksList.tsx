@@ -7,12 +7,11 @@ interface Props {
 interface Click {
 	id: number;
 	url_id: number;
-	time: string;
-	date: string;
+	timestamp: number;
 }
 
 const ClicksList = (props: Props) => {
-	const clicksComponents = props.clicksData.map((elem) => <ClicksListItem key={elem.id} data={elem} />);
+	const clicksComponents = props.clicksData.map((elem) => <ClicksListItem key={elem.id} clickData={elem} />);
 
 	return (
 		<div id="clicks-list-cont">

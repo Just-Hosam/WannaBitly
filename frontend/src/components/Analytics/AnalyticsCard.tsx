@@ -18,8 +18,7 @@ interface Params {
 interface Click {
 	id: number;
 	url_id: number;
-	time: string;
-	date: string;
+	timestamp: number;
 }
 
 const AnalyticsCard = () => {

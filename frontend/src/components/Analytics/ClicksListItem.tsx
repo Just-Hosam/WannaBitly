@@ -1,19 +1,22 @@
+import tableDataFormatter from '../../helpers/tableDataFormatter';
+
 interface Props {
-	data: Click;
+	clickData: Click;
 }
 
 interface Click {
 	id: number;
 	url_id: number;
-	time: string;
-	date: string;
+	timestamp: number;
 }
 
 const ClicksListItem = (props: Props) => {
+	const { time, date } = tableDataFormatter(props.clickData);
+
 	return (
 		<tr className="clicks-list-item">
-			<td>{props.data.time}</td>
-			<td>{props.data.date}</td>
+			<td>{time}</td>
+			<td>{date}</td>
 		</tr>
 	);
 };

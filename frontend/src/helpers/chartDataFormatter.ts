@@ -1,8 +1,7 @@
 interface Click {
 	id: number;
 	url_id: number;
-	time: string;
-	date: string;
+	timestamp: number;
 }
 
 interface DataPoint {
@@ -15,7 +14,8 @@ const chartDataFormatter = (clicksData: Click[]): DataPoint[] => {
 	const resultArr: DataPoint[] = [];
 
 	for (const click of clicksData) {
-		const dateArr = click.date.split('/');
+		const localDate = new Date(Number(click.timestamp)).toLocaleDateString();
+		const dateArr = localDate.split('/');
 		const monthPart = monthNameGen(Number(dateArr[1]));
 		const yearPart = dateArr[2][2] + dateArr[2][3];
 		const month = `${monthPart} ${yearPart}`;
