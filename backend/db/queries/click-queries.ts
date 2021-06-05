@@ -37,7 +37,7 @@ const getClick = (urlId: number, clickId: number): Promise<Click> => {
 const addClick = (urlId: number, clickTimestamp: number): Promise<Click> => {
 	const query = `
 	INSERT INTO clicks (url_id, timestamp)
-	VALUES ($1, $2, $3)
+	VALUES ($1, $2)
 	RETURNING *;`;
 	const values = [urlId, clickTimestamp];
 

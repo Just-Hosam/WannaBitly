@@ -31,7 +31,7 @@ exports.getClick = getClick;
 const addClick = (urlId, clickTimestamp) => {
     const query = `
 	INSERT INTO clicks (url_id, timestamp)
-	VALUES ($1, $2, $3)
+	VALUES ($1, $2)
 	RETURNING *;`;
     const values = [urlId, clickTimestamp];
     return db

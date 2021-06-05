@@ -3,7 +3,6 @@ require('dotenv').config();
 import { getLongUrlByShortUrl } from './db/queries/url-queries';
 import { getUserByEmail, addUser } from './db/queries/user-queries';
 import { addClick } from './db/queries/click-queries';
-import clickTimeDate from './helpers/clickDataFormatter';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
