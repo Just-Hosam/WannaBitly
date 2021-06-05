@@ -50,7 +50,7 @@ const UrlCard = (props: Props) => {
 		history.push(`/analytics/${props.data.id}`);
 	};
 
-	const handleClick = () => {
+	const handleCopy = () => {
 		props.setOpenSnackBar(true);
 		props.setMessageSnackBar('URL copied');
 	};
@@ -65,9 +65,9 @@ const UrlCard = (props: Props) => {
 				</div>
 			)}
 			<div className="urls-card-icons">
-				<CopyToClipboard text={props.data.short_url}>
+				<CopyToClipboard text={props.data.short_url} onCopy={handleCopy}>
 					<Tooltip title="Copy to Clipboard">
-						<IconButton onClick={handleClick} className="urls-btns" aria-label="copy">
+						<IconButton className="urls-btns" aria-label="copy">
 							<i className="fas fa-copy"></i>
 						</IconButton>
 					</Tooltip>
