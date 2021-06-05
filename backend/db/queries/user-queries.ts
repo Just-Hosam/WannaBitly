@@ -55,19 +55,4 @@ const addUser = (userEmail: string) => {
 		.catch((err: Error) => console.log(`Error at users queries 'addUser'`, err));
 };
 
-// Removed update user feature
-// const updateUser = (userObj: UpdatedUser, userId: number) => {
-// 	const query = `
-// 	UPDATE users
-// 	SET first_name = $1, last_name = $2, password = $3
-// 	WHERE id = $4
-// 	RETURNING *`;
-// 	const values = [userObj.first_name, userObj.last_name, userId];
-
-// 	return db
-// 		.query(query, values)
-// 		.then(({ rows }: { rows: User[] }) => rows[0])
-// 		.catch((err: Error) => console.log(`Error at users queries 'updateUser'`, err));
-// };
-
 export { getUsers, getUserById, addUser, getUserByEmail };
