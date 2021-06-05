@@ -13,14 +13,14 @@
 		color: $text-color;
 		font-size: 1.1rem;
 		word-wrap: break-word;
-		max-width: 70%;
+		width: 70%;
 	}
 
 	.urls-cont {
 		display: flex;
 		flex-direction: column;
 		word-wrap: break-word;
-		max-width: 70%;
+		width: 70%;
 
 		p {
 			margin-bottom: 0.1rem;
@@ -56,12 +56,10 @@
 		p {
 			font-size: 1.2rem;
 			width: 100%;
-			max-width: 100%;
 		}
 
 		.urls-cont {
 			width: 100%;
-			max-width: 100%;
 
 			p {
 				font-size: 1.2rem;
