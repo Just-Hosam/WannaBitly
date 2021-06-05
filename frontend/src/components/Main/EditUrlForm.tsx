@@ -9,6 +9,8 @@ interface Props {
 	setFormMode: React.Dispatch<React.SetStateAction<string>>;
 	editableUrl: Url;
 	setEditableUrl: React.Dispatch<React.SetStateAction<Url>>;
+	setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>;
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface Url {
@@ -38,18 +40,13 @@ const EditUrlForm = (props: Props) => {
 		axios
 			.patch(`/users/${userId}/urls/${props.editableUrl.id}`, props.editableUrl)
 			.then((res) => {
+				props.setOpenSnackBar(true);
+				props.setMessageSnackBar('URL updated');
 				props.setUrls((prev) => {
 					return prev.map((elem) => {
 						if (elem.id === props.editableUrl.id) return res.data;
 						return elem;
 					});
-				});
-				props.setEditableUrl((prev) => {
-					return {
-						...prev,
-						long_url: '',
-						description: '',
-					};
 				});
 			})
 			.catch((err) => console.log(`Error at HandleSubmit`, err));

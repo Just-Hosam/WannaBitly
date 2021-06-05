@@ -7,6 +7,7 @@ import AddUrlForm from './AddUrlForm';
 import EditUrlForm from './EditUrlForm';
 import MainHeader from './MainHeader';
 import NewUserInstructions from './NewUserInstructions';
+import NotificationSnack from './NotificationSnack';
 
 interface Props {
 	setAnalyticsId: React.Dispatch<React.SetStateAction<number>>;
@@ -24,6 +25,8 @@ const MainCard = (props: Props) => {
 	const [cookies] = useCookies(['userId']);
 	const [formMode, setFormMode] = useState('');
 	const [urls, setUrls] = useState<Url[]>([]);
+	const [openSnackBar, setOpenSnackBar] = useState(false);
+	const [messageSnackBar, setMessageSnackBar] = useState('');
 	const [editableUrl, setEditableUrl] = useState<Url>({
 		id: 0,
 		user_id: 0,
@@ -69,12 +72,26 @@ const MainCard = (props: Props) => {
 						setEditableUrl={setEditableUrl}
 						setUrls={setUrls}
 						setFormMode={setFormMode}
+						setOpenSnackBar={setOpenSnackBar}
+						setMessageSnackBar={setMessageSnackBar}
 					/>
 				)}
-				{formMode === 'ADD' && <AddUrlForm setUrls={setUrls} setFormMode={setFormMode} />}
+				{formMode === 'ADD' && (
+					<AddUrlForm
+						setMessageSnackBar={setMessageSnackBar}
+						setUrls={setUrls}
+						setFormMode={setFormMode}
+						setOpenSnackBar={setOpenSnackBar}
+					/>
+				)}
 			</header>
 			<ul>{urlsList}</ul>
 			{isNewUser && <NewUserInstructions />}
+			<NotificationSnack
+				messageSnackBar={messageSnackBar}
+				openSnackBar={openSnackBar}
+				setOpenSnackBar={setOpenSnackBar}
+			/>
 		</div>
 	);
 };

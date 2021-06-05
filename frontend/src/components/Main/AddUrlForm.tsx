@@ -8,6 +8,8 @@ import TextField from '@material-ui/core/TextField';
 interface Props {
 	setUrls: React.Dispatch<React.SetStateAction<Url[]>>;
 	setFormMode: React.Dispatch<React.SetStateAction<string>>;
+	setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>;
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface Url {
@@ -41,6 +43,8 @@ const AddUrlForm = (props: Props) => {
 			.post(`/users/${userId}/urls`, addForm)
 			.then((res) => {
 				props.setUrls((prev) => [res.data, ...prev]);
+				props.setOpenSnackBar(true);
+				props.setMessageSnackBar('URL added');
 				setAddForm({
 					long_url: '',
 					description: '',
