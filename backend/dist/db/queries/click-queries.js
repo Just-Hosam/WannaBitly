@@ -30,10 +30,10 @@ const getClick = (urlId, clickId) => {
 exports.getClick = getClick;
 const addClick = (urlId, clickObj) => {
     const query = `
-	INSERT INTO clicks (url_id, time, date, city, country)
-	VALUES ($1, $2, $3, $4, $5)
+	INSERT INTO clicks (url_id, time, date)
+	VALUES ($1, $2, $3)
 	RETURNING *;`;
-    const values = [urlId, clickObj.clickTime, clickObj.clickDate, clickObj.clickCity, clickObj.clickCountry];
+    const values = [urlId, clickObj.clickTime, clickObj.clickDate];
     return db
         .query(query, values)
         .then(({ rows }) => rows[0])

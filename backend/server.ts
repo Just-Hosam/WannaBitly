@@ -3,11 +3,10 @@ require('dotenv').config();
 import { getLongUrlByShortUrl } from './db/queries/url-queries';
 import { getUserByEmail, addUser } from './db/queries/user-queries';
 import { addClick } from './db/queries/click-queries';
-import clickDataFormatter from './helpers/clickDataFormatter';
+import clickTimeDate from './helpers/clickDataFormatter';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import axios from 'axios';
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 
@@ -56,24 +55,13 @@ app.get('/s/:shortUrl', (req, res) => {
 				return;
 			}
 			res.redirect(urlData.long_url);
-			const ipAddress = (req: any) =>
-				(typeof req.headers['x-forwarded-for'] === 'string' &&
-					req.headers['x-forwarded-for'].split(',').shift()) ||
-				req.connection?.remoteAddress ||
-				req.socket?.remoteAddress ||
-				req.connection?.socket?.remoteAddress;
 
-			axios
-				.get(`https://api.geoapify.com/v1/ipinfo?&ip=${ipAddress}&apiKey=${process.env.GEOAPIFY_API_KEY}`)
-				.then((response) => {
-					const urlId = urlData.id;
-					const clickObj = clickDataFormatter(response.data);
+			const urlId = urlData.id;
+			const clickObj = clickTimeDate();
 
-					addClick(urlId, clickObj).catch((err: Error) =>
-						console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
-					);
-				})
-				.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
+			addClick(urlId, clickObj).catch((err: Error) =>
+				console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
+			);
 		})
 		.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });

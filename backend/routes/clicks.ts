@@ -7,15 +7,11 @@ interface Click {
 	url_id: number;
 	time: string;
 	date: string;
-	city: string;
-	country: string;
 }
 
 interface NewClick {
 	clickTime: string;
 	clickDate: string;
-	clickCity: string;
-	clickCountry: string;
 }
 
 router.get('/', (req, res) => {

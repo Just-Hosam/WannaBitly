@@ -11,7 +11,6 @@ const clickDataFormatter_1 = __importDefault(require("./helpers/clickDataFormatt
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
-const axios_1 = __importDefault(require("axios"));
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const app = express_1.default();
@@ -47,22 +46,9 @@ app.get('/s/:shortUrl', (req, res) => {
             return;
         }
         res.redirect(urlData.long_url);
-        const ipAddress = (req) => {
-            var _a, _b, _c, _d;
-            return (typeof req.headers['x-forwarded-for'] === 'string' &&
-                req.headers['x-forwarded-for'].split(',').shift()) ||
-                ((_a = req.connection) === null || _a === void 0 ? void 0 : _a.remoteAddress) ||
-                ((_b = req.socket) === null || _b === void 0 ? void 0 : _b.remoteAddress) ||
-                ((_d = (_c = req.connection) === null || _c === void 0 ? void 0 : _c.socket) === null || _d === void 0 ? void 0 : _d.remoteAddress);
-        };
-        axios_1.default
-            .get(`https://api.geoapify.com/v1/ipinfo?&ip=${ipAddress}&apiKey=${process.env.GEOAPIFY_API_KEY}`)
-            .then((response) => {
-            const urlId = urlData.id;
-            const clickObj = clickDataFormatter_1.default(response.data);
-            click_queries_1.addClick(urlId, clickObj).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
-        })
-            .catch((err) => console.log('Error at server GET route "/s/:shortUrl"', err));
+        const urlId = urlData.id;
+        const clickObj = clickDataFormatter_1.default();
+        click_queries_1.addClick(urlId, clickObj).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
     })
         .catch((err) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });

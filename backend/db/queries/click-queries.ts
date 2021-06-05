@@ -5,15 +5,11 @@ interface Click {
 	url_id: number;
 	time: string;
 	date: string;
-	city: string;
-	country: string;
 }
 
 interface NewClick {
 	clickTime: string;
 	clickDate: string;
-	clickCity: string;
-	clickCountry: string;
 }
 
 const getClicks = (urlId: number): Promise<Click[]> => {
@@ -46,10 +42,10 @@ const getClick = (urlId: number, clickId: number): Promise<Click> => {
 
 const addClick = (urlId: number, clickObj: NewClick): Promise<Click> => {
 	const query = `
-	INSERT INTO clicks (url_id, time, date, city, country)
-	VALUES ($1, $2, $3, $4, $5)
+	INSERT INTO clicks (url_id, time, date)
+	VALUES ($1, $2, $3)
 	RETURNING *;`;
-	const values = [urlId, clickObj.clickTime, clickObj.clickDate, clickObj.clickCity, clickObj.clickCountry];
+	const values = [urlId, clickObj.clickTime, clickObj.clickDate];
 
 	return db
 		.query(query, values)
