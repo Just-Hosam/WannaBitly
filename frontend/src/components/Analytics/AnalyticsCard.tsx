@@ -9,6 +9,7 @@ import AnalyticsLineChart from './AnalyticsLineChart';
 import ClicksList from './ClicksList';
 import NoClicksData from './NoClicksData';
 import TotalClicks from './TotalClicks';
+import Spinner from '../Elements/Spinner';
 
 interface Params {
 	urlId: string;
@@ -24,24 +25,27 @@ interface Click {
 const AnalyticsCard = () => {
 	const [cookies] = useCookies(['userId']);
 	const [clicksData, setClicksData] = useState<Click[]>([]);
+	const [mode, setmode] = useState('LOADING');
 	const { urlId } = useParams<Params>();
 	const userId = cookies.userId;
 
 	useEffect(() => {
 		axios
 			.get(`/users/${userId}/urls/${urlId}/clicks`)
-			.then((res) => setClicksData(res.data))
+			.then((res) => {
+				setClicksData(res.data);
+				setmode(res.data.length === 0 ? 'NOTVISITED' : 'DATA');
+			})
 			.catch((err: Error) => console.log(err));
 	}, [urlId, userId]);
-
-	const isNotVisited = clicksData.length === 0 ? true : false;
 
 	return (
 		<div id="analytics-card">
 			<AnalyticsHeader />
-			{isNotVisited && <NoClicksData />}
-			{!isNotVisited && <AnalyticsLineChart clicksChartData={chartDataFormatter(clicksData)} />}
-			{!isNotVisited && (
+			{mode === 'LOADING' && <Spinner />}
+			{mode === 'NOTVISITED' && <NoClicksData />}
+			{mode === 'DATA' && <AnalyticsLineChart clicksChartData={chartDataFormatter(clicksData)} />}
+			{mode === 'DATA' && (
 				<div id="click-data-cont">
 					<TotalClicks clicksNum={clicksData.length} />
 					<ClicksList clicksData={clicksData} />

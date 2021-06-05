@@ -8,6 +8,7 @@ import EditUrlForm from './EditUrlForm';
 import MainHeader from './MainHeader';
 import NewUserInstructions from './NewUserInstructions';
 import NotificationSnack from './NotificationSnack';
+import Spinner from '../Elements/Spinner';
 
 interface Url {
 	id: number;
@@ -20,6 +21,7 @@ interface Url {
 const MainCard = () => {
 	const [cookies] = useCookies(['userId']);
 	const [formMode, setFormMode] = useState('');
+	const [mode, setMode] = useState('LOADING');
 	const [urls, setUrls] = useState<Url[]>([]);
 	const [openSnackBar, setOpenSnackBar] = useState(false);
 	const [messageSnackBar, setMessageSnackBar] = useState('');
@@ -38,6 +40,7 @@ const MainCard = () => {
 				.get(`/users/${userId}/urls`)
 				.then((res) => {
 					if (res.data.length < 5) setFormMode('ADD');
+					setMode(res.data.length === 0 ? 'NEWUSER' : 'DATA');
 					setUrls(res.data);
 				})
 				.catch((err) => console.log('Error at MainCard useEffect GET request', err));
@@ -51,11 +54,10 @@ const MainCard = () => {
 			setUrls={setUrls}
 			key={elem.id}
 			data={elem}
+			setOpenSnackBar={setOpenSnackBar}
+			setMessageSnackBar={setMessageSnackBar}
 		/>
 	));
-
-	let isNewUser = false;
-	if (urls.length === 0) isNewUser = true;
 
 	return (
 		<div id="main-card">
@@ -80,8 +82,9 @@ const MainCard = () => {
 					/>
 				)}
 			</header>
-			<ul>{urlsList}</ul>
-			{isNewUser && <NewUserInstructions />}
+			{mode === 'LOADING' && <Spinner />}
+			{mode === 'DATA' && <ul>{urlsList}</ul>}
+			{mode === 'NEWUSER' && <NewUserInstructions />}
 			<NotificationSnack
 				messageSnackBar={messageSnackBar}
 				openSnackBar={openSnackBar}
