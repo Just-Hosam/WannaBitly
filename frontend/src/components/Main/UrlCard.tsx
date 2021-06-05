@@ -11,6 +11,8 @@ interface Props {
 	setUrls: React.Dispatch<React.SetStateAction<Url[]>>;
 	setFormMode: React.Dispatch<React.SetStateAction<string>>;
 	setEditableUrl: React.Dispatch<React.SetStateAction<Url>>;
+	setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>;
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface Url {
@@ -35,6 +37,8 @@ const UrlCard = (props: Props) => {
 		axios
 			.delete(`/users/${userId}/urls/${props.data.id}`)
 			.then(() => {
+				props.setOpenSnackBar(true);
+				props.setMessageSnackBar('URL deleted');
 				props.setUrls((prev) => {
 					return prev.filter((elem: Url): boolean => elem.id !== props.data.id);
 				});
@@ -44,6 +48,11 @@ const UrlCard = (props: Props) => {
 
 	const handleAnalytics = () => {
 		history.push(`/analytics/${props.data.id}`);
+	};
+
+	const handleClick = () => {
+		props.setOpenSnackBar(true);
+		props.setMessageSnackBar('URL copied');
 	};
 
 	return (
@@ -58,7 +67,7 @@ const UrlCard = (props: Props) => {
 			<div className="urls-card-icons">
 				<CopyToClipboard text={props.data.short_url}>
 					<Tooltip title="Copy to Clipboard">
-						<IconButton className="urls-btns" aria-label="copy">
+						<IconButton onClick={handleClick} className="urls-btns" aria-label="copy">
 							<i className="fas fa-copy"></i>
 						</IconButton>
 					</Tooltip>
