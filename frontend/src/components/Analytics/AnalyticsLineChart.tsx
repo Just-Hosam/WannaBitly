@@ -16,7 +16,7 @@ const AnalyticsLineChart = (props: Props) => {
 				<Line type="monotone" dataKey="clicks" stroke="#8884d8" />
 				<CartesianGrid stroke="#ccc" />
 				<XAxis dataKey="month" tickMargin={10} />
-				<YAxis tickMargin={5} />
+				<YAxis tickMargin={5} allowDecimals={false} />
 				<Tooltip />
 			</LineChart>
 		</ResponsiveContainer>
