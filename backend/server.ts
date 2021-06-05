@@ -56,9 +56,15 @@ app.get('/s/:shortUrl', (req, res) => {
 				return;
 			}
 			res.redirect(urlData.long_url);
+			const ipAddress = (req: any) =>
+				(typeof req.headers['x-forwarded-for'] === 'string' &&
+					req.headers['x-forwarded-for'].split(',').shift()) ||
+				req.connection?.remoteAddress ||
+				req.socket?.remoteAddress ||
+				req.connection?.socket?.remoteAddress;
 
 			axios
-				.get(`https://api.geoapify.com/v1/ipinfo?apiKey=${process.env.GEOAPIFY_API_KEY}`)
+				.get(`https://api.geoapify.com/v1/ipinfo?&ip=${ipAddress}&apiKey=${process.env.GEOAPIFY_API_KEY}`)
 				.then((response) => {
 					const urlId = urlData.id;
 					const clickObj = clickDataFormatter(response.data);
@@ -66,7 +72,8 @@ app.get('/s/:shortUrl', (req, res) => {
 					addClick(urlId, clickObj).catch((err: Error) =>
 						console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
 					);
-				});
+				})
+				.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
 		})
 		.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });
