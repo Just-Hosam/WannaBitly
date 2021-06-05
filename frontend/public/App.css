@@ -26,6 +26,20 @@ body {
   height: 100%;
 }
 
+.spinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 2rem 0;
+}
+
+.spinner .MuiCircularProgress-root {
+  color: #eec124;
+}
+
 #navbar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -550,17 +564,26 @@ body {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  margin-top: 2rem;
 }
 
 #no-clicks-data h3 {
   font-size: 2rem;
   color: #202b3a;
-  margin-top: 2rem;
 }
 
 #no-clicks-data p {
   margin-top: 0.6rem;
   font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 700px) {
+  #no-clicks-data {
+    margin-bottom: 2rem;
+  }
+  #no-clicks-data p {
+    font-size: 1rem;
+  }
 }
 
 #total-clicks {
