@@ -1,5 +1,6 @@
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
 
 interface Props {
 	formMode: string;
@@ -18,7 +19,8 @@ const MainHeader = (props: Props) => {
 			{props.formMode === 'ADD' && <h2>Add Url</h2>}
 			{props.formMode === 'EDIT' && <h2>Edit Url</h2>}
 			<IconButton className="add-btn" onClick={() => handleAddButton(props.formMode)}>
-				<AddIcon />
+				{props.formMode !== 'ADD' && <AddIcon />}
+				{props.formMode === 'ADD' && <CloseIcon />}
 			</IconButton>
 		</header>
 	);
