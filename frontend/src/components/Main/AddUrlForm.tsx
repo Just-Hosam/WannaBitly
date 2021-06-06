@@ -10,6 +10,8 @@ interface Props {
 	setFormMode: React.Dispatch<React.SetStateAction<string>>;
 	setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>;
 	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>;
+	mode: string;
+	setMode: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface Url {
@@ -45,6 +47,7 @@ const AddUrlForm = (props: Props) => {
 				props.setUrls((prev) => [res.data, ...prev]);
 				props.setOpenSnackBar(true);
 				props.setMessageSnackBar('URL added');
+				if (props.mode !== 'DATA') props.setMode('DATA');
 				setAddForm({
 					long_url: '',
 					description: '',

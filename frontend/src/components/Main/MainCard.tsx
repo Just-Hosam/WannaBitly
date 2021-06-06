@@ -79,6 +79,8 @@ const MainCard = () => {
 						setUrls={setUrls}
 						setFormMode={setFormMode}
 						setOpenSnackBar={setOpenSnackBar}
+						mode={mode}
+						setMode={setMode}
 					/>
 				)}
 			</header>
