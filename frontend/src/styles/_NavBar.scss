@@ -25,29 +25,26 @@
 		}
 	}
 
-	#nav-details {
+	#user-details {
 		margin: 1rem;
+		display: flex;
+		align-items: center;
+		color: $card-color;
 
-		#user-details {
+		#user-info {
 			display: flex;
-			align-items: center;
-			color: $card-color;
+			flex-direction: column;
+			text-align: end;
 
-			#user-info {
-				display: flex;
-				flex-direction: column;
-				text-align: end;
+			h3 {
+				font-size: 0.9rem;
+				margin-bottom: 0.15rem;
+			}
 
-				h3 {
-					font-size: 0.9rem;
-					margin-bottom: 0.15rem;
-				}
-
-				span {
-					font-size: 0.75rem;
-					font-style: italic;
-					opacity: 0.85;
-				}
+			span {
+				font-size: 0.75rem;
+				font-style: italic;
+				opacity: 0.85;
 			}
 		}
 	}
@@ -66,11 +63,10 @@
 				display: contents;
 			}
 		}
-		#nav-details {
-			#user-details {
-				#user-info {
-					display: none;
-				}
+
+		#user-details {
+			#user-info {
+				display: none;
 			}
 		}
 	}

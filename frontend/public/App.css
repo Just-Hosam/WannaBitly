@@ -249,11 +249,8 @@ body {
   display: none;
 }
 
-#navbar #nav-details {
+#navbar #user-details {
   margin: 1rem;
-}
-
-#navbar #nav-details #user-details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -263,7 +260,7 @@ body {
   color: #fff;
 }
 
-#navbar #nav-details #user-details #user-info {
+#navbar #user-details #user-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -274,12 +271,12 @@ body {
   text-align: end;
 }
 
-#navbar #nav-details #user-details #user-info h3 {
+#navbar #user-details #user-info h3 {
   font-size: 0.9rem;
   margin-bottom: 0.15rem;
 }
 
-#navbar #nav-details #user-details #user-info span {
+#navbar #user-details #user-info span {
   font-size: 0.75rem;
   font-style: italic;
   opacity: 0.85;
@@ -299,7 +296,7 @@ body {
   #navbar .nav-btn i {
     display: contents;
   }
-  #navbar #nav-details #user-details #user-info {
+  #navbar #user-details #user-info {
     display: none;
   }
 }
