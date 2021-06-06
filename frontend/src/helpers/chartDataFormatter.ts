@@ -16,7 +16,7 @@ const chartDataFormatter = (clicksData: Click[]): DataPoint[] => {
 	for (const click of clicksData) {
 		const localDate = new Date(Number(click.timestamp)).toLocaleDateString();
 		const dateArr = localDate.split('/');
-		const monthPart = monthNameGen(Number(dateArr[1]));
+		const monthPart = monthNameGen(Number(dateArr[0]));
 		const yearPart = dateArr[2][2] + dateArr[2][3];
 		const month = `${monthPart} ${yearPart}`;
 
