@@ -4,6 +4,7 @@
 	@include centerFlex(column);
 	justify-content: flex-start;
 	margin-top: 2rem;
+	animation: fadein 0.5s ease-in-out;
 
 	h3 {
 		font-size: 2rem;

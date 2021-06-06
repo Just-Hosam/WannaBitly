@@ -10,5 +10,6 @@
 	h2 {
 		color: $background-color;
 		font-size: 1.6rem;
+		animation: slide-in-right-left 0.3s ease-in-out;
 	}
 }

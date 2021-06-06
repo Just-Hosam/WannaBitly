@@ -21,6 +21,7 @@
 			h2 {
 				color: $background-color;
 				font-size: 1.6rem;
+				animation: slide-in-left-right 0.3s ease-in-out;
 			}
 
 			.add-btn {
@@ -30,6 +31,7 @@
 
 		#add-url-form {
 			@include centerFlex(column);
+			animation: fadein 0.5s ease-in-out;
 
 			.add-url-textfield {
 				margin-bottom: 0.6rem;
