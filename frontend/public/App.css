@@ -646,12 +646,7 @@ body {
 }
 
 .url-card .urls-btns {
-  padding: 0.3rem;
-  margin-left: 0.5rem;
-}
-
-.url-card .urls-btns i {
-  font-size: 20px;
+  padding: 0.35rem;
 }
 
 .url-card .analytics-btn {

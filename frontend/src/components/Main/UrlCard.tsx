@@ -5,6 +5,10 @@ import { useCookies } from 'react-cookie';
 
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 interface Props {
 	data: Url;
@@ -68,23 +72,23 @@ const UrlCard = (props: Props) => {
 				<CopyToClipboard text={props.data.short_url} onCopy={handleCopy}>
 					<Tooltip title="Copy to Clipboard">
 						<IconButton className="urls-btns" aria-label="copy">
-							<i className="fas fa-copy"></i>
+							<FileCopyIcon />
 						</IconButton>
 					</Tooltip>
 				</CopyToClipboard>
 				<Tooltip title="Edit">
 					<IconButton onClick={() => handleEdit(props.data)} className="urls-btns" aria-label="edit">
-						<i className="fas fa-pen"></i>
+						<EditIcon />
 					</IconButton>
 				</Tooltip>
 				<Tooltip title="Delete">
 					<IconButton onClick={handleDelete} className="urls-btns" aria-label="delete">
-						<i className="fas fa-trash"></i>
+						<DeleteIcon />
 					</IconButton>
 				</Tooltip>
 				<Tooltip title="Analytics">
 					<IconButton onClick={handleAnalytics} className="urls-btns analytics-btn" aria-label="analytics">
-						<i className="fas fa-chart-pie"></i>
+						<AssessmentIcon />
 					</IconButton>
 				</Tooltip>
 			</div>
