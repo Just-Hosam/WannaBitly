@@ -4,6 +4,7 @@
 	display: flex;
 	justify-content: center;
 	margin: 2rem 0;
+	animation: fadein 0.25s ease-in-out;
 
 	.MuiCircularProgress-root {
 		color: $accent-color;
