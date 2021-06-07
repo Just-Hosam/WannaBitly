@@ -4,16 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
-const url_queries_1 = require("./db/queries/url-queries");
-const user_queries_1 = require("./db/queries/user-queries");
-const click_queries_1 = require("./db/queries/click-queries");
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const http_1 = __importDefault(require("http"));
+const socketIO = require('socket.io');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const app = express_1.default();
 const PORT = process.env.PORT || 8080;
+// Websockets Setup
+const server = http_1.default.createServer(app);
+const io = socketIO(server);
 // PG database client/connection setup
 const db = require('./lib/db.js');
 db.connect();
@@ -36,6 +38,10 @@ const clicksRouter = require('./routes/clicks.js');
 app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
 app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
+// Queries
+const url_queries_1 = require("./db/queries/url-queries");
+const user_queries_1 = require("./db/queries/user-queries");
+const click_queries_1 = require("./db/queries/click-queries");
 app.get('/s/:shortUrl', (req, res) => {
     const short_url = `www.wbtly.ca/s/${req.params.shortUrl}`;
     url_queries_1.getLongUrlByShortUrl(short_url)
@@ -47,7 +53,9 @@ app.get('/s/:shortUrl', (req, res) => {
         res.redirect(urlData.long_url);
         const urlId = urlData.id;
         const clickTimestamp = new Date().getTime();
-        click_queries_1.addClick(urlId, clickTimestamp).catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
+        click_queries_1.addClick(urlId, clickTimestamp)
+            .then((clickData) => io.emit('click', clickData))
+            .catch((err) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
     })
         .catch((err) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });

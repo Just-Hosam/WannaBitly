@@ -1,16 +1,19 @@
 require('dotenv').config();
 
-import { getLongUrlByShortUrl } from './db/queries/url-queries';
-import { getUserByEmail, addUser } from './db/queries/user-queries';
-import { addClick } from './db/queries/click-queries';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import http from 'http';
+const socketIO = require('socket.io');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Websockets Setup
+const server = http.createServer(app);
+const io = socketIO(server);
 
 // PG database client/connection setup
 const db = require('./lib/db.js');
@@ -39,9 +42,20 @@ app.use('/users', usersRouter);
 app.use('/users/:userId/urls', urlsRouter);
 app.use('/users/:userId/urls/:urlId/clicks', clicksRouter);
 
+// Queries
+import { getLongUrlByShortUrl } from './db/queries/url-queries';
+import { getUserByEmail, addUser } from './db/queries/user-queries';
+import { addClick } from './db/queries/click-queries';
+
 interface User {
 	id: number;
 	email: string;
+}
+
+interface Click {
+	id: number;
+	url_id: number;
+	timestamp: number;
 }
 
 app.get('/s/:shortUrl', (req, res) => {
@@ -58,9 +72,9 @@ app.get('/s/:shortUrl', (req, res) => {
 			const urlId = urlData.id;
 			const clickTimestamp = new Date().getTime();
 
-			addClick(urlId, clickTimestamp).catch((err: Error) =>
-				console.log('Error at server GET route "/s/:shortUrl", addClick query', err)
-			);
+			addClick(urlId, clickTimestamp)
+				.then((clickData: Click) => io.emit('click', clickData))
+				.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl", addClick query', err));
 		})
 		.catch((err: Error) => console.log('Error at server GET route "/s/:shortUrl"', err));
 });
