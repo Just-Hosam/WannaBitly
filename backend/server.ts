@@ -15,6 +15,21 @@ const PORT = process.env.PORT || 8080;
 const server = http.createServer(app);
 const io = socketIO(server);
 
+// , {
+// 	cors: {
+// 		origin: 'https://wannabitly.herokuapp.com/',
+// 		methods: ['GET', 'POST'],
+// 	},
+// }
+
+// Websockets Connection
+io.on('connection', (socket: any) => {
+	console.log('USER CONNECTED ~~~~~~~~~~~~~~~~~~~~~');
+	// socket.on('message', (message: string) => {
+	// 	io.emit('message', message);
+	// });
+});
+
 // PG database client/connection setup
 const db = require('./lib/db.js');
 db.connect();
