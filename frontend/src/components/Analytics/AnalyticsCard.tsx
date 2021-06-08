@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
+import io from 'socket.io-client';
 import axios from 'axios';
+
+// Helper
 import chartDataFormatter from '../../helpers/chartDataFormatter';
 
+// Components
 import AnalyticsHeader from './AnalyticsHeader';
 import AnalyticsLineChart from './AnalyticsLineChart';
 import ClicksList from './ClicksList';
@@ -11,6 +15,10 @@ import NoClicksData from './NoClicksData';
 import TotalClicks from './TotalClicks';
 import Spinner from '../Elements/Spinner';
 
+// Socket
+const socket = io('https://wannabitly.herokuapp.com/');
+
+// Types
 interface Params {
 	urlId: string;
 }
@@ -29,6 +37,7 @@ const AnalyticsCard = () => {
 	const userId = cookies.userId;
 
 	useEffect(() => {
+		socket.on('click', (click) => setClicksData((prev) => [click, ...prev]));
 		axios
 			.get(`/users/${userId}/urls/${urlId}/clicks`)
 			.then((res) => {
