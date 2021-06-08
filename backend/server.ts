@@ -13,14 +13,12 @@ const PORT = process.env.PORT || 8080;
 
 // Websockets Setup
 const server = http.createServer(app);
-const io = socketIO(server);
-
-// , {
-// 	cors: {
-// 		origin: 'https://wannabitly.herokuapp.com/',
-// 		methods: ['GET', 'POST'],
-// 	},
-// }
+const io = socketIO(server, {
+	cors: {
+		origin: 'https://wannabitly.netlify.app/',
+		methods: ['GET', 'POST'],
+	},
+});
 
 // Websockets Connection
 io.on('connection', (socket: any) => {
