@@ -17,17 +17,9 @@ const PORT = process.env.PORT || 8080;
 const server = http_1.default.createServer(app);
 const io = socketIO(server, {
     cors: {
-        origin: 'http://localhost:3000',
-        // origin: 'https://wannabitly.netlify.app',
+        origin: ['http://localhost:3000', 'https://wannabitly.netlify.app'],
         methods: ['GET', 'POST'],
     },
-});
-// Websockets Connection
-io.on('connection', (socket) => {
-    console.log('USER CONNECTED ~~~~~~~~~~~~~~~~~~~~~');
-    // socket.on('message', (message: string) => {
-    // 	io.emit('message', message);
-    // });
 });
 // PG database client/connection setup
 const db = require('./lib/db.js');
