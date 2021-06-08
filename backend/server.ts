@@ -15,7 +15,8 @@ const PORT = process.env.PORT || 8080;
 const server = http.createServer(app);
 const io = socketIO(server, {
 	cors: {
-		origin: 'https://wannabitly.netlify.app/',
+		origin: 'http://localhost:3000/',
+		// origin: 'https://wannabitly.netlify.app/',
 		methods: ['GET', 'POST'],
 	},
 });
