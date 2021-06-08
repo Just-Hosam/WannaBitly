@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router-dom';
+import { isMobile } from 'react-device-detect';
 import io from 'socket.io-client';
 import axios from 'axios';
 
@@ -52,7 +53,7 @@ const AnalyticsCard = () => {
 			<AnalyticsHeader />
 			{mode === 'LOADING' && <Spinner />}
 			{mode === 'NOTVISITED' && <NoClicksData />}
-			{mode === 'DATA' && <AnalyticsLineChart clicksChartData={chartDataFormatter(clicksData)} />}
+			{mode === 'DATA' && <AnalyticsLineChart clicksChartData={chartDataFormatter(clicksData, isMobile)} />}
 			{mode === 'DATA' && (
 				<div id="click-data-cont">
 					<TotalClicks clicksNum={clicksData.length} />
