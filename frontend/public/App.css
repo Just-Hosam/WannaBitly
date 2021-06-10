@@ -109,15 +109,15 @@
 }
 
 :root {
-  --background-color: #fafafa;
+  --background-color: #202b3a;
   --card-color: #fff;
   --text-color: rgb(59, 59, 59);
   --text-color-alt: rgba(65, 65, 65, 0.932);
-  --text-color-button: #fff;
+  --text-color-button: #202b3a;
   --text-color-icon: rgba(114, 114, 114, 0.932);
-  --accent-color: rgb(96, 83, 247);
-  --accent-color-alt: rgb(128, 118, 251);
-  --error-color: rgb(253, 72, 72);
+  --text-color-userDetails: #fff;
+  --accent-color: #eec124;
+  --accent-color-alt: #d3a500;
 }
 
 body {
@@ -247,14 +247,15 @@ body {
   color: var(--accent-color);
   font-size: 2rem;
   margin: 1rem;
+  cursor: pointer;
 }
 
 #navbar .nav-btn {
   background-color: var(--accent-color-alt);
   color: var(--text-color-button);
-  margin-left: 0.65rem;
   font-size: 0.8rem;
   font-family: 'Rubik';
+  margin-right: 0.8rem;
 }
 
 #navbar .nav-btn i {
@@ -262,7 +263,6 @@ body {
 }
 
 #navbar #user-details {
-  margin: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -281,6 +281,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: end;
+  margin-right: 0.8rem;
 }
 
 #navbar #user-details #user-info h3 {
@@ -1310,4 +1311,28 @@ body {
   font-size: 1.6rem;
   -webkit-animation: slide-in-right-left 0.3s ease-in-out;
           animation: slide-in-right-left 0.3s ease-in-out;
+}
+
+#themes-list {
+  list-style: none;
+}
+
+#themes-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+}
+
+#themes-list-item .themes-btn {
+  margin: 0.5rem;
+}
+
+#themes-list-item .color-box {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
