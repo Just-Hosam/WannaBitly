@@ -1,11 +1,13 @@
 import ThemesHeader from './ThemesHeader';
+import ThemesList from './ThemesList';
 
-const Themes = () => {
+const ThemesCard = () => {
 	return (
 		<div id="themes">
 			<ThemesHeader />
+			<ThemesList />
 		</div>
 	);
 };
 
-export default Themes;
+export default ThemesCard;
