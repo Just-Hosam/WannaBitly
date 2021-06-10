@@ -1,6 +1,7 @@
 import { useCookies } from 'react-cookie';
 
 import GoogleLogoutButton from '../Login-Register/GoogleLogoutButton';
+import ThemesButton from './ThemesButton';
 
 const UserDetails = () => {
 	const [cookies] = useCookies(['userInfo']);
@@ -23,6 +24,7 @@ const UserDetails = () => {
 				<span>{email || 'email'}</span>
 			</div>
 			<GoogleLogoutButton />
+			<ThemesButton />
 		</div>
 	);
 };
