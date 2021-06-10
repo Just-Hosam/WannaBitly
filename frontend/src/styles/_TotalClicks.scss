@@ -10,12 +10,12 @@
 
 	h3 {
 		font-size: 1.8rem;
-		color: $background-color;
+		color: var(--text-color);
 	}
 
 	p {
 		font-size: 2.5rem;
-		color: $background-color;
+		color: var(--accent-color-alt);
 	}
 }
 

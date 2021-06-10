@@ -33,17 +33,23 @@ interface Click {
 const AnalyticsCard = () => {
 	const [cookies] = useCookies(['userId']);
 	const [clicksData, setClicksData] = useState<Click[]>([]);
-	const [mode, setmode] = useState('LOADING');
+	const [mode, setMode] = useState('LOADING');
 	const { urlId } = useParams<Params>();
 	const userId = cookies.userId;
 
 	useEffect(() => {
-		socket.on('click', (click) => setClicksData((prev) => [click, ...prev]));
+		socket.on('click', (click) => {
+			if (mode === 'NOTVISITED') setMode('LOADING');
+			setClicksData((prev) => {
+				setMode('DATA');
+				return [click, ...prev];
+			});
+		});
 		axios
 			.get(`/users/${userId}/urls/${urlId}/clicks`)
 			.then((res) => {
 				setClicksData(res.data);
-				setmode(res.data.length === 0 ? 'NOTVISITED' : 'DATA');
+				setMode(res.data.length === 0 ? 'NOTVISITED' : 'DATA');
 			})
 			.catch((err: Error) => console.log(err));
 	}, [urlId, userId]);

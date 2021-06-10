@@ -3,8 +3,7 @@
 #not-loggedin-card {
 	min-width: 400px;
 	min-height: 150px;
-	background-color: $card-color;
-	border-radius: 0.8rem;
+	@include card-layout;
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
@@ -15,21 +14,21 @@
 
 	header {
 		text-align: center;
-		color: $text-color;
+		color: var(--text-color);
 		font-size: 1.2rem;
 
 		h2 {
 			margin-bottom: 0.5rem;
 
 			span {
-				color: $accent-color;
+				color: var(--accent-color);
 			}
 		}
 	}
 
 	.nav-btn {
-		background-color: $accent-color;
-		color: $background-color;
+		background-color: var(--accent-color);
+		color: var(--background-color);
 		font-family: 'Rubik';
 	}
 }

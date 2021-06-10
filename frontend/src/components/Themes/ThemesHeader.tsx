@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const AnalyticsHeader = () => {
+const ThemesHeader = () => {
 	let history = useHistory();
 
 	const handleClick = () => {
@@ -12,15 +12,15 @@ const AnalyticsHeader = () => {
 	};
 
 	return (
-		<header id="analytics-header">
+		<header id="themes-header">
 			<Tooltip title="Back">
 				<IconButton className="back-btn" onClick={handleClick}>
 					<ArrowBackIcon />
 				</IconButton>
 			</Tooltip>
-			<h2>Analytics</h2>
+			<h2>Themes</h2>
 		</header>
 	);
 };
 
-export default AnalyticsHeader;
+export default ThemesHeader;

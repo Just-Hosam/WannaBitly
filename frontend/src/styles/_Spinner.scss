@@ -7,6 +7,6 @@
 	animation: fadein 0.25s ease-in-out;
 
 	.MuiCircularProgress-root {
-		color: $accent-color;
+		color: var(--accent-color);
 	}
 }

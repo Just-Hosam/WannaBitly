@@ -8,17 +8,18 @@
 	margin-bottom: 1.8rem;
 
 	h1 {
-		color: $accent-color;
+		color: var(--accent-color);
 		font-size: 2rem;
 		margin: 1rem;
+		cursor: pointer;
 	}
 
 	.nav-btn {
-		background-color: $accent-color-alt;
-		color: $text-color-button;
-		margin-left: 0.65rem;
+		background-color: var(--accent-color-alt);
+		color: var(--text-color-button);
 		font-size: 0.8rem;
 		font-family: 'Rubik';
+		margin-right: 0.8rem;
 
 		i {
 			display: none;
@@ -26,15 +27,15 @@
 	}
 
 	#user-details {
-		margin: 1rem;
 		display: flex;
 		align-items: center;
-		color: $card-color;
+		color: var(--text-color-userDetails);
 
 		#user-info {
 			display: flex;
 			flex-direction: column;
 			text-align: end;
+			margin-right: 0.8rem;
 
 			h3 {
 				font-size: 0.9rem;
