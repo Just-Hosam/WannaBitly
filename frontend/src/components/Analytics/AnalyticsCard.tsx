@@ -52,7 +52,7 @@ const AnalyticsCard = () => {
 				setMode(res.data.length === 0 ? 'NOTVISITED' : 'DATA');
 			})
 			.catch((err: Error) => console.log(err));
-	}, [urlId, userId]);
+	}, [urlId, userId, mode]);
 
 	return (
 		<div id="analytics-card">
