@@ -3,8 +3,7 @@
 #main-card {
 	width: 650px;
 	height: 500px;
-	background-color: var(--card-color);
-	border-radius: 0.8rem;
+	@include card-layout;
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
@@ -19,13 +18,14 @@
 			padding-left: 0.6rem;
 
 			h2 {
-				color: var(--background-color);
+				color: var(--text-color);
 				font-size: 1.6rem;
 				animation: slide-in-left-right 0.3s ease-in-out;
 			}
 
 			.add-btn {
 				padding: 0.5rem;
+				color: var(--text-color-icon);
 			}
 		}
 
@@ -35,6 +35,14 @@
 
 			.add-url-textfield {
 				margin-bottom: 0.6rem;
+
+				label {
+					color: var(--text-color-alt);
+				}
+
+				input {
+					color: var(--text-color);
+				}
 			}
 
 			#add-url-btns {
@@ -44,15 +52,14 @@
 				justify-content: space-between;
 
 				.add-url-cancel {
-					color: var(--background-color);
 					width: 49.5%;
 					font-family: 'Rubik', sans-serif;
 				}
 				.add-url-submit {
-					color: var(--accent-color);
+					color: var(--text-color-button);
 					font-family: 'Rubik', sans-serif;
 					width: 49.5%;
-					background-color: var(--background-color);
+					background-color: var(--accent-color-alt);
 				}
 			}
 		}

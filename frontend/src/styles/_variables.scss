@@ -16,6 +16,12 @@
 	align-items: center;
 }
 
+@mixin card-layout {
+	border-radius: 0.8rem;
+	background: var(--card-color);
+	box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
+}
+
 @keyframes slide-in-left-right {
 	0% {
 		opacity: 0;

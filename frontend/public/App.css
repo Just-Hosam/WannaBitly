@@ -109,14 +109,14 @@
 }
 
 :root {
-  --background-color: #202b3a;
+  --background-color: #fafafa;
   --card-color: #fff;
   --text-color: rgb(59, 59, 59);
   --text-color-alt: rgba(65, 65, 65, 0.932);
-  --text-color-button: #202b3a;
+  --text-color-button: #fff;
   --text-color-icon: rgba(114, 114, 114, 0.932);
-  --accent-color: #eec124;
-  --accent-color-alt: #d3a500;
+  --accent-color: rgb(96, 83, 247);
+  --accent-color-alt: rgb(128, 118, 251);
   --error-color: rgb(253, 72, 72);
 }
 
@@ -269,7 +269,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: var(--card-color);
+  color: var(--text-color-userDetails);
 }
 
 #navbar #user-details #user-info {
@@ -351,8 +351,10 @@ body {
 #not-loggedin-card {
   min-width: 400px;
   min-height: 150px;
-  background-color: var(--card-color);
   border-radius: 0.8rem;
+  background: var(--card-color);
+  -webkit-box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
+          box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -441,8 +443,10 @@ body {
 #main-card {
   width: 650px;
   height: 500px;
-  background-color: var(--card-color);
   border-radius: 0.8rem;
+  background: var(--card-color);
+  -webkit-box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
+          box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -472,7 +476,7 @@ body {
 }
 
 #main-card header header h2 {
-  color: var(--background-color);
+  color: var(--text-color);
   font-size: 1.6rem;
   -webkit-animation: slide-in-left-right 0.3s ease-in-out;
           animation: slide-in-left-right 0.3s ease-in-out;
@@ -480,6 +484,7 @@ body {
 
 #main-card header header .add-btn {
   padding: 0.5rem;
+  color: var(--text-color-icon);
 }
 
 #main-card header #add-url-form {
@@ -504,6 +509,14 @@ body {
   margin-bottom: 0.6rem;
 }
 
+#main-card header #add-url-form .add-url-textfield label {
+  color: var(--text-color-alt);
+}
+
+#main-card header #add-url-form .add-url-textfield input {
+  color: var(--text-color);
+}
+
 #main-card header #add-url-form #add-url-btns {
   width: 100%;
   display: -webkit-box;
@@ -518,16 +531,15 @@ body {
 }
 
 #main-card header #add-url-form #add-url-btns .add-url-cancel {
-  color: var(--background-color);
   width: 49.5%;
   font-family: 'Rubik', sans-serif;
 }
 
 #main-card header #add-url-form #add-url-btns .add-url-submit {
-  color: var(--accent-color);
+  color: var(--text-color-button);
   font-family: 'Rubik', sans-serif;
   width: 49.5%;
-  background-color: var(--background-color);
+  background-color: var(--accent-color-alt);
 }
 
 #main-card ul {
@@ -656,6 +668,7 @@ body {
 
 .url-card .urls-btns {
   padding: 0.35rem;
+  color: var(--text-color-icon);
 }
 
 .url-card .analytics-btn {
@@ -752,11 +765,11 @@ body {
   margin-top: 2rem;
   -webkit-animation: fadein 0.5s ease-in-out;
           animation: fadein 0.5s ease-in-out;
+  color: var(--text-color);
 }
 
 #new-user-instructions h3 {
   font-size: 2rem;
-  color: var(--background-color);
 }
 
 #new-user-instructions p {
@@ -811,8 +824,10 @@ body {
 #analytics-card {
   width: 650px;
   height: 500px;
-  background-color: var(--card-color);
   border-radius: 0.8rem;
+  background: var(--card-color);
+  -webkit-box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
+          box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -899,8 +914,12 @@ body {
   padding-right: 0.6rem;
 }
 
+#analytics-header .back-btn {
+  color: var(--text-color-icon);
+}
+
 #analytics-header h2 {
-  color: var(--background-color);
+  color: var(--text-color);
   font-size: 1.6rem;
   -webkit-animation: slide-in-right-left 0.3s ease-in-out;
           animation: slide-in-right-left 0.3s ease-in-out;
@@ -957,8 +976,8 @@ body {
 
 #clicks-list-cont #clicks-list th {
   padding: 5px;
-  color: var(--background-color);
-  border-bottom: 1px solid var(--background-color);
+  color: var(--text-color);
+  border-bottom: 1px solid var(--text-color);
 }
 
 #clicks-list-cont::-webkit-scrollbar {
@@ -1017,6 +1036,7 @@ body {
 }
 
 .clicks-list-item td {
+  color: var(--text-color-alt);
   text-align: center;
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 0;
@@ -1077,11 +1097,11 @@ body {
   margin-top: 2rem;
   -webkit-animation: fadein 0.5s ease-in-out;
           animation: fadein 0.5s ease-in-out;
+  color: var(--text-color);
 }
 
 #no-clicks-data h3 {
   font-size: 2rem;
-  color: var(--background-color);
 }
 
 #no-clicks-data p {
@@ -1153,12 +1173,12 @@ body {
 
 #total-clicks h3 {
   font-size: 1.8rem;
-  color: var(--background-color);
+  color: var(--text-color);
 }
 
 #total-clicks p {
   font-size: 2.5rem;
-  color: var(--background-color);
+  color: var(--accent-color-alt);
 }
 
 @media only screen and (max-width: 700px) {

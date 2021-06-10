@@ -3,8 +3,7 @@
 #analytics-card {
 	width: 650px;
 	height: 500px;
-	background-color: var(--card-color);
-	border-radius: 0.8rem;
+	@include card-layout;
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;

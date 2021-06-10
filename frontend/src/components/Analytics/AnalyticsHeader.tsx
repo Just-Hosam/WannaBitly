@@ -14,7 +14,7 @@ const AnalyticsHeader = () => {
 	return (
 		<header id="analytics-header">
 			<Tooltip title="Back">
-				<IconButton className="add-btn" onClick={handleClick}>
+				<IconButton className="back-btn" onClick={handleClick}>
 					<ArrowBackIcon />
 				</IconButton>
 			</Tooltip>
