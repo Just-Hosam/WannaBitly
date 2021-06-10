@@ -1,0 +1,19 @@
+@import './variables';
+
+#themes-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+	padding-right: 0.6rem;
+
+	.back-btn {
+		color: var(--text-color-icon);
+	}
+
+	h2 {
+		color: var(--text-color);
+		font-size: 1.6rem;
+		animation: slide-in-right-left 0.3s ease-in-out;
+	}
+}
