@@ -3,7 +3,7 @@
 #main-card {
 	width: 650px;
 	height: 500px;
-	background-color: $card-color;
+	background-color: var(--card-color);
 	border-radius: 0.8rem;
 	padding: 1rem;
 	display: flex;
@@ -19,7 +19,7 @@
 			padding-left: 0.6rem;
 
 			h2 {
-				color: $background-color;
+				color: var(--background-color);
 				font-size: 1.6rem;
 				animation: slide-in-left-right 0.3s ease-in-out;
 			}
@@ -44,15 +44,15 @@
 				justify-content: space-between;
 
 				.add-url-cancel {
-					color: $background-color;
+					color: var(--background-color);
 					width: 49.5%;
 					font-family: 'Rubik', sans-serif;
 				}
 				.add-url-submit {
-					color: $accent-color;
+					color: var(--accent-color);
 					font-family: 'Rubik', sans-serif;
 					width: 49.5%;
-					background-color: $background-color;
+					background-color: var(--background-color);
 				}
 			}
 		}

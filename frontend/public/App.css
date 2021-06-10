@@ -108,9 +108,21 @@
   padding: 0;
 }
 
+:root {
+  --background-color: #202b3a;
+  --card-color: #fff;
+  --text-color: rgb(59, 59, 59);
+  --text-color-alt: rgba(65, 65, 65, 0.932);
+  --text-color-button: #202b3a;
+  --text-color-icon: rgba(114, 114, 114, 0.932);
+  --accent-color: #eec124;
+  --accent-color-alt: #d3a500;
+  --error-color: rgb(253, 72, 72);
+}
+
 body {
   font-family: 'Rubik', sans-serif;
-  background-color: #202b3a;
+  background-color: var(--background-color);
   min-height: 100vh;
 }
 
@@ -179,7 +191,7 @@ body {
 }
 
 .spinner .MuiCircularProgress-root {
-  color: #eec124;
+  color: var(--accent-color);
 }
 
 @keyframes slide-in-left-right {
@@ -232,14 +244,14 @@ body {
 }
 
 #navbar h1 {
-  color: #eec124;
+  color: var(--accent-color);
   font-size: 2rem;
   margin: 1rem;
 }
 
 #navbar .nav-btn {
-  background-color: #d3a500;
-  color: #202b3a;
+  background-color: var(--accent-color-alt);
+  color: var(--text-color-button);
   margin-left: 0.65rem;
   font-size: 0.8rem;
   font-family: 'Rubik';
@@ -257,7 +269,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  color: #fff;
+  color: var(--card-color);
 }
 
 #navbar #user-details #user-info {
@@ -339,7 +351,7 @@ body {
 #not-loggedin-card {
   min-width: 400px;
   min-height: 150px;
-  background-color: #fff;
+  background-color: var(--card-color);
   border-radius: 0.8rem;
   padding: 1rem;
   display: -webkit-box;
@@ -362,7 +374,7 @@ body {
 
 #not-loggedin-card header {
   text-align: center;
-  color: #3b3b3b;
+  color: var(--text-color);
   font-size: 1.2rem;
 }
 
@@ -371,12 +383,12 @@ body {
 }
 
 #not-loggedin-card header h2 span {
-  color: #eec124;
+  color: var(--accent-color);
 }
 
 #not-loggedin-card .nav-btn {
-  background-color: #eec124;
-  color: #202b3a;
+  background-color: var(--accent-color);
+  color: var(--background-color);
   font-family: 'Rubik';
 }
 
@@ -429,7 +441,7 @@ body {
 #main-card {
   width: 650px;
   height: 500px;
-  background-color: #fff;
+  background-color: var(--card-color);
   border-radius: 0.8rem;
   padding: 1rem;
   display: -webkit-box;
@@ -460,7 +472,7 @@ body {
 }
 
 #main-card header header h2 {
-  color: #202b3a;
+  color: var(--background-color);
   font-size: 1.6rem;
   -webkit-animation: slide-in-left-right 0.3s ease-in-out;
           animation: slide-in-left-right 0.3s ease-in-out;
@@ -506,16 +518,16 @@ body {
 }
 
 #main-card header #add-url-form #add-url-btns .add-url-cancel {
-  color: #202b3a;
+  color: var(--background-color);
   width: 49.5%;
   font-family: 'Rubik', sans-serif;
 }
 
 #main-card header #add-url-form #add-url-btns .add-url-submit {
-  color: #eec124;
+  color: var(--accent-color);
   font-family: 'Rubik', sans-serif;
   width: 49.5%;
-  background-color: #202b3a;
+  background-color: var(--background-color);
 }
 
 #main-card ul {
@@ -613,7 +625,7 @@ body {
 }
 
 .url-card p {
-  color: #3b3b3b;
+  color: var(--text-color);
   font-size: 1.1rem;
   word-wrap: break-word;
   width: 70%;
@@ -639,7 +651,7 @@ body {
 .url-card .urls-cont span {
   font-style: italic;
   font-size: 0.8rem;
-  color: rgba(65, 65, 65, 0.932);
+  color: var(--text-color-alt);
 }
 
 .url-card .urls-btns {
@@ -647,7 +659,7 @@ body {
 }
 
 .url-card .analytics-btn {
-  color: #d3a500;
+  color: var(--accent-color-alt);
 }
 
 @media only screen and (max-width: 700px) {
@@ -744,7 +756,7 @@ body {
 
 #new-user-instructions h3 {
   font-size: 2rem;
-  color: #202b3a;
+  color: var(--background-color);
 }
 
 #new-user-instructions p {
@@ -799,7 +811,7 @@ body {
 #analytics-card {
   width: 650px;
   height: 500px;
-  background-color: #fff;
+  background-color: var(--card-color);
   border-radius: 0.8rem;
   padding: 1rem;
   display: -webkit-box;
@@ -888,7 +900,7 @@ body {
 }
 
 #analytics-header h2 {
-  color: #202b3a;
+  color: var(--background-color);
   font-size: 1.6rem;
   -webkit-animation: slide-in-right-left 0.3s ease-in-out;
           animation: slide-in-right-left 0.3s ease-in-out;
@@ -945,8 +957,8 @@ body {
 
 #clicks-list-cont #clicks-list th {
   padding: 5px;
-  color: #202b3a;
-  border-bottom: 1px solid #202b3a;
+  color: var(--background-color);
+  border-bottom: 1px solid var(--background-color);
 }
 
 #clicks-list-cont::-webkit-scrollbar {
@@ -1069,7 +1081,7 @@ body {
 
 #no-clicks-data h3 {
   font-size: 2rem;
-  color: #202b3a;
+  color: var(--background-color);
 }
 
 #no-clicks-data p {
@@ -1141,12 +1153,12 @@ body {
 
 #total-clicks h3 {
   font-size: 1.8rem;
-  color: #202b3a;
+  color: var(--background-color);
 }
 
 #total-clicks p {
   font-size: 2.5rem;
-  color: #202b3a;
+  color: var(--background-color);
 }
 
 @media only screen and (max-width: 700px) {

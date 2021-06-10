@@ -11,7 +11,7 @@
 	animation: fadein 0.3s ease-in-out;
 
 	p {
-		color: $text-color;
+		color: var(--text-color);
 		font-size: 1.1rem;
 		word-wrap: break-word;
 		width: 70%;
@@ -31,7 +31,7 @@
 		span {
 			font-style: italic;
 			font-size: 0.8rem;
-			color: $text-color-alt;
+			color: var(--text-color-alt);
 		}
 	}
 
@@ -40,7 +40,7 @@
 	}
 
 	.analytics-btn {
-		color: $accent-color-alt;
+		color: var(--accent-color-alt);
 	}
 }
 

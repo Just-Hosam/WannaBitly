@@ -8,14 +8,14 @@
 	margin-bottom: 1.8rem;
 
 	h1 {
-		color: $accent-color;
+		color: var(--accent-color);
 		font-size: 2rem;
 		margin: 1rem;
 	}
 
 	.nav-btn {
-		background-color: $accent-color-alt;
-		color: $text-color-button;
+		background-color: var(--accent-color-alt);
+		color: var(--text-color-button);
 		margin-left: 0.65rem;
 		font-size: 0.8rem;
 		font-family: 'Rubik';
@@ -29,7 +29,7 @@
 		margin: 1rem;
 		display: flex;
 		align-items: center;
-		color: $card-color;
+		color: var(--card-color);
 
 		#user-info {
 			display: flex;
