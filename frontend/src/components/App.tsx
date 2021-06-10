@@ -5,6 +5,7 @@ import NavBar from './NavBar/NavBar';
 import MainCard from './Main/MainCard';
 import AnalyticsCard from './Analytics/AnalyticsCard';
 import NotLoggedIn from './Main/NotLoggedIn';
+import Themes from './Themes/Themes';
 
 function App() {
 	const [cookies] = useCookies(['userId']);
@@ -17,6 +18,7 @@ function App() {
 			<Router>
 				<Switch>
 					<Route path="/analytics/:urlId">{isLoggedIn && <AnalyticsCard />}</Route>
+					<Route path="/themes">{isLoggedIn && <Themes />}</Route>
 					<Route path="/">{isLoggedIn && <MainCard />}</Route>
 				</Switch>
 			</Router>

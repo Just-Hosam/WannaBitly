@@ -1,0 +1,18 @@
+@import './variables';
+
+#themes {
+	width: 650px;
+	height: 500px;
+	@include card-layout;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+@media only screen and (max-width: 700px) {
+	#themes {
+		width: 89%;
+		height: 100%;
+		border-radius: 0.5rem;
+	}
+}
