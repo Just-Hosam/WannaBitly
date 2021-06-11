@@ -1,5 +1,10 @@
 import ThemesListItem from './ThemesListItem';
 
+interface Props {
+	setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>;
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>;
+}
+
 interface ThemeCard {
 	name: ThemeName;
 	cardColor: string;
@@ -38,9 +43,14 @@ const themeCardArr: ThemeCard[] = [
 	},
 ];
 
-const ThemesList = () => {
+const ThemesList = (props: Props) => {
 	const ThemesListComponents = themeCardArr.map((theme, themeIdx) => (
-		<ThemesListItem key={themeIdx} theme={theme} />
+		<ThemesListItem
+			key={themeIdx}
+			theme={theme}
+			setOpenSnackBar={props.setOpenSnackBar}
+			setMessageSnackBar={props.setMessageSnackBar}
+		/>
 	));
 	return <ul id="themes-list">{ThemesListComponents}</ul>;
 };

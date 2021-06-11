@@ -4,9 +4,15 @@ import IconButton from '@material-ui/core/IconButton';
 import PaletteIcon from '@material-ui/icons/Palette';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import applyTheme from '../../helpers/applyTheme';
 import themes from '../../helpers/themesColors';
+
+interface Props {
+	setOpenSnackBar: React.Dispatch<React.SetStateAction<boolean>>;
+	setMessageSnackBar: React.Dispatch<React.SetStateAction<string>>;
+}
 
 interface Theme {
 	'--background-color': string;
@@ -19,7 +25,7 @@ interface Theme {
 	'--text-color-userDetails': string;
 }
 
-const CustomThemeForm = () => {
+const CustomThemeForm = (props: Props) => {
 	const [customTheme, setCustomTheme] = useState<Theme>({
 		'--background-color': '',
 		'--card-color': '',
@@ -54,19 +60,25 @@ const CustomThemeForm = () => {
 		localStorage.setItem('customTheme', JSON.stringify(customTheme));
 		const isSelected = localStorage.getItem('theme') === 'custom';
 		if (isSelected) applyTheme(customTheme);
+		props.setMessageSnackBar('Theme Saved');
+		props.setOpenSnackBar(true);
 	};
 
 	const handleClick = () => {
 		localStorage.setItem('theme', 'custom');
 		applyTheme(customTheme);
+		props.setMessageSnackBar('Theme Selected');
+		props.setOpenSnackBar(true);
 	};
 
 	return (
 		<form id="custom-theme-form" onSubmit={(e) => handleSubmit(e)}>
 			<div id="theme-form-btns">
-				<IconButton className="themes-btn" onClick={handleClick}>
-					<PaletteIcon />
-				</IconButton>
+				<Tooltip title="Select">
+					<IconButton className="themes-btn" onClick={handleClick}>
+						<PaletteIcon />
+					</IconButton>
+				</Tooltip>
 				<Button variant="contained" id="custom-submit-btn" type="submit">
 					Save
 				</Button>
