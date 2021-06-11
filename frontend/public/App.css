@@ -253,7 +253,7 @@ body {
 #navbar .nav-btn {
   background-color: var(--accent-color-alt);
   color: var(--text-color-button);
-  font-size: 0.8rem;
+  font-size: 0.89rem;
   font-family: 'Rubik';
   margin-right: 0.8rem;
 }
@@ -301,7 +301,7 @@ body {
   }
   #navbar .nav-btn {
     padding: 0.5rem 0;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   #navbar .nav-btn #logout-text {
     display: none;
@@ -1328,11 +1328,83 @@ body {
 }
 
 #themes-list-item .themes-btn {
-  margin: 0.5rem;
+  margin: 0.2rem;
+}
+
+#themes-list-item .themes-btn svg {
+  font-size: 1.25rem;
 }
 
 #themes-list-item .color-box {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+}
+
+#custom-theme-form {
+  border: 1px solid red;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+#custom-theme-form #theme-form-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#custom-theme-form #theme-form-btns .themes-btn {
+  margin: 0.2rem;
+  color: #aaaaaa;
+}
+
+#custom-theme-form #theme-form-btns .themes-btn svg {
+  font-size: 1.25rem;
+}
+
+#custom-theme-form #theme-form-btns #custom-submit-btn {
+  margin-right: 0.5rem;
+  background-color: var(--accent-color-alt);
+  color: var(--text-color-button);
+}
+
+#custom-theme-form #custom-theme-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#custom-theme-form #custom-theme-inputs .custom-form-input {
+  width: 48%;
+  margin-bottom: 0.2rem;
+}
+
+#custom-theme-form #custom-theme-inputs .custom-form-input label {
+  color: var(--text-color-alt);
+}
+
+#custom-theme-form #custom-theme-inputs .custom-form-input input {
+  color: var(--text-color);
+}
+
+@media only screen and (max-width: 700px) {
+  #custom-theme-form .custom-form-input {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
 }

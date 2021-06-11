@@ -17,7 +17,7 @@
 	.nav-btn {
 		background-color: var(--accent-color-alt);
 		color: var(--text-color-button);
-		font-size: 0.8rem;
+		font-size: 0.89rem;
 		font-family: 'Rubik';
 		margin-right: 0.8rem;
 
@@ -56,7 +56,8 @@
 		margin-bottom: 0.2rem;
 		.nav-btn {
 			padding: 0.5rem 0;
-			font-size: 1rem;
+			font-size: 1.5rem;
+
 			#logout-text {
 				display: none;
 			}
