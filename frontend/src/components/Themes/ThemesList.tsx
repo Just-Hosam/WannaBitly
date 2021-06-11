@@ -36,7 +36,7 @@ const themeCardArr: ThemeCard[] = [
 	{
 		name: 'dark',
 		cardColor: '#2c303a',
-		buttonColor: '#fff',
+		buttonColor: '#ccc',
 		blockColor1: '#1f1f1f',
 		blockColor2: '#e2a54a',
 		blockColor3: '#d39a45',
