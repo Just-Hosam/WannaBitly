@@ -1,0 +1,56 @@
+#custom-theme-form {
+	border: 1px solid red;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	flex-grow: 1;
+
+	#theme-form-btns {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.themes-btn {
+			margin: 0.2rem;
+			color: rgb(170, 170, 170);
+
+			svg {
+				font-size: 1.25rem;
+			}
+		}
+
+		#custom-submit-btn {
+			margin-right: 0.5rem;
+			background-color: var(--accent-color-alt);
+			color: var(--text-color-button);
+		}
+	}
+
+	#custom-theme-inputs {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+
+		.custom-form-input {
+			width: 48%;
+			margin-bottom: 0.2rem;
+
+			label {
+				color: var(--text-color-alt);
+			}
+
+			input {
+				color: var(--text-color);
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	#custom-theme-form {
+		.custom-form-input {
+			width: 100%;
+			margin: 0;
+			margin-bottom: 0.5rem;
+		}
+	}
+}
