@@ -1,19 +1,87 @@
 @import './variables';
 
-#themes {
-	width: 650px;
-	height: 500px;
-	@include card-layout;
-	padding: 1rem;
+#themes-cont {
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+
+	#themes {
+		// TODO: Play with this
+		width: 650px;
+		height: 500px;
+		@include card-layout;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		margin-left: 1rem;
+	}
+
+	#color-picker-card {
+		margin: 0 1rem;
+		padding: 1rem;
+		@include card-layout;
+		height: fit-content;
+		max-width: min-content;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: var(--text-color);
+
+		h3 {
+			font-size: 1.6rem;
+			animation: fadein 0.3s ease-in-out;
+			margin-bottom: 1.5rem;
+			padding: 0.5rem 0;
+		}
+
+		p {
+			width: 95%;
+			margin-bottom: 1rem;
+		}
+
+		#copy-color {
+			width: 100%;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			margin-bottom: 1rem;
+			border: 1px solid var(--text-color-icon);
+			border-radius: 10px;
+
+			> span {
+				width: 40%;
+				font-size: 1rem;
+				font-style: normal;
+				text-align: center;
+			}
+
+			.copy-btn {
+				color: var(--text-color-icon);
+			}
+		}
+	}
 }
 
 @media only screen and (max-width: 700px) {
-	#themes {
-		width: 89%;
-		height: 100%;
-		border-radius: 0.5rem;
-		margin-bottom: 1.5rem;
+	#themes-cont {
+		flex-direction: column;
+		align-items: center;
+
+		#themes {
+			width: 89%;
+			height: 100%;
+			border-radius: 0.5rem;
+			margin: 0;
+			margin-bottom: 1rem;
+		}
+
+		#color-picker-card {
+			margin: 0;
+			width: 89%;
+			max-width: 89%;
+			height: 100%;
+			border-radius: 0.5rem;
+			margin-bottom: 1.5rem;
+		}
 	}
 }
