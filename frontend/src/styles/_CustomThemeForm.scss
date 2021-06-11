@@ -1,8 +1,8 @@
 #custom-theme-form {
-	border: 1px solid red;
 	border-radius: 10px;
 	border: 1px solid #ccc;
 	flex-grow: 1;
+	animation: fadein 0.3s ease-in-out;
 
 	#theme-form-btns {
 		display: flex;
@@ -47,10 +47,14 @@
 
 @media only screen and (max-width: 700px) {
 	#custom-theme-form {
-		.custom-form-input {
-			width: 100%;
-			margin: 0;
-			margin-bottom: 0.5rem;
+		#custom-theme-inputs {
+			flex-direction: column;
+			align-items: center;
+
+			.custom-form-input {
+				width: 90%;
+				margin-bottom: 1rem;
+			}
 		}
 	}
 }
