@@ -39,7 +39,6 @@ const AnalyticsCard = () => {
 
 	useEffect(() => {
 		socket.on('click', (click) => {
-			if (mode === 'NOTVISITED') setMode('LOADING');
 			setClicksData((prev) => {
 				setMode('DATA');
 				return [click, ...prev];
@@ -52,7 +51,7 @@ const AnalyticsCard = () => {
 				setMode(res.data.length === 0 ? 'NOTVISITED' : 'DATA');
 			})
 			.catch((err: Error) => console.log(err));
-	}, [urlId, userId, mode]);
+	}, [urlId, userId]);
 
 	return (
 		<div id="analytics-card">
