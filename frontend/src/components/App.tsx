@@ -15,11 +15,13 @@ function App() {
 	const isLoggedIn = cookies.userId ? true : false;
 
 	useEffect(() => {
-		const currentTheme = localStorage.getItem('theme');
-		let currentThemeObj;
-		if (currentTheme) {
-			currentThemeObj = JSON.parse(currentTheme);
-			applyTheme(currentThemeObj);
+		const theme = localStorage.getItem('theme');
+		const currentTheme = localStorage.getItem('currentTheme');
+		const customTheme = localStorage.getItem('customTheme');
+		if ((theme === 'default' || theme === 'light' || theme === 'dark') && currentTheme) {
+			applyTheme(JSON.parse(currentTheme));
+		} else if (theme === 'custom' && customTheme) {
+			applyTheme(JSON.parse(customTheme));
 		}
 	}, []);
 

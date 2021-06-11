@@ -19,7 +19,8 @@ type ThemeName = 'default' | 'light' | 'dark';
 
 const ThemesListItem = (props: Props) => {
 	const handleClick = (themeName: ThemeName) => {
-		localStorage.setItem('theme', JSON.stringify(themes[themeName]));
+		localStorage.setItem('theme', themeName);
+		localStorage.setItem('currentTheme', JSON.stringify(themes[themeName]));
 		applyTheme(themes[themeName]);
 	};
 

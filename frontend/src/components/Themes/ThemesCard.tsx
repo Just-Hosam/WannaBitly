@@ -1,3 +1,4 @@
+import CustomThemeForm from './CustomThemeForm';
 import ThemesHeader from './ThemesHeader';
 import ThemesList from './ThemesList';
 
@@ -6,6 +7,7 @@ const ThemesCard = () => {
 		<div id="themes">
 			<ThemesHeader />
 			<ThemesList />
+			<CustomThemeForm />
 		</div>
 	);
 };
