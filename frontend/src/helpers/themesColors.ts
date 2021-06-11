@@ -27,7 +27,7 @@ const themes = {
 		'--text-color': 'rgb(177, 177, 177)',
 		'--text-color-alt': 'rgba(179, 179, 179, 0.932)',
 		'--text-color-button': '#2c303a',
-		'--text-color-icon': 'rgba(114, 114, 114, 0.932)',
+		'--text-color-icon': '#ccc',
 		'--text-color-userDetails': 'rgb(177, 177, 177)',
 		'--accent-color': '#e2a54a',
 		'--accent-color-alt': '#d39a45',
